@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruediger's Apps</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f5f7;
+      --card-bg: #ffffff;
+      --text: #1d1d1f;
+      --subtext: #6e6e73;
+      --accent: #0071e3;
+      --border: rgba(0,0,0,0.08);
+      --shadow: 0 2px 16px rgba(0,0,0,0.08);
+      --shadow-hover: 0 8px 32px rgba(0,0,0,0.14);
+      --modal-bg: rgba(0,0,0,0.45);
+      --radius: 18px;
+      --icon-radius: 22.37%; /* Apple's icon corner radius */
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1c1c1e;
+        --card-bg: #2c2c2e;
+        --text: #f5f5f7;
+        --subtext: #98989d;
+        --border: rgba(255,255,255,0.08);
+        --shadow: 0 2px 16px rgba(0,0,0,0.4);
+        --shadow-hover: 0 8px 32px rgba(0,0,0,0.5);
+        --modal-bg: rgba(0,0,0,0.65);
+      }
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      text-align: center;
+      padding: 64px 24px 40px;
+    }
+
+    header h1 {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 18px;
+      color: var(--subtext);
+    }
+
+    .category-label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--subtext);
+      padding: 0 24px;
+      max-width: 1200px;
+      margin: 40px auto 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 0 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      padding: 24px;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      user-select: none;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card:active {
+      transform: translateY(-1px);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .icon-wrap {
+      width: 64px;
+      height: 64px;
+      flex-shrink: 0;
+      border-radius: var(--icon-radius);
+      overflow: hidden;
+      background: var(--border);
+    }
+
+    .icon-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .icon-placeholder {
+      width: 64px;
+      height: 64px;
+      flex-shrink: 0;
+      border-radius: var(--icon-radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+    }
+
+    .card-meta h2 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .platform-tag {
+      display: inline-block;
+      margin-top: 3px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(0,113,227,0.1);
+      border-radius: 4px;
+      padding: 2px 7px;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--subtext);
+      flex: 1;
+    }
+
+    .card-cta {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 60px 24px 40px;
+      font-size: 13px;
+      color: var(--subtext);
+    }
+
+    /* ── Modal ── */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--modal-bg);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--card-bg);
+      width: 100%;
+      max-width: 760px;
+      max-height: 88vh;
+      border-radius: 24px 24px 0 0;
+      overflow-y: auto;
+      transform: translateY(40px);
+      transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+      scrollbar-width: thin;
+    }
+
+    .overlay.open .modal {
+      transform: translateY(0);
+    }
+
+    .modal-handle {
+      width: 36px;
+      height: 5px;
+      background: var(--border);
+      border-radius: 3px;
+      margin: 12px auto 0;
+    }
+
+    .modal-close {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: flex-end;
+      padding: 12px 20px 0;
+      background: var(--card-bg);
+      z-index: 1;
+    }
+
+    .modal-close button {
+      background: var(--border);
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      color: var(--subtext);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+
+    .modal-close button:hover {
+      background: rgba(0,0,0,0.15);
+    }
+
+    .modal-body {
+      padding: 0 28px 40px;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .modal-icon {
+      width: 88px;
+      height: 88px;
+      flex-shrink: 0;
+      border-radius: var(--icon-radius);
+      overflow: hidden;
+      background: var(--border);
+    }
+
+    .modal-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-icon-placeholder {
+      width: 88px;
+      height: 88px;
+      flex-shrink: 0;
+      border-radius: var(--icon-radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+    }
+
+    .modal-title h2 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .modal-title .platform-tag {
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .modal-tagline {
+      font-size: 17px;
+      color: var(--subtext);
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .modal-section {
+      margin-bottom: 24px;
+    }
+
+    .modal-section h3 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--subtext);
+      margin-bottom: 10px;
+    }
+
+    .modal-section p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .feature-list li {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--text);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .feature-list li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 11px;
+      top: 3px;
+    }
+
+    .no-screenshots {
+      background: var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--subtext);
+    }
+
+    .screenshot-strip {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .screenshot-strip img {
+      height: 380px;
+      width: auto;
+      max-width: 85vw;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      cursor: zoom-in;
+      background: var(--border);
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 24px 0;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 34px; }
+      .grid { grid-template-columns: 1fr; }
+      .modal { max-height: 92vh; border-radius: 20px 20px 0 0; }
+      .modal-body { padding: 0 20px 32px; }
+      .screenshot-strip img { height: 280px; }
+    }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      padding: 40px;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 10px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.5);
+      cursor: zoom-out;
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      background: rgba(255,255,255,0.12);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 18px;
+      cursor: pointer;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255,255,255,0.24);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Ruediger&rsquo;s Apps</h1>
+  <p>Native Swift apps for macOS &amp; iOS</p>
+</header>
+
+<div class="category-label">Audiobook &amp; Audio</div>
+<div class="grid" id="grid-audio"></div>
+
+<div class="category-label">AI &amp; Productivity</div>
+<div class="grid" id="grid-ai"></div>
+
+<div class="category-label">Finance &amp; Data</div>
+<div class="grid" id="grid-finance"></div>
+
+<div class="category-label">Home Automation &amp; Energy</div>
+<div class="grid" id="grid-home"></div>
+
+<div class="category-label">Networking &amp; Privacy</div>
+<div class="grid" id="grid-networking"></div>
+
+<div class="category-label">Health</div>
+<div class="grid" id="grid-health"></div>
+
+<footer>
+  <p>All apps built with Swift &amp; SwiftUI &mdash; no external dependencies.</p>
+</footer>
+
+<!-- Modal -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true">
+  <div class="modal" id="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-close">
+      <button id="closeBtn" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" id="lightboxCloseBtn" aria-label="Close">✕</button>
+  <img id="lightboxImg" src="" alt="Screenshot, full size">
+</div>
+
+<script>
+const apps = [
+  // ── Audiobook & Audio ──
+  {
+    id: 'audiorec',
+    category: 'audio',
+    name: 'Reel2Reel',
+    platform: 'macOS',
+    icon: 'icons/reel2reel.png',
+    tagline: 'Audiobook stream recorder with autosplit and Audible metadata',
+    summary: 'A native macOS recorder optimised for capturing audiobooks from Safari streams via BlackHole 2ch. Records to M4A using three quality presets. Three independent silence-detection timers handle autosplit segmentation, timer-end pausing, and unexpected-dropout detection. Each segment is saved as a separate M4A file and logged to a CSV. Safari playback is controlled via spacebar injection by PID, enabling fully automated unattended recording. Metadata and cover art are embedded post-recording via AVAssetExportSession without re-encoding. Audible search — now backed by the shared AudibleKit package — populates title, artist, narrator, and year automatically, with a manual-entry fallback (including a cover-art well) for books Audible search can\'t find.',
+    features: [
+      'BlackHole 2ch audio input at 48 kHz — captures audio from any source playing through BlackHole',
+      'Three M4A quality presets: Audiobook (HE-AAC mono 32 kbps 16 kHz), Radioshow (HE-AAC stereo 64 kbps 22 kHz), Music (AAC-LC stereo 160 kbps 48 kHz)',
+      'Autosplit mode: configurable segment duration (default 59:58) with optional silence-wait before each split',
+      'Three independent silence timers: autosplit, timer-end (5 s), and unexpected-stop detection (10 s of continuous silence)',
+      'Configurable silence threshold in dB; max segment count limit (0 = unlimited)',
+      'Safari spacebar injection via CGEvent/ApplicationServices by PID — pauses and resumes Safari in the background between segments',
+      'Real-time waveform (100-sample rolling window, L/R channels) and dual VU meter with adjustable makeup gain (−20 to +20 dB)',
+      'Segment log: CSV auto-saved on session finish with start time, end time, and M4A filename per segment',
+      'Metadata fields: album title, artist, album artist, year, runtime; cover art from PNG/JPEG/HEIC file picker',
+      'Audible search via shared AudibleKit package: one-click populate of title, author, narrator, and year; manual book-entry sheet with its own cover-art well when a title can\'t be found',
+      'In-app setup guides: BlackHole routing walkthrough and Audible CLI status badge/setup guide in Preferences',
+      'Cover art and metadata embedded post-recording via AVAssetExportSession (audio passes through unmodified)',
+      'System sleep prevention via IOKit during recording; security-scoped bookmark for persistent folder access'
+    ],
+    tech: 'AVFoundation · AVAudioEngine · ExtAudioFile · AVAssetExportSession · CGEvent · ApplicationServices · IOKit · AudibleKit',
+    screenshots: []
+  },
+  {
+    id: 'wavesmith',
+    category: 'audio',
+    name: 'WaveSmith',
+    platform: 'macOS',
+    icon: 'icons/wavesmith.png',
+    tagline: 'Transcode, tag, merge, and decrypt audiobook files — M4A, M4B, MP3, AAX',
+    summary: 'A macOS audiobook audio toolbox with four operations, rebuilt around one hard rule: only Transcode ever re-encodes. Transcode converts M4A, M4B, MP3, FLAC, and Audible AAX/AAXC files to M4A or M4B via AVAssetReader/Writer, with an optional Normalize pass. Write Tags injects full iTunes audiobook metadata into M4A, M4B, and MP3 files — including correct per-file track numbers on multi-file selections. Merge and AutoSplit are unconditional lossless stream copies (ffmpeg -c:a copy) that never touch Normalize, no matter how it\'s set. Audible search via AudibleKit populates all metadata in one click. Every card shows a "Lossless" or "Re-encodes" badge so it\'s always obvious which operations touch the audio and which don\'t.',
+    features: [
+      'Input formats: MP3, AAC, M4A, M4B, FLAC, AAX, AAXC; output formats: M4A or M4B (macOS 14+ uses native m4b-audiobook UTI)',
+      'Three encoder presets: Audiobook (HE-AAC mono 32 kbps 16 kHz), Radioshow (HE-AAC stereo 64 kbps 24 kHz), Music (AAC-LC stereo 160 kbps 48 kHz)',
+      'Write Tags: cover art, title, author, narrator, genre, year, track number, subtitle, duration summary, stik=2 audiobook media type — derives per-file track number and title from each file\'s own name on multi-file selections instead of stamping one shared value',
+      'Lossless guarantee: Merge (ffmpeg concat demuxer) and AutoSplit (silence-based segmentation) are pure stream copies and never read the Normalize toggle; only Transcode re-encodes, by definition — a "Lossless" / "Re-encodes" chip on every card makes this visible at a glance',
+      'AAX/AAXC decrypt: activation bytes and voucher key/iv fetched from audible-cli and cached per profile',
+      'Audible metadata search via AudibleKit: title + optional author filter, auto-populates all tag fields',
+      'Manual cover art: drag-and-drop or paste from clipboard; filename-based tag extraction when tags are absent',
+      'Persistent accent-color picker in Settings (amber, teal, blue, purple, forest, rose, slate) — recolors card borders, buttons, and focused text-field outlines throughout the app',
+      'Save-to folder shown Finder-style ("iCloud Drive/…") instead of the raw ~/Library/Mobile Documents/... container path',
+      'HE-AAC detection: explicit kAudioFormatMPEG4AAC_HE format ID or stored sample rate ≤12 kHz heuristic; UI shows both stored and playback rates',
+      'CUE sheet export and chapters CSV export with cumulative timestamps across multi-file sets',
+      'ffmpeg auto-detected at Homebrew Intel (/usr/local/bin) and Apple Silicon (/opt/homebrew/bin) paths'
+    ],
+    tech: 'AVFoundation · AVAssetReader/Writer · AVAssetExportSession · ffmpeg · audible-cli · AudibleKit',
+    screenshots: [
+      'screenshots/wavesmith/main-ui.png'
+    ]
+  },
+  {
+    id: 'bookplayer',
+    category: 'audio',
+    name: 'VocalTome',
+    platform: 'iOS',
+    icon: 'icons/vocaltome.png',
+    tagline: 'Audiobook player — M4A, M4B, MP3 — with chapters and bookmarks',
+    summary: 'A focused iOS audiobook player built on AVAudioEngine for precise seeking and variable-speed playback. Library-management code was deliberately stripped out to keep it a pure player. Supports M4A, M4B, and MP3 in direct book-folder, author/book nested, and single top-level M4B layouts. Chapter parsing handles both the Nero chpl binary atom (uint64 100-ns timestamps, 4-byte and 1-byte count formats) and QuickTime chapter tracks, including tracks tagged with the generic "und" (undetermined) language code that earlier versions missed. Playback position is saved every 5 seconds, on pause, and on app backgrounding. Cover artwork drives dominant-colour UI theming, and Now Playing / remote control (lock screen, AirPods, CarPlay) integration was fixed so play/pause no longer breaks out of sync with hardware controls.',
+    features: [
+      'Audio formats: M4A, M4B, MP3',
+      'Folder layouts: Books/BookName/tracks, Books/Author/BookName/tracks, or single top-level .m4b file; multi-file book selector for picking which folder is "the book"',
+      'Track ordering: embedded ID3/iTunes disc+track tags first; filename natural-sort fallback',
+      'Chapter support: Nero chpl binary atom (custom MP4 box parser, both 4-byte Nero/mp4v2 and 1-byte ffmpeg count formats) and QuickTime chapter tracks — including tracks tagged "und" that were previously not detected',
+      'AVAudioEngine + AVAudioPlayerNode + AVAudioUnitTimePitch pipeline (not AVPlayer) for frame-accurate seeks',
+      'Playback speed: 0.4× to 3.0× in 0.1× steps via an on-screen selector',
+      'Controls: play/pause, ±10 s skip, file and chapter forward/backward navigation',
+      'Progress saved every 5 s during playback, on pause, on audio interruption, and on app resign/terminate',
+      'Bookmarks: file-relative timestamp + cumulative overall timestamp + optional note; exportable as formatted text',
+      'Artwork extracted from file; dominant colour via CIAreaAverage filter for adaptive background theming',
+      'Now Playing Info Center: title, artist, artwork, chapter number and total count, elapsed and total duration',
+      'Remote Control: lock screen, AirPods, and CarPlay play/pause, ±10 s skip, next/previous track and chapter via MPRemoteCommandCenter — fixed a regression where hardware play/pause could desync from on-screen state'
+    ],
+    tech: 'AVFoundation · AVAudioEngine · AVAudioUnitTimePitch · SwiftData · MediaPlayer · CoreImage',
+    screenshots: [
+      'screenshots/vocaltome/main-screen.png',
+      'screenshots/vocaltome/book-selector.png'
+    ]
+  },
+  {
+    id: 'bookrole',
+    category: 'ai',
+    name: '(retired — see Enki)',
+    hidden: true
+  },
+  {
+    id: 'shelfspoken',
+    category: 'audio',
+    name: 'ShelfSpoken',
+    platform: 'macOS / iOS',
+    icon: 'icons/shelfspoken.png',
+    tagline: 'Audiobook library manager with Audible metadata, CloudKit sync, and genre taxonomy',
+    summary: 'A cross-platform audiobook library manager (macOS + iOS) backed by SwiftData, now with full iCloud CloudKit sync so the library stays current across devices. Stores title, subtitle, author, narrator, series, genre, cover art, blurb, rating, ASIN, and reading status per book. One Audible search fills in title, author, narrator, series name and number, cover art, publisher, blurb, and genre — and a "Download Audible book" action runs a smart preflight diagnosis before handing off to WaveSmith\'s decrypt pipeline. A 4-level genre taxonomy (TopCategory → Level1 → Level2 → Level3) drives the sidebar filter, and an Audible badge, source filter, and username-based library import round out the metadata layer.',
+    features: [
+      'Per-book fields: title, subtitle, author, narrator, series name + book number, genre, cover art, blurb, publisher, ASIN, rating (0–5 in 0.5 steps), favorite, status, date finished, date purchased, tags, progress note',
+      'Four reading-status tabs: Finished, Reading, Want to Read, Hidden',
+      'iCloud CloudKit sync (private database) across macOS and iOS, with a CloudKit-compliant model hierarchy',
+      'Audible lookup via audible-cli/AudibleKit: fills title, author, narrator, series, genre, cover art, blurb, publisher, and duration with one search',
+      'Download Audible book action: smart preflight diagnosis (checks activation bytes, file availability, format) before kicking off a decrypt',
+      'Audible badge and source filter distinguish Audible-sourced books; username-based library import and manual ASIN editing',
+      'Auto-search mode: searches Audible for all books missing metadata in one batch run',
+      'Sidebar filter: Genre hierarchy (3-level expandable tree with book counts), Series (2+ books), Authors, Tags — multi-select, all active simultaneously',
+      'Data Quality filters: show only books missing cover art, missing genre, or duplicate titles — with counts; deduplication across macOS and iOS series views',
+      'Series stacking: books in the same series collapse into one tile in the grid; tap to expand',
+      '4-level genre taxonomy with keyword-scoring auto-assignment (GenreMapResolver); editable in Genre Map Editor window',
+      'CSV import (Audible and Libby formats); JSON backup with embedded cover art; import preview with new/update counts; three import policies (update missing fields only / overwrite / skip existing)',
+      'iOS: full-library grid with search, status filter, genre/author/series filter sheet, sort picker, series stacking and collapse; background remote-notification mode keeps CloudKit changes flowing in'
+    ],
+    tech: 'SwiftData · CloudKit · AudibleKit · audible-cli · NavigationSplitView · GenreMapResolver · BackupService',
+    screenshots: [
+      'screenshots/shelfspoken/main.png',
+      'screenshots/shelfspoken/details.png',
+      'screenshots/shelfspoken/filter-view.png',
+      'screenshots/shelfspoken/audible-search.png'
+    ]
+  },
+  {
+    id: 'orvox',
+    category: 'ai',
+    name: '(retired — see Enki)',
+    hidden: true
+  },
+
+  // ── AI & Productivity ──
+  {
+    id: 'enki',
+    category: 'ai',
+    name: 'Enki',
+    platform: 'iOS / macOS',
+    icon: 'icons/enki.jpg',
+    tagline: 'Local-LLM chat client — the macOS build also hosts audiobook character analysis and text-to-speech',
+    summary: 'Enki is an OpenAI-compatible chat client for locally-hosted language models (mlx-vlm, Ollama, or any server speaking the same API). The iOS app is a focused chat client for talking to a home LLM server over the LAN. The macOS app has grown into a small suite: a chat main window plus a sidebar of specialized applications — what used to be two standalone apps, BookRole (EPUB/TXT character-registry and story-summary extraction) and Orvox (local text-to-speech audiobook generation) — have been fully absorbed as sidebar panes, sharing one endpoint, one set of Swift packages, and a clean TextBridge handoff so text can move from a book\'s summary straight into a narration job without leaving the app.',
+    features: [
+      'OpenAI-compatible transport (GET /v1/models, POST /v1/chat/completions, SSE streaming) — works unmodified against mlx-vlm today, Ollama or anything else tomorrow',
+      'Endpoint editor with test-before-save connection checks and human-readable NSURLError hints (wrong port, host unreachable, etc.)',
+      'macOS sidebar panes: Chat, BookRole (Characters & Summaries), Orvox (Text-to-Speech) — one router-style AppModel, lazily-owned feature view models',
+      'BookRole pane: EPUB/TXT ingestion, per-chapter character-delta extraction, Jaro-Winkler spelling normalisation, an eight-step alias/merge heuristic, and a persistent CharacterProfile registry with CSV/Markdown export',
+      'Orvox pane: PDF/RTF/TXT → M4B audiobook via local Qwen3-TTS (MLX, Apple Silicon), five narration styles, voice cloning from a reference clip, and native QuickTime chapter markers written by direct MP4 atom patching',
+      'Local Whisper-Large-v3 speech-to-text transcription, with server-side postprocessing that restores chapter markers in the transcript',
+      'TextBridge: a pure, offline, deterministic text-cleaning core that moves text between BookRole and Orvox in both directions (.forSpeech / .forAnalysis profiles) without either feature importing the other',
+      'Growing chat input bar, streaming response polish, model-picker with per-endpoint model lists, one-tap copy',
+      'Built on five shared local Swift packages (EnkiLLMKit, EnkiChatKit, BookEngine, TTSKit, TextBridge) so the iOS chat client and macOS suite stay behaviorally identical where they overlap'
+    ],
+    tech: 'Swift 6 Actors · URLSession/SSE · MLX · Qwen3-TTS · Whisper · SwiftUI NavigationSplitView · Local SwiftPM packages',
+    screenshots: []
+  },
+  {
+    id: 'enkibridge',
+    category: 'ai',
+    name: 'EnkiBridge',
+    platform: 'macOS',
+    icon: 'icons/enkibridge.png',
+    tagline: 'Menu-bar host for a local OpenAI-compatible LLM server',
+    summary: 'A macOS menu-bar agent (no Dock icon) that launches and supervises a local mlx-vlm server so Enki — and anything else on the LAN — has an OpenAI-compatible endpoint to talk to. It runs the server as a configurable backend profile (command, args, port, readiness check) rather than a hardcoded process, adopts an already-running server instead of spawning a duplicate, and probes readiness on the LAN IP rather than loopback so a loopback-only server is never mistaken for a reachable one. Quitting the app only kills servers it actually started or explicitly adopted, never a server it merely happened to see running.',
+    features: [
+      'MenuBarExtra + LSUIElement — lives entirely in the menu bar, no Dock presence',
+      'Configurable BackendProfile: command, arguments, port, and readiness path — swapping backends is a config change, not a code change',
+      'Adopts an already-listening server on its configured port instead of spawning a second instance',
+      'Readiness probing on the LAN IP (0.0.0.0 bind), not loopback, so the server is verified reachable from other devices before being reported healthy',
+      'Optional MTP / speculative decoding via server launch flags (--draft-model, --draft-kind mtp) — fully transparent to any OpenAI-compatible client',
+      'Quit only stops self-spawned or explicitly adopted processes — never kills a server it simply found running',
+      'File logging to ~/Library/Logs/ from day one, mirrored into an in-app live log tail',
+      '"Launch at login" via SMAppService for a hands-off, always-on local LLM host'
+    ],
+    tech: 'MenuBarExtra · Process · SMAppService · mlx-vlm · OpenAI-compatible HTTP API',
+    screenshots: []
+  },
+
+  // ── Finance & Data ──
+  {
+    id: 'siftit',
+    category: 'finance',
+    name: 'SiftIt',
+    platform: 'macOS / iOS',
+    icon: 'icons/siftit.jpeg',
+    tagline: 'Detect and track recurring expenses from bank CSV imports',
+    summary: 'A multiplatform app (macOS 13+, iOS 16+), now at production-ready v1 with in-app Help, that automatically identifies recurring expenses and subscriptions from imported bank CSV files. Merchant descriptions are normalised (strip TLDs, billing noise, non-alpha chars; cap at 5 words), then a dynamic-programming streak algorithm finds the longest consistent payment pattern for five billing intervals. Amount variance ≤10% classifies a charge as a subscription; ≤30% as a utility or variable recurring charge. Per-expense fields include web link, note, renewal date, and account. All data is stored locally — no network access.',
+    features: [
+      'CSV import: auto-detects comma/semicolon delimiter; flexible case-insensitive column matching for 20+ bank and credit card export formats',
+      'Five billing intervals: biweekly (14 d ±5), monthly (30 d ±5), quarterly (91 d ±10), semi-annual (182 d ±14), yearly (365 d ±15)',
+      'Dynamic-programming streak finder: longest consistent payment subsequence; tie-break prefers the gap closest to the nominal period',
+      'Day-of-month consistency check (±3 days for monthly+; end-of-month dates 28–31 normalised to 28 to compare fairly)',
+      'Amount classification: ≤10% variance from median = subscription (fixed price); ≤30% = utility/variable recurring charge',
+      'Amazon merchant exclusion: generic Amazon purchases filtered out; Amazon Prime/membership/subscription keywords kept',
+      'Filter tabs: All, Subscriptions, Other, Ignored, Cancelled, Transactions (raw imported CSV rows)',
+      'Sortable table columns: Description, Type, Amount, Annual Total, Renews On, Account, Exp Date, Subscription toggle, Web Link, Note',
+      'Expandable rows show every source CSV transaction that formed the detected pattern, with original amount and date',
+      'Per-expense fields: web link, free-text note, ignore/cancel flags, estimated next renewal date',
+      'Credit card management: name, last-four, expiration date; expiry propagated automatically to matching expenses',
+      'In-app Help walkthrough (Help > SiftIt Help); macOS: credit cards written to App Group group.com.ruediger.shareddata for use by Vaulta'
+    ],
+    tech: 'SwiftUI · Multiplatform · Dynamic Programming · JSON persistence · App Group · XcodeGen',
+    screenshots: []
+  },
+  {
+    id: 'vaulta',
+    category: 'finance',
+    name: 'Vaulta',
+    platform: 'iOS / macOS',
+    icon: 'icons/vaulta.png',
+    tagline: 'Warranty and inventory tracker with AI-powered receipt extraction',
+    summary: 'A warranty and home inventory tracker (iOS 26+, Mac Catalyst) backed by CloudKit. Receipts enter via camera, photo library, file picker, or Share Extension. Extraction runs a four-stage pipeline: OCR always first; regex in parallel for reliable structured fields (tax, totals); on-device Apple Intelligence (FoundationModels) if available — if confidence ≥0.70 the result merges with regex (regex wins for tax and total amounts); a cloud LLM vision call (OpenAI GPT-4o or Anthropic Claude) fires as a final fallback. AI monetary values are sanity-checked against the item price to guard against hallucination.',
+    features: [
+      'Receipt intake: camera scan (VisionKit), photo library, PDF/image file picker, or Share Extension queue (auto-presented on next launch)',
+      'Extraction pipeline: OCR → regex (always) → Apple Intelligence on-device (FoundationModels) → cloud LLM fallback (OpenAI GPT-4o or Claude)',
+      'Confidence threshold 0.70: AI results above threshold merge with regex; regex wins for tax and total amount fields',
+      'Hallucination guard: receipt total must be 0.9×–3.0× item price; tax must be ≤50% of item price; out-of-range AI values replaced by regex',
+      'PurchaseEntry fields: item name, merchant, date, price, currency, card nickname + last-four, sales tax, receipt total, notes, receipt PDF attachments',
+      'Manufacturer warranty: configurable in years (0.25 yr = 90 days); expiry auto-calculated from purchase date',
+      'Extended warranty: four subtypes — Credit Card, Store Plan, Purchased Plan, Service Contract',
+      'Service Contract extra fields: company name, phone number, URL, contract number',
+      'Effective expiry: computed max of manufacturer and extended expiry; extended warranty chains from manufacturer expiry (not purchase date)',
+      'Inventory tab: standalone InventoryItem records with photo, merchant, date, price, notes, and optional receipt PDF attachment',
+      'CloudKit sync via iCloud.com.vaulta (private database); JSON export preserves Decimal precision via String encoding',
+      'Mac Catalyst: Table + WarrantyInspectorView inspector panel · iOS: NavigationStack + NavigationLink'
+    ],
+    tech: 'SwiftData · CloudKit · Vision · FoundationModels · URLSession · Keychain · Mac Catalyst · Share Extension · XcodeGen',
+    screenshots: []
+  },
+  {
+    id: 'eightsleep',
+    category: 'finance',
+    name: 'Eight Sleep Explorer',
+    platform: 'macOS',
+    icon: null,
+    iconEmoji: '😴',
+    iconGradient: 'linear-gradient(135deg, #1a1a2e, #16213e)',
+    tagline: 'Eight Sleep data explorer with EWMA trends and hammock recovery scoring',
+    summary: 'A three-window macOS app for importing Eight Sleep JSON exports and analysing nightly sleep quality. The main window handles import and shows session summaries. The Sleep Charts window renders RHR and HRV EWMA trends at four alpha values over six time-range presets. The Night Detail window plots a full HR trace against a piecewise-quadratic ideal hammock curve and computes a 0–100 recovery score weighted across three components. HealthKit daily RHR is used as the daytime baseline when authorised; a 90th-percentile fallback applies otherwise.',
+    features: [
+      'Eight Sleep JSON import: handles three wire-format variants across firmware versions (array-of-pairs, generic array, nested numbered-key dict)',
+      'Session persistence to ~/Library/Application Support/EightSleepExplorer/sessions.json; deduplication by UNIX epoch ts field',
+      'Per-night aggregation: HR min/avg/max, HRV average, session duration',
+      'EWMA trend charts: four alpha values (0.25, 0.20, 0.15, 0.10) for heart rate average and minimum; time range picker: 1 Night / 1 Week / 1 Month / 6 Months / 1 Year / All Time',
+      'Recovery score (0–100): nadir timing 0–40 pts (full marks 45–55% of session), depth 0–30 pts (full marks 20–30% HR drop), curve adherence 0–30 pts (MAE ≥15 bpm → 0 pts)',
+      'Ideal hammock curve: piecewise-quadratic, nadir guaranteed at t=0.50, floor at 75% of daytime RHR, recovery to 92.5% at session end',
+      'Recovery grades: Good ≥75, Fair 50–74, Poor <50; traffic-light colour dots on the trend chart',
+      'Night Detail: raw HR time-series + EWMA overlay (α=0.12, ~30-min smoothing window) + ideal reference curve; hover tooltip at cursor',
+      'Diagnostics per night: nadir position (0–1), actual depth fraction, mean absolute error from ideal curve, daytime RHR used',
+      'HealthKit daily RHR loaded via HKStatisticsCollectionQuery; 90th-percentile of nightly averages × 1.05 fallback when HealthKit is unavailable',
+      'CSV export: all Eight Sleep timeseries in Pacific time (PST/PDT label per row), alphabetical metric columns, HR/HRV/temp rounded to integer',
+      'File menu: Import JSON (⌘O), Export to CSV (⌘⇧E); drag-and-drop JSON file support; three-window layout via @FocusedObject'
+    ],
+    tech: 'Swift Charts · HealthKit · EWMA · Piecewise-quadratic curve fitting · JSON · @FocusedObject · XcodeGen',
+    screenshots: []
+  },
+
+  // ── Home Automation & Energy ──
+  {
+    id: 'sunkeeper',
+    category: 'home',
+    name: 'SunKeeper',
+    platform: 'macOS',
+    icon: null,
+    iconEmoji: '☀️',
+    iconGradient: 'linear-gradient(135deg, #f7971e, #ffd200)',
+    tagline: 'Tesla Powerwall monitoring daemon with HomeKit sponge load control',
+    summary: 'A macOS menu-bar daemon (Mac Catalyst app + AppKit plugin) that monitors a Tesla Powerwall solar system via the Teslemetry API. Two concurrent loops run every 60 seconds (realtime) and backfill history one day at a time, with a CSV-based history cursor at launch so backfill resumes correctly across restarts. Live telemetry is persisted across four SwiftData model tiers. Solcast solar forecasts are fetched in up to five rate-limited windows per Pacific day, with configurable morning/evening shading-correction factors. KVSSyncManager writes 30+ keys to iCloud KVS every cycle so WattsUpHome can display live telemetry. When a solar-deficit forecast is detected, configured HomeKit sponge-load devices are turned off automatically. History data-quality tooling (integrity checks, fetch log, gap-fill) and a full migration backup/restore round out the daemon.',
+    features: [
+      'Mac Catalyst app + AppKit NSStatusItem plugin architecture — HomeKit APIs on Catalyst, menu bar on AppKit; cross-bundle ObjC selector bridge',
+      'Teslemetry API polling every 60 s: live power, battery SoC, grid status, storm mode, today\'s cumulative energy totals',
+      'SwiftData persistence: PowerwallSnapshot (1-min live), Powerwall5MinBucket, PowerwallDailySummary, PowerwallMonthlySummary, TeslemetryPersistentConfig',
+      'History backfill: CSV-based history cursor determines the resume point at launch; fetches one day at a time via Teslemetry calendar history API, skipping days already present to avoid redundant calls',
+      'History visibility tooling: integrity check, fetch log, and gap-fill submenu for spotting and repairing missing days in Powerwall_dailyHistory.csv',
+      'Powerwall_dailyHistory.csv: 5-minute energy bucket rows written to iCloud.Ruediger.SunKeeper for WattsUpHome to read',
+      'Solcast solar forecast: up to 5 Pacific-time rate-limited query windows per day (07:00–18:00); raw JSON response cached per window',
+      'Shading correction factors for the morning and evening forecast buckets, tuned separately to account for local obstructions',
+      'KVSSyncManager: 30+ telemetry and forecast keys written to NSUbiquitousKeyValueStore (suite: Ruediger.SunKeeper) every polling cycle',
+      'Sponge load cutoff: when surplusForecast shows a deficit, configured HomeKit service UUIDs are turned off via the Catalyst delegate',
+      'Config UI: Teslemetry API token + site IDs, Solcast API token + resource IDs, shading correction factors, HomeKit sponge-load device picker',
+      'Sleep/wake handling: NSWorkspace willSleep/didWake notifications cancel stale tasks; realtime loop restarts after 10 s network-recovery delay',
+      'Migration Backup/Restore: one JSON snapshot covering API tokens, site IDs, history cursors, shading correction, and sponge-load device list'
+    ],
+    tech: 'Mac Catalyst · AppKit · NSStatusItem · HomeKit · SwiftData · NSUbiquitousKeyValueStore · Teslemetry API · Solcast API',
+    screenshots: []
+  },
+  {
+    id: 'wattsup',
+    category: 'home',
+    name: 'WattsUpHome',
+    platform: 'iPhone / iPad / Mac',
+    icon: 'icons/wattsup.png',
+    tagline: 'Combined home control hub for energy, HomeKit, theater — and a morning brief',
+    summary: 'A combined iPhone/iPad/Mac app that merges the former HomeDashboard and WattsUpHome into one. On iPhone it shows a tab bar (Theater, Energy, Devices, Cameras, Settings). On iPad and Mac Catalyst it shows a free-form tile dashboard. Energy data is a thin client reading from iCloud KVS written by the SunKeeper daemon — no direct Teslemetry calls — now including Powerwall energy history charts and a data-integrity review sourced from SunKeeper\'s CSV. Includes HomeKit device control, TCP/IP theater automation for a JVC projector and Anthem AV receiver, and Solcast/WeatherKit forecasts. The newest addition, Sunbreak, is a morning-brief screen: a time-aware greeting, a marine-layer "burn-through" time estimate, today\'s and tomorrow\'s calendar with named holiday/birthday call-outs, and drive-time-aware leave-by alarms for timed appointments.',
+    features: [
+      'iPhone: MainTabView with Theater, Energy, Devices, Cameras, and Settings tabs',
+      'iPad/Mac Catalyst: free-form tile DashboardView — HomeKit scenes, devices, camera feed, and energy stats on a configurable grid, with restore-from-latest-backup',
+      'Sunbreak morning brief: presented as a full-screen cover on first app-open each morning (or on notification tap) — greets by name, estimates when the marine layer burns off from the hourly WeatherKit forecast, and lists today + tomorrow\'s events',
+      'Sunbreak alarms: a 2-hour heads-up plus a MapKit-drive-time-aware "leave by" notification for in-person events, a flat 30-minute alert for online/no-address events, and 15-minute snooze on all of them',
+      'Sunbreak calendar: EventKit-driven, speaks holidays and birthdays by name, plus a "Next Week" look-ahead section; optional AVSpeechSynthesizer read-aloud',
+      'Energy thin client: reads 30+ KVS keys from SunKeeper (solar W, battery SoC, grid status, today\'s kWh totals, sponge load status, solar forecast)',
+      'Energy tab: solar and home power area charts from 15-min KVS history buckets; Solcast forecast overlay on the same chart',
+      'Powerwall history: parses Powerwall_dailyHistory.csv from iCloud.Ruediger.SunKeeper; daily, monthly, and yearly energy bar charts, with a data-integrity view for missing days, anomalous row counts, and duplicate timestamps',
+      'HomeKit: full home scan (rooms → accessories → services → characteristics), power-state subscriptions, per-device trigger event logging',
+      'JVC projector TCP/IP control (port 20554): binary NULL-byte handshake protocol; swipe-right/left gesture to power system on/off with live status feedback',
+      'Anthem AV receiver ASCII command control (port 14999): NWConnection; ~90-second cold-boot retry loop (port opens 60–70 s after power-on)',
+      'Dashboard tile grid: drag-to-reposition tiles (GridPosition x/y, 0.1-unit precision); layout persisted as JSON to iCloud.Ruediger.HomeDashboard',
+      'Live Activities: lighting mood control from the iOS Lock Screen (ActivityKit; not available on Mac Catalyst)'
+    ],
+    tech: 'HomeKit · NSUbiquitousKeyValueStore · WeatherKit · EventKit · MapKit · AVSpeechSynthesizer · Swift Charts · NWConnection · ActivityKit · Mac Catalyst',
+    screenshots: []
+  },
+
+  // ── Networking & Privacy ──
+  {
+    id: 'firewatch',
+    category: 'networking',
+    name: 'Firewacha',
+    platform: 'macOS',
+    icon: 'icons/firewatch.png',
+    tagline: 'Privacy and tracker-exposure dashboard for a Firewalla network',
+    summary: 'A native macOS dashboard that watches privacy and tracker exposure across every device on a Firewalla network. It authenticates against Firewalla\'s cloud (OAuth2 authorization-code flow via an embedded WKWebView), streams live flow data over socket.io, and persists everything locally in SwiftData at real scale — a busy box produces roughly 70,000 flows a day, so the sync and read pipelines are built around SQL-level counts, windowed predicates, and off-main-actor rebuilds rather than ever materialising the full flow table. A pipeline of services classifies trackers, scores destination risk, resolves CNAME cloaking, and enriches with RDAP/reputation data, surfacing an Allow/Ignore/Rare workflow with auto-block for repeat offenders.',
+    features: [
+      'OAuth2 authorization-code login via an embedded WKWebView against Firewalla\'s hosted login page — no password/SRP handling, refresh token stored in Keychain',
+      'Live flow ingestion over socket.io (Engine.IO v3), aggregated per destination device rather than stored as raw per-domain byte counts',
+      'Services pipeline: FlowIngestion → DestinationAggregation → TrackerClassification → IPOwnership → CNAMEConfirmation/CNAMEWalker → RDAPEnrichment → ReputationService → RiskScoring → AutoBlockService',
+      'Unified Allow / Ignore / Rare review workflow for surfaced destinations, with an offline seed dataset for demoing the dashboard without a live Firewalla',
+      'SwiftData at scale: SQL COUNT and windowed #Predicate fetches instead of full-table materialisation; ~1M-row RawFlow table handled without a fetchAll() anywhere in the hot path',
+      'Fully off-main-actor sync and dashboard rebuild — both the socket sync pipeline and the read-side snapshot builder run on background ModelContexts so the UI never beachballs',
+      'Auto-block for destinations matching configured risk criteria, with per-device trigger logging',
+      'Dashboard badges for 24h-active devices, derived from per-sync DeviceSnapshot deltas (Firewalla exposes no native per-domain byte/timestamp history)'
+    ],
+    tech: 'SwiftData · socket.io-client-swift · WKWebView OAuth2 · Swift 6 Actors · RDAP · Keychain',
+    screenshots: []
+  },
+
+  // ── Health ──
+  {
+    id: 'glucalyzer',
+    category: 'health',
+    name: 'Glucalyzer',
+    platform: 'iOS',
+    icon: 'icons/glucalyzer.jpg',
+    tagline: 'CGM companion with daily scoring, meal tracking, and period analysis',
+    summary: 'An iOS CGM companion that reads glucose from HealthKit and computes a personalised daily score after a baseline calibration window. Five tabs: Dashboard (day explorer with glucose chart, meals, workouts, and peaks), History (scrollable CGM period timeline with an interactive chart scrubber and aggregate stats), Scores (meal-response ranking by glucose impact, now with on-device grouping and search), Data (raw reading browser), and Settings. Core metrics include GMI, time-in-range, MAG variability, peak detection, and EWMA smoothing. Two goal modes — Diabetes Management and Longevity Optimization — apply different target bands. A full history rebuild with gap-fill sync keeps multi-sensor CGM history continuous, including the current in-progress sensor session.',
+    features: [
+      'HealthKit sync: glucose readings (Dexcom CGM), meal log (manual entry), workouts, sleep for fasting glucose detection',
+      'CGM warm-up filtering: readings within 12 h of the configured cgmAppliedAt start are excluded from all metrics and scoring',
+      'Personalised daily score: requires a baseline calibration window; score explanation sheet shows weighted component breakdown',
+      'Score components: time-in-range, MAG variability, peak height, peak recovery — configurable weights summing to 1.0',
+      'Two goal modes: Diabetes Management (ADA/EADS GMI thresholds: <5.6 green, <6.4 yellow, <7.0 orange, ≥7.0 red) and Longevity Optimization (70–140 mg/dL target band), with fasting glucose bands aligned to ADA thresholds',
+      'GMI formula: 3.31 + 0.02392 × mean glucose (mg/dL)',
+      'Peak detection: configurable threshold; per-peak delta height, area above baseline, and recovery time to baseline',
+      'MAG variability: mean absolute glucose change between consecutive readings',
+      'Dashboard: DayExplorerView with glucose line chart, meal event markers, workout overlays, EWMA smoothing line, and daily score gauge; auto-sync on launch/foreground plus pull-to-refresh',
+      'History: PeriodDetector groups consecutive CGM days into sessions; scrollable timeline with an interactive chart scrubber, aggregate TIR, GMI, and score per period, including the current in-progress sensor',
+      'Full history rebuild and gap-fill sync so 3-month/6-month/12-month/All charts stay complete across sensor changes',
+      'Scores tab: meal-response ranking — clusters meals logged within 20 min into sessions, mealtime-aware suggestions while typing, on-device grouping and search; ranks by average peak delta, recovery minutes, and area above baseline',
+      'PDF export; excluded-day management; SwiftData persistence'
+    ],
+    tech: 'HealthKit · SwiftData · Swift Charts · EWMA · ScoreEngine · @Observable · Swift Testing',
+    screenshots: [
+      'screenshots/glucalyzer/main-tab.png',
+      'screenshots/glucalyzer/history-tab.png',
+      'screenshots/glucalyzer/scores.png',
+      'screenshots/glucalyzer/data-tab.png',
+      'screenshots/glucalyzer/settings.png',
+      'screenshots/glucalyzer/advanced-settings.png'
+    ]
+  },
+  {
+    id: 'biometric',
+    category: 'health',
+    name: 'BioMetric',
+    platform: 'iOS / iPad / macOS',
+    icon: 'icons/biometric.png',
+    tagline: 'Lab result and body-composition tracker with Attia optimal ranges, DEXA, and InBody scans',
+    summary: 'A universal app (iOS 17+, macOS 14+) that tracks lab test results, DEXA scans, InBody scans, and HealthKit body weight over time. Tests are grouped into 9 health categories via canonical name mapping aligned to Peter Attia\'s framework (35+ biomarker mappings). Body composition has grown into its own section: DEXA and InBody scans unify into shared charts with segmental lean mass tracking, an SSMI (skeletal muscle mass index) trend curve, EWMA smoothing chips, a weekly gain/loss rate chart, and growth-split weight projections across selectable time windows. Historical trend charts show Attia optimal ranges (green shaded), lab reference ranges (dashed), and convert units automatically (e.g. Free Testosterone pg/mL ↔ ng/dL).',
+    features: [
+      '9 test categories: Top Lipids, Inflammation, Endothelial Health, Metabolic Health, Thyroid, Sex Hormones, Liver Function, Kidney Function, Others',
+      '35+ biomarker mappings from HealthKit names to Attia canonical names: ApoB, hsCRP, LDL-C, HDL-C, Triglycerides, TSH, fT3, fT4, rT3, Testosterone, Free Testosterone, SHBG, Estradiol, Lp(a), Homocysteine, Uric acid, Ferritin, eGFR, Cystatin C, Vitamin D, and more',
+      'CSV import with LOINC code support (test_date, test_name, test_value, unit, reference_low, reference_high, loinc_code)',
+      'Manual entry: standard labs, DEXA scans (LMI, ALMI, FMI, VAT, whole-body T-score), InBody scans, BMD bone density',
+      'Body composition: DEXA and InBody unified on the same charts, DEXA-calibrated InBody current-weight estimates, segmental lean mass tracking, SSMI trend curve, EWMA smoothing chips, and a weekly change bar chart',
+      'Body-composition time-window picker with trend curves and growth-split weight projections',
+      'Body weight: HealthKit sync on iOS/iPad, kg/lbs toggle, weekly gain/loss rate chart; inverted delta colour for fat metrics (gain=red, loss=green) versus lean metrics',
+      'Historical trend charts: Attia optimal range (green shaded), lab reference range (dashed blue), automatic unit conversion on the same axis',
+      'Free Testosterone unit conversion: pg/mL ↔ ng/dL (1 ng/dL = 10 pg/mL); legend shows both Attia range and converted equivalents',
+      'Unit-kind guard: % and count units (x10E3/uL etc.) are never merged into the same CanonicalTest record',
+      'Import lookup order: LOINC-first → name+unit-kind → flexible normalised matching with case-insensitive substring fallback',
+      'Patient model: auto-selects the patient with the most test results as the active patient',
+      'Data management: duplicate removal (by test name + date + value), selective clearing of results, reference ranges, or patients',
+      'CloudKit sync across devices; JSON data export'
+    ],
+    tech: 'SwiftData · CloudKit · HealthKit · Swift Charts · LOINC · Universal App',
+    screenshots: []
+  },
+  {
+    id: 'workouts',
+    category: 'health',
+    name: 'Workouts',
+    platform: 'iOS',
+    icon: 'icons/workouts.png',
+    tagline: 'Lifting log with HealthKit run and strength training sync, targets, and mesocycle tracking',
+    summary: 'An iOS workout log combining StrongLifts CSV import for lifting history with HealthKit sync for running, traditional strength training, and functional strength training. A dashboard lists all tracked exercises with the latest session in a compressed "NxN NNN lbs" format. Tapping an exercise opens a detail sheet with a 1RM progress chart (3-month or 1-year window, all-time PR marker), a scaled weight table for rep targets, and muscle group info. The calendar was reworked into a week-scrolling view with gym/run indicator triangles, and a strength-target and mesocycle picker now sits alongside the 1RM graph so progress can be tracked against a training block rather than just in isolation.',
+    features: [
+      'Exercises tracked: Squat, Dumbbell Reverse Lunge, Bench Press, Incline Bench Press, Barbell Row, Military Press, Romanian Deadlift, Dumbbell Curl, Run',
+      'StrongLifts CSV import: parses date, exercise, sets/reps/weight; deduplicates by date+exercise (sorts newest-first, keeps first occurrence per pair)',
+      'HealthKit sync: running workouts (distance in miles), Traditional Strength Training, Functional Strength Training (duration + average METs) — imported and merged fresh on every launch',
+      'Strength targets and a mesocycle picker drive the 1RM progress chart, with graph tickers marking training-block boundaries',
+      'Week-scrolling calendar (Monday start) with gym/run indicator triangles and tap-to-detail per day',
+      'Body weight per record: synced from HealthKit in both kg and lbs',
+      'Dashboard summary: compressed "NxN NNN lbs" format — identical sets/reps collapsed; varying weights shown as slash-separated progression (e.g. 3x5 135/145/155 lbs)',
+      '1RM estimation: lookup table for 1–10 reps (percentage-of-max); barbell weight rounding to 2.5 lb increments with 45 lb bar minimum',
+      'Scaled weight table in detail sheet: common rep targets from 5×5 through 5×10',
+      'Muscle group info per exercise (e.g. Squat → Quadriceps, Glutes, Hamstrings; Bench Press → Pectorals, Anterior Deltoids, Triceps)',
+      'Unilateral flag: exercises containing "dumbbell" are marked as one-side-at-a-time for display context',
+      'JSON persistence to Documents/exerciseHistory.json with .completeFileProtection; auto-saves on every history mutation via didSet'
+    ],
+    tech: 'HealthKit · SwiftUI · Canvas (custom chart) · JSON persistence · StrongLifts CSV',
+    screenshots: [
+      'screenshots/workouts/main.png',
+      'screenshots/workouts/runs.png',
+      'screenshots/workouts/muscle-group.png'
+    ]
+  }
+];
+
+// ── Render cards ──
+function renderCards() {
+  const categoryMap = {
+    audio: 'grid-audio',
+    ai: 'grid-ai',
+    finance: 'grid-finance',
+    home: 'grid-home',
+    networking: 'grid-networking',
+    health: 'grid-health'
+  };
+
+  apps.forEach((app, index) => {
+    if (app.hidden) return;
+    const grid = document.getElementById(categoryMap[app.category]);
+    if (!grid) return;
+
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.setAttribute('data-index', index);
+
+    const iconHTML = app.icon
+      ? `<div class="icon-wrap"><img src="${app.icon}" alt="${app.name} icon" loading="lazy"></div>`
+      : `<div class="icon-placeholder" style="background:${app.iconGradient}">${app.iconEmoji}</div>`;
+
+    card.innerHTML = `
+      <div class="card-top">
+        ${iconHTML}
+        <div class="card-meta">
+          <h2>${app.name}</h2>
+          <span class="platform-tag">${app.platform}</span>
+        </div>
+      </div>
+      <p class="card-desc">${app.tagline}</p>
+      <span class="card-cta">Learn more →</span>
+    `;
+
+    card.addEventListener('click', () => openModal(index));
+    grid.appendChild(card);
+  });
+}
+
+// ── Modal ──
+const overlay = document.getElementById('overlay');
+const modalBody = document.getElementById('modalBody');
+const closeBtn = document.getElementById('closeBtn');
+
+function openModal(index) {
+  const app = apps[index];
+
+  const iconHTML = app.icon
+    ? `<div class="modal-icon"><img src="${app.icon}" alt="${app.name} icon"></div>`
+    : `<div class="modal-icon-placeholder" style="background:${app.iconGradient}">${app.iconEmoji}</div>`;
+
+  const featuresHTML = app.features.map(f => `<li>${f}</li>`).join('');
+
+  const screenshotsHTML = (app.screenshots && app.screenshots.length)
+    ? `<div class="screenshot-strip">${app.screenshots.map(src =>
+        `<img src="${src}" alt="${app.name} screenshot" loading="lazy" class="shot-thumb">`
+      ).join('')}</div>`
+    : `<div class="no-screenshots"><p>📸 Screenshots coming soon</p></div>`;
+
+  modalBody.innerHTML = `
+    <div class="modal-header">
+      ${iconHTML}
+      <div class="modal-title">
+        <h2>${app.name}</h2>
+        <span class="platform-tag">${app.platform}</span>
+      </div>
+    </div>
+    <p class="modal-tagline">${app.tagline}</p>
+
+    <div class="modal-section">
+      <h3>Overview</h3>
+      <p>${app.summary}</p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="modal-section">
+      <h3>Screenshots</h3>
+      ${screenshotsHTML}
+    </div>
+
+    <hr class="divider">
+
+    <div class="modal-section">
+      <h3>Features</h3>
+      <ul class="feature-list">${featuresHTML}</ul>
+    </div>
+
+    <hr class="divider">
+
+    <div class="modal-section">
+      <h3>Technologies</h3>
+      <p>${app.tech}</p>
+    </div>
+  `;
+
+  modalBody.querySelectorAll('.shot-thumb').forEach(img => {
+    img.addEventListener('click', () => openLightbox(img.getAttribute('src')));
+  });
+
+  document.getElementById('modal').scrollTop = 0;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+closeBtn.addEventListener('click', closeModal);
+overlay.addEventListener('click', (e) => {
+  if (e.target === overlay) closeModal();
+});
+
+// ── Lightbox ──
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxCloseBtn = document.getElementById('lightboxCloseBtn');
+
+function openLightbox(src) {
+  lightboxImg.src = src;
+  lightbox.classList.add('open');
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  lightboxImg.src = '';
+}
+
+lightboxCloseBtn.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox || e.target === lightboxImg) closeLightbox();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  if (lightbox.classList.contains('open')) closeLightbox();
+  else closeModal();
+});
+
+renderCards();
+</script>
+</body>
+</html>
