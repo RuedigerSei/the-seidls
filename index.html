@@ -501,7 +501,7 @@ const apps = [
     category: 'audio',
     name: 'Reel2Reel',
     platform: 'macOS',
-    icon: 'icons/reel2reel.png',
+    icon: 'icons/audiorec.png',
     tagline: 'Audiobook stream recorder with autosplit and Audible metadata',
     summary: 'Reel2Reel records audiobooks straight out of Safari as they play, automatically splitting the recording into separate chapter files during quiet pauses and keeping a log of every segment. It can run completely unattended, pausing and resuming playback on its own between chapters. Once recording finishes, it tags every file with the book\'s title, author, narrator, and cover art — pulled in from Audible with one click, or entered by hand (with its own cover-art picker) when a title can\'t be found.',
     features: [
@@ -527,7 +527,7 @@ const apps = [
     category: 'audio',
     name: 'WaveSmith',
     platform: 'macOS',
-    icon: 'icons/wavesmith-1024x1024.png',
+    icon: 'icons/wavesmith.png',
     tagline: 'Transcode, tag, merge, and decrypt audiobook files — M4A, M4B, MP3, AAX',
     summary: 'WaveSmith is a Mac toolbox for preparing audiobook files, with four tools in one app. Transcode converts audio — including copy-protected Audible files — into whichever format you pick from a list: Audiobook, Radioshow, and Music (all produce M4B/M4A audiobook files at different quality levels) or Audio MP3, with an optional volume-normalizing step. Write Tags fills in a book\'s title, author, narrator, chapter number, cover art, and other details — correctly, even when tagging a whole folder of chapter files at once. Merge and AutoSplit combine or split audio files without touching the sound quality at all. Search Audible pulls in a book\'s cover art and details with one click, and every tool clearly shows whether it changes the audio or leaves it untouched.',
     features: [
@@ -554,7 +554,7 @@ const apps = [
     category: 'audio',
     name: 'VocalTome',
     platform: 'iOS',
-    icon: 'icons/hearhere.png',
+    icon: 'icons/bookplayer.png',
     tagline: 'Audiobook player — M4A, M4B, MP3 — with chapters and bookmarks',
     summary: 'VocalTome is a simple, focused audiobook player for iPhone with precise seeking and adjustable playback speed. It plays M4A, M4B, and MP3 files organized into book folders, reads chapter markers from the file itself, and remembers exactly where you left off — saved every few seconds, on pause, and whenever you switch apps. Cover art sets the app\'s background color, and playback works properly from the lock screen, AirPods, and CarPlay.',
     features: [
@@ -627,7 +627,7 @@ const apps = [
     category: 'ai',
     name: 'Enki',
     platform: 'iOS / macOS',
-    icon: 'icons/enki-icon.jpg',
+    icon: 'icons/enki.jpg',
     tagline: 'AI book summaries, character lists, text-to-speech and transcription — plus local AI chat',
     summary: 'Enki is a suite of AI reading and audio tools for the Mac, alongside a companion iPhone chat app. Its two main tools are BookRole and Orvox. BookRole reads an ebook chapter by chapter, using your own local AI server to write a running summary of the story, then sends that summary to Anthropic\'s Claude — using your own Claude account — to build a full list of the book\'s characters. Orvox turns text into a narrated audiobook and can also transcribe spoken audio back into text, both using a local, on-device AI voice. A built-in chat window talks directly to that same local AI, hosted on your own network by the companion app EnkiBridge — everything runs locally except the character-list step, which needs a Claude account.',
     features: [
@@ -656,7 +656,7 @@ const apps = [
     category: 'ai',
     name: 'EnkiBridge',
     platform: 'macOS',
-    icon: 'icons/icon-512.png',
+    icon: 'icons/enkibridge.png',
     tagline: 'Menu-bar host for a local OpenAI-compatible LLM server',
     summary: 'EnkiBridge is a small Mac menu-bar helper that starts and looks after the local AI server that Enki — and anything else on your network — talks to. It runs quietly in the background with no window, notices if a compatible server is already running instead of starting a duplicate, checks that the server is actually reachable from other devices before reporting it as ready, and only shuts down servers it started itself.',
     features: [
@@ -679,7 +679,7 @@ const apps = [
     category: 'finance',
     name: 'SiftIt',
     platform: 'macOS / iOS',
-    icon: 'icons/512-siftit.jpeg',
+    icon: 'icons/siftit.jpeg',
     tagline: 'Detect and track recurring expenses from bank CSV imports',
     summary: 'SiftIt scans your bank statement exports and automatically finds your recurring subscriptions and bills, no need to enter anything by hand. It looks for charges that repeat on a regular schedule — weekly, monthly, yearly, and so on — at a consistent amount, and sorts them into subscriptions versus one-off purchases. You can add notes, links, and renewal dates to anything it finds, and track your credit cards\' expiration dates alongside them. Everything stays on your device — nothing is sent anywhere.',
     features: [
@@ -786,7 +786,7 @@ const apps = [
     category: 'home',
     name: 'WattsUpHome',
     platform: 'iPhone / iPad / Mac',
-    icon: 'icons/homedashboard.png',
+    icon: 'icons/wattsup.png',
     tagline: 'Combined home control hub for energy, HomeKit, theater — and a morning brief',
     summary: 'WattsUpHome is a home control app for iPhone, iPad, and Mac that brings home theater control, smart-home devices, security cameras, and real-time solar and battery data — fed live from SunKeeper — together into one dashboard, with charts of daily, monthly, and yearly energy production. Sunbreak is a morning briefing screen: it greets you by name, estimates when the morning marine layer will burn off, reads out today\'s and tomorrow\'s calendar (calling out holidays and birthdays by name), and sends a “time to leave” alert for appointments based on live drive-time estimates.',
     features: [
@@ -816,7 +816,7 @@ const apps = [
     category: 'networking',
     name: 'Firewacha',
     platform: 'macOS',
-    icon: 'icons/icon-512x512-2x.png',
+    icon: 'icons/firewatch.png',
     tagline: 'Privacy and tracker-exposure dashboard for a Firewalla network',
     summary: 'Firewacha is a privacy dashboard for a home Firewalla network. It shows every device on the network and what it\'s connecting to, flags known trackers and risky destinations, and lets you review and allow, ignore, or block anything at a glance, with an auto-block option for repeat offenders. It\'s built to handle a busy home network\'s full day of traffic — tens of thousands of connections — without slowing down.',
     features: [
@@ -845,7 +845,7 @@ const apps = [
     category: 'health',
     name: 'Glucalyzer',
     platform: 'iOS',
-    icon: 'icons/glucalyzer-icon.jpg',
+    icon: 'icons/glucalyzer.jpg',
     tagline: 'CGM companion with daily scoring, meal tracking, and period analysis',
     summary: 'Glucalyzer is a companion app for continuous glucose monitors that turns HealthKit glucose readings into a personalized daily score, once it\'s learned your baseline. It charts glucose alongside meals and workouts, tracks how each meal you log affects your glucose, and reviews history session by session as sensors come and go, so trends stay accurate even across sensor changes. Two scoring modes are available: one aligned with standard diabetes-management targets, and one aimed at general metabolic health.',
     features: [
@@ -878,7 +878,7 @@ const apps = [
     category: 'health',
     name: 'BioMetric',
     platform: 'iOS / iPad / macOS',
-    icon: 'icons/vitruvian-gold.png',
+    icon: 'icons/biometric.png',
     tagline: 'Lab result and body-composition tracker with recommended ranges, DEXA, and InBody scans',
     summary: 'BioMetric tracks lab results, body-composition scans (DEXA and InBody), and body weight over time, organized around ranges recommended by medical practitioners focused on prevention. It plots results against both your lab\'s normal range and that recommended range side by side, so you can see at a glance not just whether a result is “normal” but whether it\'s actually where you\'d want it for long-term health. Body-composition scans combine into shared charts tracking muscle mass, fat, and weight trends over time, and everything syncs automatically across your devices.',
     features: [
@@ -904,7 +904,7 @@ const apps = [
     category: 'health',
     name: 'Workouts',
     platform: 'iOS',
-    icon: 'icons/workoutsappicon-ios-default-1024x1024-1x.png',
+    icon: 'icons/workouts.png',
     tagline: 'Running and resistance training workout logger, with targets and mesocycle tracking',
     summary: 'Workouts is a running and resistance training workout logger for iPhone that combines imported StrongLifts history with automatic HealthKit sync for running and strength training, no need to log workouts by hand. Its dashboard shows the most recent session for every exercise at a glance, and a detail view for each exercise charts your estimated one-rep max over time against a training target and current training block. A week-view calendar marks gym and run days so you can see your training pattern at a glance.',
     features: [
