@@ -592,8 +592,8 @@ const apps = [
     name: 'ShelfSpoken',
     platform: 'macOS / iOS',
     icon: 'icons/shelfspoken.png',
-    tagline: 'Audiobook library manager with Audible metadata, CloudKit sync, and genre taxonomy',
-    summary: 'ShelfSpoken is a library manager for your audiobook collection, on both Mac and iPhone, kept in sync automatically through iCloud. It tracks title, author, narrator, series, genre, cover art, rating, and reading status for every book. A single Audible search fills in most of those details automatically, and a “Download Audible book” button double-checks everything is in place before handing the file off to WaveSmith to decrypt. Books are organized by a built-in genre system and can be filtered by genre, series, author, or tag, all at once. It also finds the accompanying PDFs (maps, figures, worksheets) that some audiobooks ship with, asking both Audible and public library catalogues.',
+    tagline: 'Audiobook library manager with Siri, Audible metadata, CloudKit sync, and genre taxonomy',
+    summary: 'ShelfSpoken is a library manager for your audiobook collection, on both Mac and iPhone, kept in sync automatically through iCloud. It tracks title, author, narrator, series, genre, cover art, rating, and reading status for every book. A single Audible search fills in most of those details automatically, and a “Download Audible book” button double-checks everything is in place before handing the file off to WaveSmith to decrypt. Books are organized by a built-in genre system and can be filtered by genre, series, author, or tag, all at once. It also finds the accompanying PDFs (maps, figures, worksheets) that some audiobooks ship with, asking both Audible and public library catalogues. And it works with Siri and Apple Intelligence: ask Siri which books in a series you have read, say “Add to ShelfSpoken” with a book’s page on screen, or point the camera at a cover to see whether it is already on your shelf.',
     features: [
       'Tracks title, subtitle, author, narrator, series and book number, genre, cover art, description, publisher, star rating, and reading status for every book',
       'Reading-status tabs: All, Finished, Reading, Want to Read, Did Not Finish, and Hidden',
@@ -610,9 +610,16 @@ const apps = [
       'Books in the same series stack into a single tile that expands on tap',
       'A built-in genre system automatically sorts books into categories by keyword matching, and can be edited by hand',
       'Imports libraries from Audible or Libby CSV exports, or from a JSON backup with cover art included; import can update only missing fields, overwrite everything, or skip existing books',
-      'On iPhone: full library grid with search, filters, and sorting; changes made on Mac appear automatically without needing to reopen the app'
+      'On iPhone: full library grid with search, filters, and sorting; changes made on Mac appear automatically without needing to reopen the app',
+      'Siri and Apple Intelligence can answer questions about the library, such as which books in a series you have finished, using every book\u2019s details',
+      'Add to ShelfSpoken: ask Siri with a book\u2019s page or a screenshot on screen, use the Shortcuts action, or on the Mac right-click any selected text \u2192 Services; the title is checked against your shelf and corrected against Apple\u2019s Books catalogue, and you confirm before anything is added',
+      'On iPhone, Add Book\u2026 in the menu, and a search that finds nothing offers to add that book',
+      'Point the camera at a cover, or use Visual Intelligence on a screenshot, to see whether a book is already on your shelf and open it',
+      'Ask Library: type a question about your shelf and get a short answer with the matching books, using Apple\u2019s on-device model',
+      'Search ShelfSpoken from Siri, open a book from Siri or Spotlight, and filter the library in Shortcuts with Find Audiobooks (by status, series, author, rating, finish date and more)',
+      'Update from Audible on the Mac fills in a book\u2019s missing details, for books added on the iPhone'
     ],
-    tech: 'SwiftData · CloudKit · AudibleKit · audible-cli · OverDrive catalogue API · NavigationSplitView · GenreMapResolver · BackupService',
+    tech: 'SwiftData · CloudKit · App Intents · Core Spotlight · Foundation Models · Visual Intelligence · Vision · AudibleKit · audible-cli · OverDrive catalogue API · iTunes Search API · NavigationSplitView · GenreMapResolver · BackupService',
     screenshots: [
       'screenshots/shelfspoken/shelfspoken-main.png',
       'screenshots/shelfspoken/shelfspoken-details.png',
