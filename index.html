@@ -376,11 +376,57 @@
       border-radius: 12px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
-      flex-shrink: 0;
-      scroll-snap-align: start;
+      display: block;
       cursor: zoom-in;
       background: var(--border);
     }
+
+
+    /* ── Device tabs ── */
+    .device-tabs {
+      display: inline-flex;
+      gap: 2px;
+      padding: 3px;
+      margin-bottom: 14px;
+      background: var(--border);
+      border-radius: 10px;
+    }
+    .device-tab {
+      appearance: none;
+      border: none;
+      background: transparent;
+      color: var(--subtext);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .device-tab:hover { color: var(--text); }
+    .device-tab[aria-selected="true"] {
+      background: var(--card-bg);
+      color: var(--text);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+    .device-tab .count { font-weight: 400; opacity: 0.6; margin-left: 4px; }
+    .shot-fig { margin: 0; flex-shrink: 0; scroll-snap-align: start; }
+    .shot-fig figcaption {
+      font-size: 12px;
+      color: var(--subtext);
+      margin-top: 6px;
+      max-width: 85vw;
+    }
+    .duo-note {
+      font-size: 15px;
+      line-height: 1.6;
+      background: rgba(0,113,227,0.08);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 12px 16px;
+    }
+    .device-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
 
     hr.divider {
       border: none;
@@ -451,7 +497,7 @@
 
 <header>
   <h1>Ruediger&rsquo;s Apps</h1>
-  <p>Native Swift apps for macOS &amp; iOS</p>
+  <p>Native Swift apps for Mac, iPhone, iPhone Duo &amp; Apple Watch</p>
 </header>
 
 <div class="category-label">Audiobook &amp; Audio</div>
@@ -495,15 +541,15 @@
 
 <script>
 const apps = [
-  // ── Audiobook & Audio ──
   {
     id: 'audiorec',
     category: 'audio',
     name: 'Reel2Reel',
     platform: 'macOS',
+    devices: ['mac'],
     icon: 'icons/audiorec.png',
-    tagline: 'Audiobook stream recorder with autosplit and Audible metadata',
-    summary: 'Reel2Reel records audiobooks straight out of Safari as they play, automatically splitting the recording into separate chapter files during quiet pauses and keeping a log of every segment. It can run completely unattended, pausing and resuming playback on its own between chapters. Once recording finishes, it tags every file with the book\'s title, author, narrator, and cover art — pulled in from Audible with one click, or entered by hand (with its own cover-art picker) when a title can\'t be found.',
+    tagline: 'Audiobook stream recorder with autosplit and Audible metadata, in a dark “Tape Deck” UI',
+    summary: 'Reel2Reel records audiobooks straight out of Safari as they play, automatically splitting the recording into separate chapter files during quiet pauses and keeping a log of every segment. It can run completely unattended, pausing and resuming playback on its own between chapters. Once recording finishes, it tags every file with the book\'s title, author, narrator, and cover art — pulled in from Audible with one click, or entered by hand (with its own cover-art picker) when a title can\'t be found. The interface is styled as a hardware tape deck, in a hand-tuned Dark or Light theme (or Auto, which follows the system) with level meters and a playback-source selector in the transport bar.',
     features: [
       'Captures audio at high quality (48 kHz) from anything playing through the Mac\'s system audio, not just Safari itself',
       'Three recording quality presets: Audiobook (smallest files, optimized for voice), Radioshow (balanced stereo), and Music (highest quality, full stereo)',
@@ -517,22 +563,32 @@ const apps = [
       'One-click Audible search fills in title, author, narrator, and year automatically; manual entry with its own cover-art picker as a fallback',
       'Built-in setup guides in Preferences for routing system audio and connecting an Audible account',
       'Cover art and metadata are added after recording without touching or re-encoding the audio itself',
-      'Keeps the Mac awake during recording, and remembers folder permissions between launches'
+      'Keeps the Mac awake during recording, and remembers folder permissions between launches',
+      '“Tape Deck” interface: a dark hardware-panel look with a real Light theme, chosen with a Dark / Light / Auto switch in Preferences',
+      'Playback-source selector in the transport bar, so you can see and choose what is being recorded',
+      'Autosplit now pauses Safari before it stops the recording, so no words are lost at a segment boundary; the space-bar record shortcut works again',
+      'Tap the version at the bottom of Preferences to see what changed in each release'
     ],
     tech: 'AVFoundation · AVAudioEngine · ExtAudioFile · AVAssetExportSession · CGEvent · ApplicationServices · IOKit · AudibleKit',
-    screenshots: [
-      'screenshots/audiorec/reel2reel-light.png',
-      'screenshots/audiorec/reel2reel-dark.png'
-    ]
+    screenshots: {
+      mac: [
+        'screenshots/audiorec/reel2reel-light.png',
+        'screenshots/audiorec/reel2reel-dark.png'
+      ],
+      iphone: [],
+      duo: [],
+      watch: []
+    }
   },
   {
     id: 'wavesmith',
     category: 'audio',
     name: 'WaveSmith',
     platform: 'macOS',
+    devices: ['mac'],
     icon: 'icons/wavesmith.png',
-    tagline: 'Transcode, tag, merge, and decrypt audiobook files — M4A, M4B, MP3, AAX',
-    summary: 'WaveSmith is a Mac toolbox for preparing audiobook files, with four tools in one app. Transcode converts audio — including copy-protected Audible files — into whichever format you pick from a list: Audiobook, Radioshow, and Music (all produce M4B/M4A audiobook files at different quality levels) or Audio MP3, with an optional volume-normalizing step. Write Tags fills in a book\'s title, author, narrator, chapter number, cover art, and other details — correctly, even when tagging a whole folder of chapter files at once. Merge and AutoSplit combine or split audio files without touching the sound quality at all. Search Audible pulls in a book\'s cover art and details with one click, and every tool clearly shows whether it changes the audio or leaves it untouched.',
+    tagline: 'Transcode, tag, merge, split and decrypt audiobook files, with real chapter titles from Audible',
+    summary: 'WaveSmith is a Mac toolbox for preparing audiobook files, with four tools in one app. Transcode converts audio, including copy-protected Audible files, into Audiobook, Radioshow, Music (all M4B/M4A) or MP3, with an optional volume-normalizing step. Write Tags fills in a book\'s title, author, narrator, chapter number and cover art, correctly even for a whole folder of chapter files. Merge and AutoSplit combine or split files without touching the sound quality. It can also fetch a book\'s real chapter titles from Audible, line them up with the chapters in your file by timestamp, and use them to name and tag every split segment. The whole pipeline is much faster than before: a transcode that took about 19 minutes now takes about 2.',
     features: [
       'Reads MP3, AAC, M4A, M4B, FLAC, and copy-protected Audible AAX/AAXC files; four output presets to choose from: Audiobook, Radioshow, and Music (all produce M4B/M4A audiobook files) or Audio MP3',
       'Each preset trades quality against file size — Audiobook is smallest and optimized for spoken word, Music is full-quality stereo',
@@ -541,25 +597,37 @@ const apps = [
       'Decrypts Audible\'s copy-protected AAX/AAXC files automatically, using your Audible account\'s activation key',
       'One-click Audible search fills in every tag field automatically — title, author, narrator, and more',
       'Cover art can be dragged in or pasted from the clipboard; if a file has no tags at all, WaveSmith can guess them from the filename',
-      'A persistent color picker in Settings recolors the whole app\'s accent color — card borders, buttons, and focused fields',
+      'A persistent color picker in Settings recolors the whole app\'s accent color: card borders, buttons, and focused fields',
       'Shows the save-to folder the way Finder would ("iCloud Drive/…") instead of a long technical file path',
       'Correctly detects "HE-AAC" audio — a compressed voice format used by some audiobook files — even when its stored details don\'t match its actual playback quality',
       'Exports a CUE sheet and a chapters spreadsheet with running timestamps across a whole multi-file audiobook',
-      'Automatically finds the separate conversion tool it depends on, wherever it\'s installed on the Mac'
+      'Automatically finds the separate conversion tool it depends on, wherever it\'s installed on the Mac',
+      'Chapter titles from Audible: fetches the book\'s real chapter names and merges them by chapter number, with an edition picker so titles never come from the wrong recording',
+      'Titles line up by timestamp, so extra Audible entries (credits, epigraph, introduction) are skipped instead of shifting every title after them; Line Up Titles lets you pair one title with its chapter by hand and preview the result',
+      'Split segments are named and tagged from their chapters (filename, track title and in-file chapter title) rather than “Part 01 of 16”',
+      'Split / Chapters → At Chapters lists every chapter with its title, start and duration, and exports the table as an RTF file or an editable text list',
+      'A much faster pipeline: peak and loudness measurement run in parallel, quality checks overlap instead of following, and progress no longer redraws the window on every chunk',
+      'Optional “Verify output waveform” switch for quicker transcodes; peak, loudness and clipping are still checked',
+      'Adaptive Dark / Light / Auto theme, shared with Reel2Reel'
     ],
     tech: 'AVFoundation · AVAssetReader/Writer · AVAssetExportSession · ffmpeg · audible-cli · AudibleKit',
-    screenshots: [
-      'screenshots/wavesmith/wavesmith-main-ui.png'
-    ]
+    screenshots: {
+      mac: ['screenshots/wavesmith/wavesmith-main-ui.png'],
+      iphone: [],
+      duo: [],
+      watch: []
+    }
   },
   {
     id: 'bookplayer',
     category: 'audio',
     name: 'VocalTome',
-    platform: 'iOS',
+    platform: 'iPhone · iPhone Duo',
+    devices: ['iphone', 'duo'],
     icon: 'icons/bookplayer.png',
-    tagline: 'Audiobook player — M4A, M4B, MP3 — with chapters and bookmarks',
-    summary: 'VocalTome is a simple, focused audiobook player for iPhone with precise seeking and adjustable playback speed. It plays M4A, M4B, and MP3 files organized into book folders, reads chapter markers from the file itself, and remembers exactly where you left off — saved every few seconds, on pause, and whenever you switch apps. Cover art sets the app\'s background color, and playback works properly from the lock screen, AirPods, and CarPlay.',
+    tagline: 'Audiobook and podcast player with chapters, bookmarks and a chapter-sized scrubber',
+    summary: 'VocalTome is a simple, focused audiobook player for iPhone with precise seeking and adjustable playback speed. It plays M4A, M4B and MP3 files organized into book folders, reads chapter markers from the file itself, and remembers exactly where you left off. A second shelf holds podcasts, the library is searchable by title or author, and the scrubber covers one chapter at a time, so even a sixteen-hour book can be positioned to the second. If a book\'s folder also holds a PDF (maps, illustrations, or the whole book), a PDF button opens a reader with a mini player attached, so you can read along while the audio keeps playing. Cover art sets the app\'s background color, and playback works properly from the lock screen, AirPods and CarPlay. It is built for iPhone Duo: on the closed outer display the player\'s controls sit on a vertical bar, and unfolded the chapter list and the PDF reader each get a column beside the player.',
+    duo: 'Outer display: the library, speed and chapter buttons are standard toolbar controls, so they move to the vertical bar alongside the screen. Inner display: a chaptered book shows its chapter list in a column beside the player, tinted from the cover art, so choosing a chapter never covers the transport controls. The PDF reader turns the player into a narrow column beside the page, so you can read along without losing the controls.',
     features: [
       'Plays M4A, M4B, and MP3 audiobook files',
       'Understands books organized as a folder of tracks, an author/book folder structure, or a single audiobook file; a picker lets you choose which folder is "the book" when it\'s not obvious',
@@ -571,14 +639,36 @@ const apps = [
       'Remembers your place constantly — saved every few seconds, on pause, on a phone call interruption, and when you leave the app',
       'Bookmarks store both a chapter-relative and whole-book timestamp, plus an optional note, and can be exported as text',
       'Uses the book\'s cover art to set an adaptive background color',
-      'Shows title, artist, artwork, and chapter progress on the lock screen and Control Center',
-      'Full remote control from the lock screen, AirPods, and CarPlay — play/pause, skip, and chapter navigation all stay correctly in sync with what\'s on screen'
+      'Shows title, artist, artwork and chapter progress on the lock screen and Control Center',
+      'Full remote control from the lock screen, AirPods, and CarPlay — play/pause, skip, and chapter navigation all stay correctly in sync with what\'s on screen',
+      'Accompanying PDFs: when a book\'s folder holds a PDF (maps, figures, or the book itself), a PDF button opens a reader with a mini player beneath it, remembers your page, and keeps the audio playing; on a PDF still in iCloud it starts the download for you',
+      'Chapter-sized scrubber: the bar spans the current chapter rather than the whole book, about nine times finer in a long book, with a small handle that never hides the spot you are aiming at',
+      'A thin strip above the scrubber maps the whole book by chapter; tap it to open the chapter list, and tap the time left to switch between time and percentage',
+      'A podcasts shelf with its own folder, switched from two icons at the top of the library; a podcast series is named after its folder and episodes keep a stable order',
+      'Search the library by title or author',
+      'Books added on another device appear straight away with their real title and cover; the library fills in as it reads, with a refresh button',
+      'Opening a book shows progress instead of freezing, including while an iCloud file downloads, and the next part of a multi-file book downloads while the current one plays',
+      'Book names come from the album tag, falling back to the “Author - Title” folder or file name for untagged books',
+      'iPhone Duo: the toolbar controls move to the vertical side bar on the outer display, and the unfolded display adds a chapter column beside the player and puts the PDF reader next to a narrow player column'
     ],
     tech: 'AVFoundation · AVAudioEngine · AVAudioUnitTimePitch · SwiftData · MediaPlayer · CoreImage',
-    screenshots: [
-      'screenshots/bookplayer/vocal-tome-main-screen.png',
-      'screenshots/bookplayer/vocal-tome-book-selector-screenshot.png'
-    ]
+    screenshots: {
+      mac: [],
+      iphone: [
+        'screenshots/bookplayer/vocal-tome-main-screen.png',
+        'screenshots/bookplayer/vocal-tome-book-selector-screenshot.png',
+        'screenshots/bookplayer/01-library.png',
+        'screenshots/bookplayer/02-player-with-pdf-button.png',
+        'screenshots/bookplayer/03-pdf-reader-with-mini-player.png'
+      ],
+      duo: [
+        'screenshots/bookplayer/01-player-with-chapter-column-unfolded.png',
+        'screenshots/bookplayer/02-pdf-reader-beside-player-column-unfolded.png',
+        'screenshots/bookplayer/03-player-with-toolbar-on-vertical-bar-folded-outer-display.png',
+        'screenshots/bookplayer/04-pdf-reader-folded-outer-display.png'
+      ],
+      watch: []
+    }
   },
   {
     id: 'bookrole',
@@ -590,10 +680,12 @@ const apps = [
     id: 'shelfspoken',
     category: 'audio',
     name: 'ShelfSpoken',
-    platform: 'macOS / iOS',
+    platform: 'Mac · iPhone · iPhone Duo',
+    devices: ['mac', 'iphone', 'duo'],
     icon: 'icons/shelfspoken.png',
     tagline: 'Audiobook library manager with Siri, Audible metadata, CloudKit sync, and genre taxonomy',
     summary: 'ShelfSpoken is a library manager for your audiobook collection, on both Mac and iPhone, kept in sync automatically through iCloud. It tracks title, author, narrator, series, genre, cover art, rating, and reading status for every book. A single Audible search fills in most of those details automatically, and a “Download Audible book” button double-checks everything is in place before handing the file off to WaveSmith to decrypt. Books are organized by a built-in genre system and can be filtered by genre, series, author, or tag, all at once. It also finds the accompanying PDFs (maps, figures, worksheets) that some audiobooks ship with, asking both Audible and public library catalogues. And it works with Siri and Apple Intelligence: ask Siri which books in a series you have read, say “Add to ShelfSpoken” with a book’s page on screen, or point the camera at a cover to see whether it is already on your shelf.',
+    duo: 'The library grid fills the inner display with as many columns as fit, rather than two phone-width columns; the outer display shows the standard phone layout with the bars on the side. A book\'s detail screen puts a capped-size cover beside the title block, in the same proportions as the Mac, and an Edit button opens every field (subtitle, series, genre, tags, publisher, ASIN, cover, length and blurb).',
     features: [
       'Tracks title, subtitle, author, narrator, series and book number, genre, cover art, description, publisher, star rating, and reading status for every book',
       'Reading-status tabs: All, Finished, Reading, Want to Read, Did Not Finish, and Hidden',
@@ -603,7 +695,7 @@ const apps = [
       'A badge marks Audible-sourced books, with a filter per Audible account; Audible usernames import from a CSV with a preview of every change, new assignment and unmatched row before anything is written, plus an annotated copy of the CSV showing which rows were found',
       'Accompanying PDFs: finds the companion files Audible sells with a title and downloads them, and checks public library catalogues (OverDrive) for titles no Audible account owns; a book can also be marked by hand',
       'A filter for accompanying material by source (Audible, any library, or one named library) and by answer (has, none, title not found, not checked yet), with a breakdown of which source found each PDF',
-      'Each book\u2019s detail view shows PDF, Audible and Download status at a glance; PDF opens the matching library catalogue page',
+      'Each book’s detail view shows PDF, Audible and Download status at a glance; PDF opens the matching library catalogue page',
       'A batch mode searches Audible for every book still missing details in one pass',
       'Sidebar filters by genre, series, author, and tags — all combinable at once, with a genre tree showing how many books are in each category, and an Active Filters bar that names every filter narrowing the view',
       'A "Data Quality" view flags books missing cover art or genre, or with duplicate titles, so gaps in the library are easy to find and fix',
@@ -611,22 +703,29 @@ const apps = [
       'A built-in genre system automatically sorts books into categories by keyword matching, and can be edited by hand',
       'Imports libraries from Audible or Libby CSV exports, or from a JSON backup with cover art included; import can update only missing fields, overwrite everything, or skip existing books',
       'On iPhone: full library grid with search, filters, and sorting; changes made on Mac appear automatically without needing to reopen the app',
-      'Siri and Apple Intelligence can answer questions about the library, such as which books in a series you have finished, using every book\u2019s details',
-      'Add to ShelfSpoken: ask Siri with a book\u2019s page or a screenshot on screen, use the Shortcuts action, or on the Mac right-click any selected text \u2192 Services; the title is checked against your shelf and corrected against Apple\u2019s Books catalogue, and you confirm before anything is added',
-      'On iPhone, Add Book\u2026 in the menu, and a search that finds nothing offers to add that book',
+      'Siri and Apple Intelligence can answer questions about the library, such as which books in a series you have finished, using every book’s details',
+      'Add to ShelfSpoken: ask Siri with a book’s page or a screenshot on screen, use the Shortcuts action, or on the Mac right-click any selected text → Services; the title is checked against your shelf and corrected against Apple’s Books catalogue, and you confirm before anything is added',
+      'On iPhone, Add Book… in the menu, and a search that finds nothing offers to add that book',
       'Point the camera at a cover, or use Visual Intelligence on a screenshot, to see whether a book is already on your shelf and open it',
-      'Ask Library: type a question about your shelf and get a short answer with the matching books, using Apple\u2019s on-device model',
+      'Ask Library: type a question about your shelf and get a short answer with the matching books, using Apple’s on-device model',
       'Search ShelfSpoken from Siri, open a book from Siri or Spotlight, and filter the library in Shortcuts with Find Audiobooks (by status, series, author, rating, finish date and more)',
-      'Update from Audible on the Mac fills in a book\u2019s missing details, for books added on the iPhone'
+      'Update from Audible on the Mac fills in a book’s missing details, for books added on the iPhone',
+      'iPhone book detail matches the Mac layout, with a new Edit button for every field, including series, genre, tags and cover',
+      'iPhone Duo: the library grid adapts to the inner display\'s width, and the detail screen uses the extra room'
     ],
     tech: 'SwiftData · CloudKit · App Intents · Core Spotlight · Foundation Models · Visual Intelligence · Vision · AudibleKit · audible-cli · OverDrive catalogue API · iTunes Search API · NavigationSplitView · GenreMapResolver · BackupService',
-    screenshots: [
-      'screenshots/shelfspoken/shelfspoken-main.png',
-      'screenshots/shelfspoken/shelfspoken-details.png',
-      'screenshots/shelfspoken/shelfspoken-ask-library.jpg',
-      'screenshots/shelfspoken/shelfspoken-filter-view.png',
-      'screenshots/shelfspoken/shelfspoken-audible-search.png'
-    ]
+    screenshots: {
+      mac: [
+        'screenshots/shelfspoken/shelfspoken-main.png',
+        'screenshots/shelfspoken/shelfspoken-details.png',
+        'screenshots/shelfspoken/shelfspoken-ask-library.jpg',
+        'screenshots/shelfspoken/shelfspoken-filter-view.png',
+        'screenshots/shelfspoken/shelfspoken-audible-search.png'
+      ],
+      iphone: [],
+      duo: [],
+      watch: []
+    }
   },
   {
     id: 'orvox',
@@ -634,16 +733,16 @@ const apps = [
     name: '(retired — see Enki)',
     hidden: true
   },
-
-  // ── AI & Productivity ──
   {
     id: 'enki',
     category: 'ai',
     name: 'Enki',
-    platform: 'iOS / macOS',
+    platform: 'Mac · iPhone · iPhone Duo',
+    devices: ['mac', 'iphone', 'duo'],
     icon: 'icons/enki.jpg',
-    tagline: 'AI book summaries, character lists, text-to-speech and transcription — plus local AI chat',
-    summary: 'Enki is a suite of AI reading and audio tools for the Mac, alongside a companion iPhone chat app. Its two main tools are BookRole and Orvox. BookRole reads an ebook chapter by chapter, using your own local AI server to write a running summary of the story, then sends that summary to Anthropic\'s Claude — using your own Claude account — to build a full list of the book\'s characters. Orvox turns text into a narrated audiobook and can also transcribe spoken audio back into text, both using a local, on-device AI voice. A built-in chat window talks directly to that same local AI, hosted on your own network by the companion app EnkiBridge — everything runs locally except the character-list step, which needs a Claude account.',
+    tagline: 'AI book summaries, character lists, text-to-speech and transcription, plus chat with your own local AI',
+    summary: 'Enki is a suite of AI reading and audio tools, in two apps. EnkiMac, for the Mac, holds BookRole, Orvox and Chat. BookRole reads an ebook chapter by chapter, using your own local AI server to write a running summary, then sends that summary to Anthropic\'s Claude (with your own account) to build a full character list. It can also write Pop-Sci summaries or a 50% abbreviation that keeps the author\'s reasoning and examples. Orvox turns text into a chaptered, narrated audiobook and transcribes spoken audio back to text, both with a local on-device AI voice. Enki for iPhone is a chat client for the same local AI, hosted on your own network by EnkiBridge, with a Live Activity that shows generation progress on the Lock Screen and Dynamic Island. Everything stays local except the character-list step, which needs a Claude account.',
+    duo: 'Unfolded, your saved servers become a permanent pane beside the conversation, so switching server changes the chat next to it instead of covering it with a sheet. Chat text and the compose bar keep a comfortable reading width when the sidebar is collapsed.',
     features: [
       'BookRole reads an EPUB or text file and writes a chapter-by-chapter summary of the story using your local AI server',
       'From that summary, a full character list is built using Anthropic\'s Claude — this one step needs your own Claude account and API key, unlike everything else in Enki, which stays on your local network',
@@ -655,24 +754,36 @@ const apps = [
       'A chat window talks to your own local AI model, hosted on your network by the companion app EnkiBridge — private, and works with any compatible local AI server',
       'Tests a new server connection before saving it, with plain-language error messages when something\'s misconfigured',
       'A responsive chat input, live streaming responses, a model picker per server, and one-tap copy of any response',
-      'The iPhone chat app and Mac suite share the same underlying chat code, so they behave identically wherever they overlap'
+      'The iPhone chat app and the Mac suite share the same underlying chat code, so they behave identically wherever they overlap',
+      'Pop-Sci summaries mirror the author\'s style and cadence, with a 50% Abbreviation mode that retells each chapter while keeping the reasoning and examples',
+      'Orvox no longer drops sentences: each is spoken on its own with its original punctuation, headings are read separately, and lecture headings become chapters; progress shows hours and minutes with an ETA',
+      'A two-column PDF to linear text extractor prepares PDFs for BookRole, and BookRole can export a table of contents for WaveSmith\'s chapter-title merging',
+      'Memory used by the speech models is released when Orvox is idle; the Mac chat sends on Return and inserts a newline on Shift+Return',
+      'Live Activity on iPhone: shows a reply being generated on the Lock Screen and in the Dynamic Island',
+      'iPhone Duo: the saved-server list sits beside the conversation on the unfolded display'
     ],
-    tech: 'Swift 6 Actors · URLSession/SSE · MLX · Qwen3-TTS · Whisper · SwiftUI NavigationSplitView · Local SwiftPM packages',
-    screenshots: [
-      'screenshots/enki/enki-chat.png',
-      'screenshots/enki/enki-bookrole-summary.png',
-      'screenshots/enki/enki-bookrole-character-list.png',
-      'screenshots/enki/enki-orvox-tts.png'
-    ]
+    tech: 'Swift 6 Actors · URLSession/SSE · MLX · Qwen3-TTS · Whisper · SwiftUI NavigationSplitView · Local SwiftPM packages · ActivityKit',
+    screenshots: {
+      mac: [
+        'screenshots/enki/enki-chat.png',
+        'screenshots/enki/enki-bookrole-summary.png',
+        'screenshots/enki/enki-bookrole-character-list.png',
+        'screenshots/enki/enki-orvox-tts.png'
+      ],
+      iphone: [],
+      duo: [],
+      watch: []
+    }
   },
   {
     id: 'enkibridge',
     category: 'ai',
     name: 'EnkiBridge',
     platform: 'macOS',
+    devices: ['mac'],
     icon: 'icons/enkibridge.png',
     tagline: 'Menu-bar host for a local OpenAI-compatible LLM server',
-    summary: 'EnkiBridge is a small Mac menu-bar helper that starts and looks after the local AI server that Enki — and anything else on your network — talks to. It runs quietly in the background with no window, notices if a compatible server is already running instead of starting a duplicate, checks that the server is actually reachable from other devices before reporting it as ready, and only shuts down servers it started itself.',
+    summary: 'EnkiBridge is a small Mac menu-bar helper that starts and looks after the local AI server that Enki — and anything else on your network — talks to. It runs quietly in the background with no window, notices if a compatible server is already running instead of starting a duplicate, checks that the server is actually reachable from other devices before reporting it as ready, and only shuts down servers it started itself. Switch between mlx-vlm and Ollama from the menu.',
     features: [
       'Lives entirely in the menu bar — no icon in the Dock, no window to manage',
       'The AI server it runs is fully configurable, so switching to a different local AI engine is just a settings change',
@@ -681,21 +792,28 @@ const apps = [
       'Supports an optional speed-up mode for compatible AI models, transparent to anything talking to the server',
       'Only ever shuts down servers it started or knowingly took over — never one it simply noticed running',
       'Keeps a running log file, viewable live inside the app',
-      'Can launch automatically at login, so a local AI server is always available without manual setup'
+      'Can launch automatically at login, so a local AI server is always available without manual setup',
+      'Backend presets for mlx-vlm and Ollama with a menu switcher, plus a Qwen3.6-35B preset that uses its own draft model for speculative decoding',
+      'An externally started server it adopted is recovered correctly and shut down when EnkiBridge quits'
     ],
     tech: 'MenuBarExtra · Process · SMAppService · mlx-vlm · OpenAI-compatible HTTP API',
-    screenshots: []
+    screenshots: {
+      mac: [],
+      iphone: [],
+      duo: [],
+      watch: []
+    }
   },
-
-  // ── Finance & Data ──
   {
     id: 'siftit',
     category: 'finance',
     name: 'SiftIt',
-    platform: 'macOS / iOS',
+    platform: 'Mac · iPhone · iPhone Duo',
+    devices: ['mac', 'iphone', 'duo'],
     icon: 'icons/siftit.jpeg',
     tagline: 'Detect and track recurring expenses from bank CSV imports',
     summary: 'SiftIt scans your bank statement exports and automatically finds your recurring subscriptions and bills, no need to enter anything by hand. It looks for charges that repeat on a regular schedule — weekly, monthly, yearly, and so on — at a consistent amount, and sorts them into subscriptions versus one-off purchases. You can add notes, links, and renewal dates to anything it finds, and track your credit cards\' expiration dates alongside them. Everything stays on your device — nothing is sent anywhere.',
+    duo: 'The transaction table is eleven columns wide, wider than any iPhone, so it now scrolls sideways with every column intact instead of clipping the first and last columns off both edges of the inner display.',
     features: [
       'Reads CSV exports from over 20 different banks and credit cards automatically, without needing a specific format',
       'Recognizes five billing schedules: biweekly, monthly, quarterly, twice a year, and yearly',
@@ -708,21 +826,32 @@ const apps = [
       'Expand any row to see every individual transaction that made up the detected pattern',
       'Add a link, a note, or mark something as ignored or cancelled for any recurring charge',
       'Tracks your credit cards\' names, last four digits, and expiration dates, and flags any charge tied to a card that\'s about to expire',
-      'A built-in help guide walks through the app; on Mac, credit card info is shared automatically with Vaulta'
+      'Credit-card details are shared with Vaulta through an App Group, so each card is entered once',
+      'Export your data to CSV into any folder you choose; a JSON backup can be exported and restored from Settings',
+      'Runs on iPhone as well as Mac, and the wide transaction table scrolls sideways on iPhone Duo',
+      'A built-in help guide walks through the app (Help → SiftIt Help)'
     ],
     tech: 'SwiftUI · Multiplatform · Dynamic Programming · JSON persistence · App Group · XcodeGen',
-    screenshots: [
-      'screenshots/siftit/siftit.png'
-    ]
+    screenshots: {
+      mac: ['screenshots/siftit/siftit.png'],
+      iphone: [
+        'screenshots/siftit/01-recurring-charges.png',
+        'screenshots/siftit/02-charges-with-source-transactions.png'
+      ],
+      duo: ['screenshots/siftit/01-recurring-charges-inner-display.png'],
+      watch: []
+    }
   },
   {
     id: 'vaulta',
     category: 'finance',
     name: 'Vaulta',
-    platform: 'iOS / macOS',
+    platform: 'iPhone · iPhone Duo · Mac',
+    devices: ['mac', 'iphone', 'duo'],
     icon: 'icons/vaulta.png',
     tagline: 'Warranty and inventory tracker with AI-powered receipt extraction',
-    summary: 'Vaulta keeps track of warranties and receipts for everything you own. Scan or photograph a receipt and it reads the details automatically — item, price, tax, and total — using a mix of built-in text recognition and AI, checked against each other so mistakes get caught. It works out when each item\'s manufacturer and extended warranty expires, and keeps a separate inventory of belongings with their own photos and notes, synced automatically across your devices.',
+    summary: 'Vaulta keeps track of warranties and receipts for everything you own. Scan or photograph a receipt and it reads the details automatically (item, price, tax and total) using a mix of built-in text recognition and AI, checked against each other so mistakes get caught. It works out when each item\'s manufacturer and extended warranty expires, and keeps a separate inventory of belongings with their own photos and notes, synced across your devices. Siri and Shortcuts can add a purchase from a receipt, add and look up inventory items, and check or update a warranty.',
+    duo: 'Inventory shows a list and its detail side by side when there is room for two columns (the unfolded inner display), and a push-style list on the closed outer display; tapping an inventory row now opens it everywhere.',
     features: [
       'Add a receipt by scanning it with the camera, picking a photo, choosing a file, or sharing it in from another app',
       'Reads receipt text automatically, cross-checking a fast built-in scan against an AI reading (on-device first, with a cloud AI as backup) so mistakes get caught rather than trusted blindly',
@@ -734,21 +863,33 @@ const apps = [
       'Shows whichever warranty, manufacturer or extended, actually covers the item longer',
       'A separate inventory list tracks other belongings with their own photo, price, and notes, warranty or not',
       'Syncs privately and automatically across your devices via iCloud; data can be exported without losing precision on dollar amounts',
-      'A table view with a detail panel on Mac; a standard list-based layout on iPhone'
+      'A table view with a detail panel on Mac; a standard list-based layout on iPhone',
+      'Siri and Shortcuts through App Intents: add a purchase from a receipt, add and look up inventory items, check warranty status and update warranties',
+      'Inventory has its own add and detail screens, and purchases can be edited after the fact',
+      'Reads service contracts as well as receipts, with a debug view showing exactly what was extracted',
+      'Receipt PDFs and images are compressed on import with a before-and-after preview, skipping files that would not shrink',
+      'Export and import the whole database from Settings; the warranty list has an inspector panel on Mac, and the share extension accepts plain text as well as files',
+      'iPhone Duo: inventory splits into list and detail on the unfolded display'
     ],
     tech: 'SwiftData · CloudKit · Vision · FoundationModels · URLSession · Keychain · Mac Catalyst · Share Extension · XcodeGen',
-    screenshots: []
+    screenshots: {
+      mac: [],
+      iphone: [],
+      duo: [],
+      watch: []
+    }
   },
   {
     id: 'eightsleep',
     category: 'finance',
-    name: 'Eight Sleep Explorer',
+    name: 'SleepAlyzer',
     platform: 'macOS',
+    devices: ['mac'],
     icon: null,
     iconEmoji: '😴',
     iconGradient: 'linear-gradient(135deg, #1a1a2e, #16213e)',
-    tagline: 'Eight Sleep data explorer with EWMA trends and hammock recovery scoring',
-    summary: 'Eight Sleep Explorer imports data from an Eight Sleep smart mattress and turns it into an easy-to-read picture of sleep quality. It charts resting heart rate and heart rate variability over time, and scores each night out of 100 based on how well heart rate dipped and recovered during sleep, compared against an ideal recovery pattern. Scores and trends can be reviewed night by night or across weeks, months, and years, and everything can be exported to a spreadsheet.',
+    tagline: 'Eight Sleep data explorer with trend charts and a nightly recovery score',
+    summary: 'SleepAlyzer imports data from an Eight Sleep smart mattress and turns it into an easy-to-read picture of sleep quality. It charts resting heart rate and heart rate variability over time, and scores each night out of 100 based on how well heart rate dipped and recovered during sleep, compared against an ideal recovery pattern. Scores and trends can be reviewed night by night or across weeks, months, and years, and everything can be exported to a spreadsheet. (SleepAlyzer was previously called JSONtoCSV, back when exporting to a spreadsheet was its only job.)',
     features: [
       'Imports Eight Sleep\'s exported data files, handling older and newer export formats automatically',
       'Saves every imported night locally and avoids importing the same night twice',
@@ -764,15 +905,19 @@ const apps = [
       'Import and export both available from the File menu, plus drag-and-drop; separate windows for import, trend charts, and night-by-night detail'
     ],
     tech: 'Swift Charts · HealthKit · EWMA · Piecewise-quadratic curve fitting · JSON · @FocusedObject · XcodeGen',
-    screenshots: []
+    screenshots: {
+      mac: [],
+      iphone: [],
+      duo: [],
+      watch: []
+    }
   },
-
-  // ── Home Automation & Energy ──
   {
     id: 'sunkeeper',
     category: 'home',
     name: 'SunKeeper',
     platform: 'macOS',
+    devices: ['mac'],
     icon: null,
     iconEmoji: '☀️',
     iconGradient: 'linear-gradient(135deg, #f7971e, #ffd200)',
@@ -790,24 +935,35 @@ const apps = [
       'When the forecast shows the battery is likely to run short, it can automatically switch off configured non-essential smart-plug devices to conserve power',
       'Simple settings screen for account tokens, site selection, shading adjustments, and which devices to switch off automatically',
       'Recovers gracefully from the Mac sleeping or losing network connection, without missing readings',
-      'One-click backup and restore of all settings and history — account tokens, site IDs, shading adjustments, and device choices'
+      'One-click backup and restore of all settings and history — account tokens, site IDs, shading adjustments, and device choices',
+      '“Quit for Upgrade…” stops the daemon safely in one click so a new version can replace it',
+      '“Recover Missing Days” re-fetches just the days that are missing from the history',
+      'Notices when Tesla\'s access token has expired and flags it so WattsUpHome can tell you, rather than failing silently',
+      'Optional second-site solar-export tracking, off by default'
     ],
     tech: 'Mac Catalyst · AppKit · NSStatusItem · HomeKit · SwiftData · NSUbiquitousKeyValueStore · Teslemetry API · Solcast API',
-    screenshots: []
+    screenshots: {
+      mac: [],
+      iphone: [],
+      duo: [],
+      watch: []
+    }
   },
   {
     id: 'wattsup',
     category: 'home',
     name: 'WattsUpHome',
-    platform: 'iPhone / iPad / Mac',
+    platform: 'iPhone · iPhone Duo · iPad · Mac',
+    devices: ['mac', 'iphone', 'duo'],
     icon: 'icons/wattsup.png',
-    tagline: 'Combined home control hub for energy, HomeKit, theater — and a morning brief',
-    summary: 'WattsUpHome is a home control app for iPhone, iPad, and Mac that brings home theater control, smart-home devices, security cameras, and real-time solar and battery data — fed live from SunKeeper — together into one dashboard, with charts of daily, monthly, and yearly energy production. Sunbreak is a morning briefing screen: it greets you by name, estimates when the morning marine layer will burn off, reads out today\'s and tomorrow\'s calendar (calling out holidays and birthdays by name), and sends a “time to leave” alert for appointments based on live drive-time estimates.',
+    tagline: 'Home control hub for energy, HomeKit and theater, with a morning brief and alarms that ring on silent',
+    summary: 'WattsUpHome is a home control app for iPhone, iPad and Mac that brings home theater control, smart-home devices, security cameras and real-time solar and battery data (fed live from SunKeeper) into one dashboard, with charts of daily, monthly and yearly production. Sunbreak is its morning briefing: it greets you by name, estimates when the marine layer will burn off, reads out today\'s and the coming days\' calendar and reminders (holidays and birthdays by name), and sets alarms for appointments that ring even on silent, with snooze choices on the Lock Screen and in the Dynamic Island. Energy accounting includes PG&E NEM 2.0 true-up tracking with a cash-versus-value break-even. On iPhone Duo every tab gets a second pane when unfolded.',
+    duo: 'Unfolded, each tab gets a second pane: the theater controls fill their half beside the device tiles, and both camera feeds stay upright. The theater screen scrolls on a display too short for the whole column, so nothing is out of reach.',
     features: [
-      'iPhone: five tabs — Theater, Energy, Devices, Cameras, and Settings',
+      'iPhone: Theater, Energy, Devices, Cameras, Sunbreak and Settings',
       'iPad and Mac: a customizable tile dashboard for scenes, devices, the camera feed, and energy stats, with layout backup and restore',
       'Sunbreak morning brief: opens automatically the first time you check your phone each morning, greeting you by name and estimating when the morning marine layer will clear, alongside today and tomorrow\'s calendar',
-      'Sunbreak alarms: a two-hour heads-up before appointments, plus a "time to leave" alert timed to actual live drive time for in-person events, or a simple 30-minute warning for video calls — each snoozable',
+      'Sunbreak alarms ring on silent and through Focus, each with its own tone: a heads-up before appointments, a “time to leave” alert timed to live drive time for in-person events, and a 30-minute warning for video calls',
       'Sunbreak calendar reads out holidays and birthdays by name, with a look-ahead to next week, and can optionally speak the briefing aloud',
       'Live energy stats — solar output, battery charge, grid status, today\'s totals, and forecast — read directly from SunKeeper in real time',
       'Energy tab charts solar and home power use over the day, with the solar forecast overlaid for comparison',
@@ -815,24 +971,34 @@ const apps = [
       'Full HomeKit control — every room, device, and switch in the home, with live status and an event log of what triggered what',
       'Direct control of a home theater projector and AV receiver — power, input, and status — including handling the receiver\'s slow startup automatically',
       'A drag-to-rearrange tile dashboard whose layout is saved and synced automatically',
-      'Control lighting moods right from the iPhone lock screen'
+      'Control lighting moods right from the iPhone lock screen',
+      'Snooze from the alarm itself: a ringing alarm offers 10 minutes, 1 hour, 1 day and Done or Stop in the Dynamic Island and on the Lock Screen; snoozing a reminder for a day moves it to the same time tomorrow',
+      'Quiet nights: no calendar or reminder alarm rings between 22:00 and 07:00 by default, and anything held back is listed on a “Quiet nights” card in the brief',
+      'Tap any brief entry to hide or show it, set its three alerts, flag a reminder as urgent, or change an event\'s date and time (on a repeating event, only that occurrence moves); an event with no alert is listed but never rings',
+      'A clearer outlook: “Later This Week” and “Next Week” are separate, and the 10-day forecast always names the temperature and groups runs of days',
+      'Energy accounting for PG&E NEM 2.0: annual true-up split into PG&E delivery and generation, current net balance with its cash value, and lifetime break-even including self-consumption and forfeited generation',
+      'iPhone Duo: every tab gets a second pane on the unfolded display, and the theater controls fill their column'
     ],
     tech: 'HomeKit · NSUbiquitousKeyValueStore · WeatherKit · EventKit · MapKit · AVSpeechSynthesizer · Swift Charts · NWConnection · ActivityKit · Mac Catalyst',
-    screenshots: [
-      'screenshots/wattsup/wattsuphome-iphone-theater-tab.png',
-      'screenshots/wattsup/wattsuphome-energy-tab.png'
-    ]
+    screenshots: {
+      mac: [],
+      iphone: [
+        'screenshots/wattsup/wattsuphome-iphone-theater-tab.png',
+        'screenshots/wattsup/wattsuphome-energy-tab.png'
+      ],
+      duo: [],
+      watch: []
+    }
   },
-
-  // ── Networking & Privacy ──
   {
     id: 'firewatch',
     category: 'networking',
     name: 'Firewacha',
     platform: 'macOS',
+    devices: ['mac'],
     icon: 'icons/firewatch.png',
-    tagline: 'Privacy and tracker-exposure dashboard for a Firewalla network',
-    summary: 'Firewacha is a privacy dashboard for a home Firewalla network. It shows every device on the network and what it\'s connecting to, flags known trackers and risky destinations, and lets you review and allow, ignore, or block anything at a glance, with an auto-block option for repeat offenders. It\'s built to handle a busy home network\'s full day of traffic — tens of thousands of connections — without slowing down.',
+    tagline: 'Privacy and tracker-exposure dashboard for a Firewalla network, with AI-assisted block rules',
+    summary: 'Firewacha is a privacy dashboard for a home Firewalla network. It shows every device on the network and what it\'s connecting to, flags known trackers and risky destinations, and lets you review and allow, ignore, or block anything at a glance, with an auto-block option for repeat offenders. It\'s built to handle a busy home network\'s full day of traffic — tens of thousands of connections — without slowing down. An AI rule audit researches the destinations you have flagged, with grounded web search, and recommends what to block.',
     features: [
       'Signs in securely through Firewalla\'s own login page, without the app ever seeing or storing a password',
       'Streams live connection data directly from the Firewalla box, summarized by device rather than raw byte-by-byte',
@@ -841,27 +1007,37 @@ const apps = [
       'Built to comfortably handle a full day of a busy home network\'s traffic, tens of thousands of connections, without slowing down',
       'All the heavy data processing happens in the background, so the app stays responsive even while syncing a large network\'s worth of history',
       'Can automatically block destinations that match your configured risk rules, and logs which device triggered each block',
-      'Shows which devices have been active in the last 24 hours at a glance'
+      'Shows which devices have been active in the last 24 hours at a glance',
+      'AI rule audit: batches destinations to Claude (with your own key) for grounded research and a structured block recommendation, reviewed in an inline sheet',
+      'Block whole tracker organizations (Meta, Google Ads, Nextdoor and others) in one step, choosing from three explained options instead of raw scope switches',
+      'A Rare pane for destinations seen only occasionally, and a Blocked pane sorted strictly across buckets',
+      'A Data Usage drill-down shows which domains each device talks to, with a per-domain Block button',
+      'Sign-in hardening: QR login keeps its own persistent session and re-login loops are fixed'
     ],
     tech: 'SwiftData · socket.io-client-swift · WKWebView OAuth2 · Swift 6 Actors · RDAP · Keychain',
-    screenshots: [
-      'screenshots/firewatch/firewacha-main-screen.png',
-      'screenshots/firewatch/firewacha-blocked-1d-filter.png',
-      'screenshots/firewatch/firewacha-traffic-by-device.png',
-      'screenshots/firewatch/firewacha-traffic-volume-by-device-with-macbook-expanded.png',
-      'screenshots/firewatch/firewacha-block-rules-audit.png'
-    ]
+    screenshots: {
+      mac: [
+        'screenshots/firewatch/firewacha-main-screen.png',
+        'screenshots/firewatch/firewacha-blocked-1d-filter.png',
+        'screenshots/firewatch/firewacha-traffic-by-device.png',
+        'screenshots/firewatch/firewacha-traffic-volume-by-device-with-macbook-expanded.png',
+        'screenshots/firewatch/firewacha-block-rules-audit.png'
+      ],
+      iphone: [],
+      duo: [],
+      watch: []
+    }
   },
-
-  // ── Health ──
   {
     id: 'glucalyzer',
     category: 'health',
     name: 'Glucalyzer',
-    platform: 'iOS',
+    platform: 'iPhone · iPhone Duo',
+    devices: ['iphone', 'duo'],
     icon: 'icons/glucalyzer.jpg',
     tagline: 'CGM companion with daily scoring, meal tracking, and period analysis',
-    summary: 'Glucalyzer is a companion app for continuous glucose monitors that turns HealthKit glucose readings into a personalized daily score, once it\'s learned your baseline. It charts glucose alongside meals and workouts, tracks how each meal you log affects your glucose, and reviews history session by session as sensors come and go, so trends stay accurate even across sensor changes. Two scoring modes are available: one aligned with standard diabetes-management targets, and one aimed at general metabolic health.',
+    summary: 'Glucalyzer is a companion app for continuous glucose monitors that turns HealthKit glucose readings into a personalized daily score, once it\'s learned your baseline. It charts glucose alongside meals and workouts, tracks how each meal you log affects your glucose, and reviews history session by session as sensors come and go, so trends stay accurate even across sensor changes. Two scoring modes are available: one aligned with standard diabetes-management targets, and one aimed at general metabolic health. Meals are scored by the area under the glucose curve, and the history can be scrubbed through with an interactive chart. It is laid out for iPhone Duo\'s two displays.',
+    duo: 'On the unfolded display the Scores tab shows its list on the left and the selected day\'s breakdown on the right; the history scrubber is tuned so a drag across the wide inner display moves a sensible amount of time.',
     features: [
       'Pulls in glucose readings, workouts, and sleep from Apple Health automatically; meals are logged by hand and factored into the score',
       'Ignores the first 12 hours after a new sensor is applied, since readings during warm-up aren\'t reliable',
@@ -875,26 +1051,37 @@ const apps = [
       'History groups your data by sensor session, with a scrollable timeline you can scrub through to see stats for any stretch of days, including the sensor currently in use',
       'Automatically fills in any gaps in your history so long-range charts stay complete even across sensor changes',
       'Ranks how different meals affect your glucose, grouping repeat meals together, with search and suggestions as you type',
-      'PDF export, the ability to exclude specific days from scoring, and all data kept locally on the device'
+      'PDF export, the ability to exclude specific days from scoring, and all data kept locally on the device',
+      'Meals are scored by the area under the glucose curve, grouped on-device, with mealtime-aware suggestions as you type and search in the Data tab',
+      'Interactive chart scrubber in History, and a full history rebuild with gap-fill and a current-sensor timeline',
+      'Fasting glucose bands follow ADA thresholds, and a Formulas & Targets help screen shows exactly how each number is calculated',
+      'iPhone Duo: Scores becomes list and detail side by side on the inner display'
     ],
     tech: 'HealthKit · SwiftData · Swift Charts · EWMA · ScoreEngine · @Observable · Swift Testing',
-    screenshots: [
-      'screenshots/glucalyzer/glucalizer-main-tab.png',
-      'screenshots/glucalyzer/glucalizer-history-tab.png',
-      'screenshots/glucalyzer/scores.png',
-      'screenshots/glucalyzer/data-tab.png',
-      'screenshots/glucalyzer/settings.png',
-      'screenshots/glucalyzer/advanced-settings.png'
-    ]
+    screenshots: {
+      mac: [],
+      iphone: [
+        'screenshots/glucalyzer/glucalizer-main-tab.png',
+        'screenshots/glucalyzer/glucalizer-history-tab.png',
+        'screenshots/glucalyzer/scores.png',
+        'screenshots/glucalyzer/data-tab.png',
+        'screenshots/glucalyzer/settings.png',
+        'screenshots/glucalyzer/advanced-settings.png'
+      ],
+      duo: [],
+      watch: []
+    }
   },
   {
     id: 'biometric',
     category: 'health',
     name: 'BioMetric',
-    platform: 'iOS / iPad / macOS',
+    platform: 'iPhone · iPhone Duo · iPad · Mac',
+    devices: ['mac', 'iphone', 'duo'],
     icon: 'icons/biometric.png',
     tagline: 'Lab result and body-composition tracker with recommended ranges, DEXA, and InBody scans',
     summary: 'BioMetric tracks lab results, body-composition scans (DEXA and InBody), and body weight over time, organized around ranges recommended by medical practitioners focused on prevention. It plots results against both your lab\'s normal range and that recommended range side by side, so you can see at a glance not just whether a result is “normal” but whether it\'s actually where you\'d want it for long-term health. Body-composition scans combine into shared charts tracking muscle mass, fat, and weight trends over time, and everything syncs automatically across your devices.',
+    duo: 'Unfolded, the dashboard lists test categories in a sidebar and shows the selected category\'s markers beside it, with the out-of-range filter in the detail\'s toolbar. On the closed phone layout, categories stay as an accordion so several can be open at once.',
     features: [
       'Organizes results into 9 categories: cholesterol, inflammation, blood vessel health, metabolic health, thyroid, hormones, liver, kidneys, and other markers',
       'Automatically recognizes over 35 common lab markers by name — cholesterol panels, thyroid hormones, testosterone, vitamin D, kidney and liver markers, and more',
@@ -908,39 +1095,95 @@ const apps = [
       'Keeps different unit types, like percentages versus cell counts, from ever being mixed together under the same test',
       'Matches imported results to the right test even when lab names vary slightly',
       'Tools for removing duplicate results and clearing out old data',
-      'Syncs privately across your devices, with a full data export available'
+      'Syncs privately across your devices, with a full data export available',
+      'A faster launch and dashboard on iPhone, and a streamlined HealthKit lab import',
+      'iPhone Duo: categories in a sidebar with their markers beside them on the inner display'
     ],
     tech: 'SwiftData · CloudKit · HealthKit · Swift Charts · LOINC · Universal App',
-    screenshots: []
+    screenshots: {
+      mac: [],
+      iphone: [
+        'screenshots/biometric/01-dashboard-by-category.png',
+        'screenshots/biometric/02-lipids-expanded-with-range-chips.png',
+        'screenshots/biometric/03-trend-chart-with-lab-range.png',
+        'screenshots/biometric/04-recommended-range-band.png'
+      ],
+      duo: [
+        'screenshots/biometric/01-categories-sidebar-unfolded.png',
+        'screenshots/biometric/02-category-markers-beside-sidebar-unfolded.png',
+        'screenshots/biometric/03-trend-chart-in-detail-pane-unfolded.png',
+        'screenshots/biometric/04-recommended-range-band-unfolded.png',
+        'screenshots/biometric/05-dashboard-with-tab-bar-on-vertical-bar-folded-outer-display.png',
+        'screenshots/biometric/06-recommended-range-band-folded-outer-display.png'
+      ],
+      watch: []
+    }
   },
   {
     id: 'workouts',
     category: 'health',
     name: 'Workouts',
-    platform: 'iOS',
+    platform: 'iPhone · iPhone Duo · Apple Watch',
+    devices: ['iphone', 'duo', 'watch'],
     icon: 'icons/workouts.png',
-    tagline: 'Running and resistance training workout logger, with targets and mesocycle tracking',
-    summary: 'Workouts is a running and resistance training workout logger for iPhone that combines imported StrongLifts history with automatic HealthKit sync for running and strength training, no need to log workouts by hand. Its dashboard shows the most recent session for every exercise at a glance, and a detail view for each exercise charts your estimated one-rep max over time against a training target and current training block. A week-view calendar marks gym and run days so you can see your training pattern at a glance.',
+    tagline: 'Stay on track with your cardio and resistance training goals through history visibility, gym logging and suggestions grounded in published guidance.',
+    summary: 'See your last sessions, decide what comes next.</p><p>Workouts keeps your cardio and your lifting in one place, built on one idea: the best input for your next session is a clear picture of your last ones. It shows you that picture, makes suggestions grounded in published guidance for what to do next, and stays out of your way while you train. Your goals, your lifts and your schedule are yours to set.</p><p><strong>THE FOUR TABS</strong></p><p><strong>LOG</strong> &ndash; Record a session as it happens. Pick a lift and the app shows your last session, the weight to load and a suggested next step. Tap a ring segment to log each set; a rest timer follows and tells you the next load per side, so you can set up the bar during the rest. Warm-ups are a short ladder that mostly adds plates, a plate diagram shows exactly what goes on the bar, and supersets hand you over to the other lift after every set.</p><p><strong>HISTORY</strong> &ndash; Your training at a glance. A calendar marks gym days by muscle group and your runs, rides and swims. Lifts are sorted by how long since you last trained them, with the overdue ones colored, so you can see what is due. Per lift you get estimated one-rep-max charts, weekly sets against your goal, and personal-record stars.</p><p><strong>SETTINGS</strong> &ndash; Make it yours. Choose the lifts you track, set strength targets, rest times, plates and bar weight, how soon a lift or cardio type counts as overdue, which Health workouts appear, and the colors and appearance (Light, Dark or Auto).</p><p><strong>GUIDE</strong> &ndash; An evidence-based summary, with study references, of how strength and muscle growth work: progressive overload, training close to failure, weekly volume, exercise selection and recovery, and why the big compound lifts earn their place.</p><p><strong>STRENGTH TRAINING, BUILT AROUND THE BIG FIVE</strong><br>Squat, deadlift (or Romanian deadlift), bench press, overhead press and barbell row train most of your muscles in a few lifts. The app is designed around them, and every lift keeps its own working weight, rep target, rest time and strength standard. Everything is a suggestion you can change: progression, deloads and restarts are offered when they are due and only start when you say so.</p><p><strong>CARDIO FROM APPLE HEALTH</strong><br>Runs, rides, swims and other cardio come in from Apple Health automatically. Each type shows how long ago your last workout was and what it was; runs add your recent mileage against a weekly target. Rows turn orange, then red, as they slip. Choose in Settings which kinds to follow.</p><p><strong>APPLE WATCH</strong><br>Log sets from your wrist with the same ring, rest timer and plate math. The watch records heart rate and the two devices stay in step. Finished sessions are saved to Health as strength training workouts.</p><p><strong>MORE</strong><br>- Warm-up ladders and plate loading for your bar and plates - A session that ramped up repeats as the same ramp next time - Deload and restart suggestions by block, approved by you - Body weight from Health alongside weekly volume - Edit past sessions; import and export your history as CSV - Sets sync through iCloud and survive a reinstall - Designed for iPhone Duo, with the logging screen and bar diagrams side by side when unfolded - No account, no ads, no tracking</p><p>Much more is inside. Open it, log a set, and see what it shows you next time.',
+    duo: 'Unfolded, the logging pane shows both halves of a superset at once, each with its own ring and a diagram of the bar being loaded, and a LAST / NEXT badge tracks which lift you finished most recently.',
     features: [
-      'Tracks nine exercises: squat, dumbbell reverse lunge, bench press, incline bench press, barbell row, military press, Romanian deadlift, dumbbell curl, and running',
-      'Imports lifting history from a StrongLifts spreadsheet export, automatically removing any duplicate entries',
-      'Automatically pulls in runs and strength workouts from Apple Health every time the app opens',
+      'Tracks the lifts you choose, picked from a catalog of common barbell lifts or typed in by name',
+      'Imports lifting history from a spreadsheet (CSV) and exports it again as a backup, automatically removing any duplicate entries',
+      'Automatically pulls in runs, other cardio and strength workouts from Apple Health every time the app opens',
       'Set a strength target and training block, and the app charts your estimated one-rep max progress against it',
-      'A week-view calendar marks gym and run days with small icons; tap any day for details',
-      'Body weight syncs automatically from Apple Health, in either kg or lbs',
-      'The dashboard shows each exercise\'s most recent session in a compact format, with weight changes across sets shown clearly',
+      'A week-view calendar marks gym days by muscle group, and runs, rides and swims with their own symbols; tap any day for details',
+      'The History tab shows each exercise\'s most recent session in a compact format, with weight changes across sets shown clearly',
       'Estimates your one-rep max from any set of reps and weight, and rounds barbell suggestions to real, loadable plate increments',
       'A quick-reference table shows suggested weights for common rep ranges',
       'Each exercise lists the muscle groups it primarily works',
       'Single-arm/single-leg exercises are marked so they display correctly',
-      'All workout history is saved securely on the device and backed up automatically as you train'
+      'All workout history is saved securely on the device and backed up automatically as you train',
+      'Log a session as it happens on the phone or the Apple Watch, with the two kept in step: a set logged on the wrist appears on the phone and the other way round',
+      'A ring shows every set of the exercise with its reps and weight, drawn solid once logged and dim while still ahead; tap the middle to log the set or skip the rest',
+      'A plate diagram shows exactly what to put on the bar for the set you are about to lift, and warm-ups are a short ladder that mostly adds plates',
+      'A session that ramped up repeats as the same ramp the next time you lift it',
+      'A star marks a lift standing at its best estimated one-rep max, with a burst on the finish summary when you set a new record',
+      'Mesocycle pane: shows the block you are in, suggests a deload and restart weights day by day, and starts them only when you approve; graphs shade each deload',
+      'The Log tab lists your lifts longest-since-last first and colors the overdue ones, so you can see what to train next',
+      'A gentle reminder for cardio: each kind of cardio in Health (a run, a ride, a swim) has its own row showing how long ago your last one was, turning orange, then red, as it slips; runs are also measured against your weekly target',
+      'Choose in Settings which kinds of cardio you want to track; the rest stay out of your History',
+      'Weekly volume chart (sets per week against a goal, with a running average and your body weight alongside)',
+      'Finished sessions are written to Health as strength-training workouts; sets sync between devices through iCloud',
+      'Light, Dark or Auto appearance'
     ],
-    tech: 'HealthKit · SwiftUI · Canvas (custom chart) · JSON persistence · StrongLifts CSV',
-    screenshots: [
-      'screenshots/workouts/workouts-main.png',
-      'screenshots/workouts/workout-runs.png',
-      'screenshots/workouts/workouts-muscle-group-example.png'
-    ]
+    tech: 'HealthKit · WatchConnectivity · CloudKit (CKSyncEngine) · SwiftUI · watchOS · Canvas (custom charts) · Swift 6',
+    screenshots: {
+      mac: [],
+      iphone: [
+        'screenshots/workouts/01-history-calendar-runs-and-lifts.png',
+        'screenshots/workouts/02-log-tab-suggested-weights.png',
+        'screenshots/workouts/03-lift-prep-with-streak-and-suggested-weight.png',
+        'screenshots/workouts/04-logging-ring-warmup-ladder.png',
+        'screenshots/workouts/05-rest-ring-with-sets-ahead.png',
+        'screenshots/workouts/06-lift-detail-weekly-sets-and-1rm-with-pr.png'
+      ],
+      duo: [
+        'screenshots/workouts/00-history-tab-folded-outer-display.png',
+        'screenshots/workouts/03-log-tab-on-vertical-bar-folded-outer-display.png',
+        'screenshots/workouts/04-lift-prep-folded-outer-display.png',
+        'screenshots/workouts/05-warmup-ring-folded-outer-display.png',
+        'screenshots/workouts/05-rest-ring-with-logged-sets-folded-outer-display.png',
+        'screenshots/workouts/07-superset-picker-folded-outer-display.png',
+        'screenshots/workouts/08-superset-two-rings-folded-outer-display.png',
+        'screenshots/workouts/09-bar-diagrams-beside-the-rings-unfolded.png',
+        'screenshots/workouts/01-history-with-lift-detail-pane-unfolded.png'
+      ],
+      watch: [
+        'screenshots/workouts/01-start-list-longest-since-last-first.png',
+        'screenshots/workouts/02-lift-prep-last-session-and-suggested-weight.png',
+        'screenshots/workouts/03-warmup-ring.png',
+        'screenshots/workouts/04-rest-ring-sets-ahead.png',
+        'screenshots/workouts/05-plates-what-to-load-on-the-bar.png'
+      ]
+    }
   }
 ];
 
@@ -999,11 +1242,22 @@ function openModal(index) {
 
   const featuresHTML = app.features.map(f => `<li>${f}</li>`).join('');
 
-  const screenshotsHTML = (app.screenshots && app.screenshots.length)
-    ? `<div class="screenshot-strip">${app.screenshots.map(src =>
-        `<img src="${src}" alt="${app.name} screenshot" loading="lazy" class="shot-thumb">`
-      ).join('')}</div>`
-    : `<div class="no-screenshots"><p>📸 Screenshots coming soon</p></div>`;
+  const devLabel = { mac: 'Mac', iphone: 'iPhone', duo: 'iPhone Duo', watch: 'Apple Watch' };
+  const shotsOf = d => (app.screenshots && app.screenshots[d]) || [];
+  const devices = app.devices && app.devices.length ? app.devices : ['mac'];
+  const firstWithShots = devices.find(d => shotsOf(d).length) || devices[0];
+
+  const tabsHTML = `<div class="device-tabs" role="tablist" aria-label="Screenshots by device">${devices.map(d =>
+      `<button class="device-tab" role="tab" data-dev="${d}" aria-selected="${d === firstWithShots}">${devLabel[d]}<span class="count">${shotsOf(d).length || ''}</span></button>`
+    ).join('')}</div>`;
+  const screenshotsHTML = `${devices.length > 1 ? tabsHTML : ''}<div id="shotPanel"></div>`;
+
+  const duoHTML = app.duo ? `
+    <div class="modal-section">
+      <h3>iPhone Duo</h3>
+      <p class="duo-note">${app.duo}</p>
+    </div>
+    <hr class="divider">` : '';
 
   modalBody.innerHTML = `
     <div class="modal-header">
@@ -1021,7 +1275,7 @@ function openModal(index) {
     </div>
 
     <hr class="divider">
-
+    ${duoHTML}
     <div class="modal-section">
       <h3>Screenshots</h3>
       ${screenshotsHTML}
@@ -1042,9 +1296,24 @@ function openModal(index) {
     </div>
   `;
 
-  modalBody.querySelectorAll('.shot-thumb').forEach(img => {
-    img.addEventListener('click', () => openLightbox(img.getAttribute('src')));
-  });
+  function captionOf(src) {
+    return decodeURIComponent(src.split('/').pop()).replace(/\.[a-z]+$/i, '').replace(/^\d+[\s._-]+/, '').replace(/[-_]+/g, ' ');
+  }
+  function showDevice(dev) {
+    const list = shotsOf(dev);
+    const panel = document.getElementById('shotPanel');
+    modalBody.querySelectorAll('.device-tab').forEach(t => t.setAttribute('aria-selected', t.dataset.dev === dev));
+    panel.innerHTML = list.length
+      ? `<div class="screenshot-strip">${list.map(src =>
+          `<figure class="shot-fig"><img src="${src}" alt="${app.name} on ${devLabel[dev]}" loading="lazy" class="shot-thumb"><figcaption>${captionOf(src)}</figcaption></figure>`
+        ).join('')}</div>`
+      : `<div class="no-screenshots"><p>📸 ${devLabel[dev]} screenshots coming soon</p></div>`;
+    panel.querySelectorAll('.shot-thumb').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img.getAttribute('src')));
+    });
+  }
+  modalBody.querySelectorAll('.device-tab').forEach(t => t.addEventListener('click', () => showDevice(t.dataset.dev)));
+  showDevice(firstWithShots);
 
   document.getElementById('modal').scrollTop = 0;
   overlay.classList.add('open');
