@@ -1131,7 +1131,7 @@ const apps = [
     features: [
       'Tracks the lifts you choose, picked from a catalog of common barbell lifts or typed in by name',
       'Imports lifting history from a spreadsheet (CSV) and exports it again as a backup, automatically removing any duplicate entries',
-      'Automatically pulls in runs, other cardio and strength workouts from Apple Health every time the app opens',
+      'Automatically pulls in runs, other cardio and strength workouts from Apple Health, as soon as each one is saved',
       'Set a strength target and training block, and the app charts your estimated one-rep max progress against it',
       'A week-view calendar marks gym days by muscle group, and runs, rides and swims with their own symbols; tap any day for details',
       'The History tab shows each exercise\'s most recent session in a compact format, with weight changes across sets shown clearly',
@@ -1143,17 +1143,20 @@ const apps = [
       'Log a session as it happens on the phone or the Apple Watch, with the two kept in step: a set logged on the wrist appears on the phone and the other way round',
       'A ring shows every set of the exercise with its reps and weight, drawn solid once logged and dim while still ahead; tap the middle to log the set or skip the rest',
       'A plate diagram shows exactly what to put on the bar for the set you are about to lift, and warm-ups are a short ladder that mostly adds plates',
+      'Spoken cues through your AirPods say only what changes on the bar: the first warm-up, the plates to add at each step, the load for the first set and for any heavier set, and when the last set is done. Nothing is said when the next set is the same. Siri reads them while the phone is locked; otherwise the app, or the Apple Watch when your AirPods are connected to it, speaks them in the voice you choose',
       'A session that ramped up repeats as the same ramp the next time you lift it',
       'A star marks a lift standing at its best estimated one-rep max, with a burst on the finish summary when you set a new record',
       'Mesocycle pane: shows the block you are in, suggests a deload and restart weights day by day, and starts them only when you approve; graphs shade each deload',
       'The Log tab lists your lifts longest-since-last first and colors the overdue ones, so you can see what to train next',
+      'Ask Siri "What\'s next in Workouts" and it names the lift that has gone longest without training, skipping any whose muscles you worked in the last 48 hours. Siri also tells you when you last did a lift or a run, what weight to load next, and where your training block stands, each in one sentence',
+      'Your lifts, cardio and training block are searchable in Spotlight',
       'A gentle reminder for cardio: each kind of cardio in Health (a run, a ride, a swim) has its own row showing how long ago your last one was, turning orange, then red, as it slips; runs are also measured against your weekly target',
       'Choose in Settings which kinds of cardio you want to track; the rest stay out of your History',
       'Weekly volume chart (sets per week against a goal, with a running average and your body weight alongside)',
       'Finished sessions are written to Health as strength-training workouts; sets sync between devices through iCloud',
       'Light, Dark or Auto appearance'
     ],
-    tech: 'HealthKit · WatchConnectivity · CloudKit (CKSyncEngine) · SwiftUI · watchOS · Canvas (custom charts) · MarkdownUI · Swift 6',
+    tech: 'HealthKit (background delivery, mirrored workout sessions) · WatchConnectivity · CloudKit (CKSyncEngine) · App Intents · Core Spotlight · AVSpeechSynthesizer · SwiftUI · watchOS · Canvas (custom charts) · MarkdownUI · Swift 6',
     screenshots: {
       mac: [],
       iphone: [
