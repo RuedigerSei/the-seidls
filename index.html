@@ -684,7 +684,7 @@ const apps = [
     devices: ['mac', 'iphone', 'duo'],
     icon: 'icons/shelfspoken.png',
     tagline: 'Audiobook library manager with Siri, Audible metadata, CloudKit sync, and genre taxonomy',
-    summary: 'ShelfSpoken is a library manager for your audiobook collection, on both Mac and iPhone, kept in sync automatically through iCloud. It tracks title, author, narrator, series, genre, cover art, rating, and reading status for every book. A single Audible search fills in most of those details automatically, and a “Download Audible book” button double-checks everything is in place before handing the file off to WaveSmith to decrypt. Books are organized by a built-in genre system and can be filtered by genre, series, author, or tag, all at once. It also finds the accompanying PDFs (maps, figures, worksheets) that some audiobooks ship with, asking both Audible and public library catalogues. And it works with Siri and Apple Intelligence: ask Siri which books in a series you have read, say “Add to ShelfSpoken” with a book’s page on screen, or point the camera at a cover to see whether it is already on your shelf.',
+    summary: 'ShelfSpoken is a library manager for your audiobook collection, on both Mac and iPhone, kept in sync automatically through iCloud. It tracks title, author, narrator, series, genre, cover art, rating, and reading status for every book. A single Audible search fills in most of those details automatically, and a “Download Audible book” button double-checks everything is in place before handing the file off to WaveSmith to decrypt. Books are organized by a built-in genre system and can be filtered by genre, series, author, or tag, all at once. It also finds the accompanying PDFs (maps, figures, worksheets) that some audiobooks ship with, asking both Audible and public library catalogues. And it works with Siri and Apple Intelligence: ask Siri which books in a series you have read, say “Add to ShelfSpoken” with a book’s page on screen, or point the camera at a cover to see whether it is already on your shelf. On the Mac it also knows what you hold on your own drives: audio files, EPUBs, read-alongs, character lists and PDFs, each shown on the book and available as a filter, and it can tidy those documents into each book’s folder.',
     duo: 'The library grid fills the inner display with as many columns as fit, rather than two phone-width columns; the outer display shows the standard phone layout with the bars on the side. A book\'s detail screen puts a capped-size cover beside the title block, in the same proportions as the Mac, and an Edit button opens every field (subtitle, series, genre, tags, publisher, ASIN, cover, length and blurb).',
     features: [
       'Tracks title, subtitle, author, narrator, series and book number, genre, cover art, description, publisher, star rating, and reading status for every book',
@@ -696,6 +696,15 @@ const apps = [
       'Accompanying PDFs: finds the companion files Audible sells with a title and downloads them, and checks public library catalogues (OverDrive) for titles no Audible account owns; a book can also be marked by hand',
       'A filter for accompanying material by source (Audible, any library, or one named library) and by answer (has, none, title not found, not checked yet), with a breakdown of which source found each PDF',
       'Each book’s detail view shows PDF, Audible and Download status at a glance; PDF opens the matching library catalogue page',
+      'Audio files: scan your folders and drives to see which books you hold as files. Covers and series stacks show a reel badge, white for MP3 only and teal when an M4B or AAX copy exists; the book page lists every copy with Show in Finder, and a filter finds Audible books with no file yet',
+      'Read-alongs, EPUBs, character lists and PDFs are tracked wherever they sit on a scanned drive. The top of a book’s details shows a green Read-Along or Characters glyph, or EPUB, which opens the book to read; a book with an EPUB no longer shows a PDF. The details list where each file is, and the sidebar filters on each one, including whole-book PDFs still to convert to EPUB in Enki',
+      'Scan Now refreshes IDrive e2 first and waits for it, then rematches every file, so a book you just uploaded, renamed or moved is picked up by the same scan',
+      'Put Documents in Book Folders copies each PDF and EPUB into its book’s audio folders on IDrive e2, named after each folder. You confirm the list, a fresh scan checks every copy, and only then does it offer to delete the originals',
+      'Download a whole selection from Audible on the Mac, one book at a time, with a progress banner while you keep browsing and a summary at the end',
+      'Find Library Availability asks your own public libraries, nearest first, and records the first that owns each book; Book Source filters add Audible Only and Unknown Source',
+      'Audible Check finds books holding another book’s or edition’s Audible details, or filed under the wrong account, and proposes a fix for each; Replace from Audible and Clear Audible Details repair a single book while keeping your status, rating and dates',
+      'Format: say what you listened to (Audible, Library Loan, CD, MP3 / File, Cassette or Other), with a filter row for each kind of copy you own',
+      'Titles can be edited, and Search Audible results show each edition’s ASIN, language and format',
       'A batch mode searches Audible for every book still missing details in one pass',
       'Sidebar filters by genre, series, author, and tags — all combinable at once, with a genre tree showing how many books are in each category, and an Active Filters bar that names every filter narrowing the view',
       'A "Data Quality" view flags books missing cover art or genre, or with duplicate titles, so gaps in the library are easy to find and fix',
@@ -713,7 +722,7 @@ const apps = [
       'iPhone book detail matches the Mac layout, with a new Edit button for every field, including series, genre, tags and cover',
       'iPhone Duo: the library grid adapts to the inner display\'s width, and the detail screen uses the extra room'
     ],
-    tech: 'SwiftData · CloudKit · App Intents · Core Spotlight · Foundation Models · Visual Intelligence · Vision · AudibleKit · audible-cli · OverDrive catalogue API · iTunes Search API · NavigationSplitView · GenreMapResolver · BackupService',
+    tech: 'SwiftData · CloudKit · App Intents · Core Spotlight · Foundation Models · Visual Intelligence · Vision · AudibleKit · audible-cli · OverDrive catalogue API · IDrive e2 · iTunes Search API · NavigationSplitView · GenreMapResolver · BackupService',
     screenshots: {
       mac: [
         'screenshots/shelfspoken/shelfspoken-main.png',
@@ -1055,9 +1064,10 @@ const apps = [
       'Meals are scored by the area under the glucose curve, grouped on-device, with mealtime-aware suggestions as you type and search in the Data tab',
       'Interactive chart scrubber in History, and a full history rebuild with gap-fill and a current-sensor timeline',
       'Fasting glucose bands follow ADA thresholds, and a Formulas & Targets help screen shows exactly how each number is calculated',
-      'iPhone Duo: Scores becomes list and detail side by side on the inner display'
+      'iPhone Duo: Scores becomes list and detail side by side on the inner display',
+      'Log a meal by photo with Siri: say "Log meal from photo in Glucalyzer" or "Log meal from camera in Glucalyzer" — Siri asks for a photo, then asks "What meal is this?", and Apple Intelligence estimates the macronutrients for that specific dish and logs it with the current time. Works with the app fully closed.'
     ],
-    tech: 'HealthKit · SwiftData · Swift Charts · EWMA · ScoreEngine · @Observable · Swift Testing',
+    tech: 'HealthKit · SwiftData · Swift Charts · EWMA · ScoreEngine · @Observable · Swift Testing · App Intents · Foundation Models',
     screenshots: {
       mac: [],
       iphone: [
