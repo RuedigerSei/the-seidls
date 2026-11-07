@@ -546,9 +546,6 @@
 <div class="category-label">Audiobook &amp; Audio</div>
 <div class="grid" id="grid-audio"></div>
 
-<div class="category-label">AI &amp; Productivity</div>
-<div class="grid" id="grid-ai"></div>
-
 <div class="category-label">Finance &amp; Data</div>
 <div class="grid" id="grid-finance"></div>
 
@@ -693,8 +690,8 @@ const apps = [
     platform: 'iPhone · iPhone Duo',
     devices: ['iphone', 'duo'],
     icon: 'icons/bookplayer.png',
-    tagline: 'Audiobook and podcast player with chapters, bookmarks and a chapter-sized scrubber',
-    summary: 'VocalTome is a simple, focused audiobook player for iPhone with precise seeking and adjustable playback speed. It plays M4A, M4B and MP3 files organized into book folders, reads chapter markers from the file itself, and remembers exactly where you left off. A second shelf holds podcasts, the library is searchable by title or author, and the scrubber covers one chapter at a time, so even a sixteen-hour book can be positioned to the second. If a book\'s folder also holds a PDF (maps, illustrations, or the whole book), a PDF button opens a reader with a mini player attached, so you can read along while the audio keeps playing. Cover art sets the app\'s background color, and playback works properly from the lock screen, AirPods and CarPlay. It is built for iPhone Duo: on the closed outer display the player\'s controls sit on a vertical bar, and unfolded the chapter list and the PDF reader each get a column beside the player.',
+    tagline: 'Audiobook and podcast player with read-along, spoiler-free character lookups and a chapter-sized scrubber',
+    summary: 'VocalTome is a sophisticated audiobook player for iPhone, with precise seeking, adjustable playback speed, a reader that follows the narration, and character lookups that never spoil the story. It plays M4A, M4B and MP3 files organized into book folders, reads chapter markers from the file itself, and remembers exactly where you left off. A second shelf holds podcasts, the library is searchable by title or author, and the scrubber covers one chapter at a time, so even a sixteen-hour book can be positioned to the second. If a book\'s folder also holds a PDF (maps, illustrations, or the whole book), a PDF button opens a reader with a mini player attached, so you can read along while the audio keeps playing. When the folder holds the reflowed EPUB that Enki makes, the reader follows the narration by itself: the sentence being spoken is highlighted and kept in view, and tapping any sentence moves the narration there. Who is explains a character: tap a name in the reader, or ask Siri, and hear who they are, told only as far as you have got in the book, so nothing is spoiled. Cover art sets the app\'s background color, and playback works properly from the lock screen, AirPods and CarPlay. It is built for iPhone Duo: on the closed outer display the player\'s controls sit on a vertical bar, and unfolded the chapter list and the PDF reader each get a column beside the player.',
     duo: 'Outer display: the library, speed and chapter buttons are standard toolbar controls, so they move to the vertical bar alongside the screen. Inner display: a chaptered book shows its chapter list in a column beside the player, tinted from the cover art, so choosing a chapter never covers the transport controls. The PDF reader turns the player into a narrow column beside the page, so you can read along without losing the controls.',
     features: [
       { v: '', text: 'Plays M4A, M4B, and MP3 audiobook files' },
@@ -825,13 +822,13 @@ const apps = [
   },
   {
     id: 'enki',
-    category: 'ai',
+    category: 'audio',
     name: 'Enki',
     platform: 'Mac · iPhone · iPhone Duo',
     devices: ['mac', 'iphone', 'duo'],
     icon: 'icons/enki.jpg',
     tagline: 'AI book summaries, character lists, text-to-speech and transcription, plus chat with your own local AI',
-    summary: 'Enki is a suite of AI reading and audio tools, in two apps. EnkiMac, for the Mac, holds BookRole, Orvox and Chat. BookRole reads an ebook chapter by chapter, using your own local AI server to write a running summary, then sends that summary to Anthropic\'s Claude (with your own account) to build a full character list. It can also write Pop-Sci summaries or a 50% abbreviation that keeps the author\'s reasoning and examples. Orvox turns text into a chaptered, narrated audiobook and transcribes spoken audio back to text, both with a local on-device AI voice. Enki for iPhone is a chat client for the same local AI, hosted on your own network by EnkiBridge, with a Live Activity that shows generation progress on the Lock Screen and Dynamic Island. Everything stays local except the character-list step, which needs a Claude account.',
+    summary: 'Enki is a suite of AI reading and audio tools, in two apps. EnkiMac, for the Mac, holds BookRole, Orvox and Chat. BookRole reads an ebook chapter by chapter, using your own local AI server to write a running summary, then sends that summary to Anthropic\'s Claude (with your own account) to build a full character list. It can also write Pop-Sci summaries or a 50% abbreviation that keeps the author\'s reasoning and examples. Orvox turns text into a chaptered, narrated audiobook and transcribes spoken audio back to text, both with a local on-device AI voice. Every book it narrates also gets a reflowed EPUB and a read-along file timing each sentence, and Sync Audio/Text makes the same pair for an audiobook you already have by listening to it on the Mac, so VocalTome can highlight each sentence as it is spoken. Enki for iPhone is a chat client for the same local AI, hosted on your own network by EnkiBridge, with a Live Activity that shows generation progress on the Lock Screen and Dynamic Island. Everything stays local except the character-list step, which needs a Claude account.',
     duo: 'Unfolded, your saved servers become a permanent pane beside the conversation, so switching server changes the chat next to it instead of covering it with a sheet. Chat text and the compose bar keep a comfortable reading width when the sidebar is collapsed.',
     features: [
       { v: 'Mac 0.1', text: 'BookRole reads an EPUB or text file and writes a chapter-by-chapter summary of the story using your local AI server' },
@@ -852,7 +849,7 @@ const apps = [
       { v: 'iPhone 1.1.0', text: 'Live Activity on iPhone: shows a reply being generated on the Lock Screen and in the Dynamic Island' },
       { v: 'iPhone 1.1.0', text: 'iPhone Duo: the saved-server list sits beside the conversation on the unfolded display' },
       { v: 'Mac 2.0.0', text: 'Orvox reads any text PDF or EPUB itself, sorting out columns, chapters, running headers, footnotes and captions, and shows a Layout sheet with the chapters and what will be read' },
-      { v: 'Mac 2.0.0', text: 'Every narrated PDF or EPUB also gets a reflowed EPUB of its text and pictures plus a read-along file timing each sentence, which VocalTome reads along with. A Read-Along tab does the same for existing audiobooks by listening to them on the Mac' },
+      { v: 'Mac 2.0.0', text: 'Every narrated PDF or EPUB also gets a reflowed EPUB of its text and pictures plus a read-along file timing each sentence, which VocalTome reads along with. A tab now called Sync Audio/Text does the same for existing audiobooks by listening to them on the Mac' },
       { v: 'Mac 2.0.1', text: 'Library and Book Preparation: one clean EPUB per book, shared with VocalTome. BookRole reads the Library, and summaries are their own books beside the full book' },
       { v: 'Mac 2.0.1', text: 'Transcribe gives a recording a read-along, and narration speaks percentages, currency, degrees and ampersands properly' },
       { v: 'Mac 2.1.0', text: 'Extract with Claude asks you to confirm the model, from the newest Sonnets and Opuses with an estimated cost for each, and says plainly when Claude declines a book or runs out of room. Transcribe shows a true percentage and believable time estimates' },
@@ -877,7 +874,7 @@ const apps = [
   },
   {
     id: 'enkibridge',
-    category: 'ai',
+    category: 'audio',
     name: 'EnkiBridge',
     platform: 'macOS',
     devices: ['mac'],
@@ -1376,7 +1373,6 @@ function featuresByVersion(app) {
 function renderCards() {
   const categoryMap = {
     audio: 'grid-audio',
-    ai: 'grid-ai',
     finance: 'grid-finance',
     home: 'grid-home',
     networking: 'grid-networking',
