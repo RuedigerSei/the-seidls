@@ -155,6 +155,18 @@
       padding: 2px 7px;
     }
 
+    .version-tag {
+      display: inline-block;
+      margin-top: 3px;
+      font-size: 11px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--subtext);
+      background: var(--border);
+      border-radius: 4px;
+      padding: 2px 7px;
+    }
+
     .card-desc {
       font-size: 14px;
       line-height: 1.55;
@@ -296,7 +308,8 @@
       letter-spacing: -0.3px;
     }
 
-    .modal-title .platform-tag {
+    .modal-title .platform-tag,
+    .modal-title .version-tag {
       font-size: 12px;
       margin-top: 5px;
     }
@@ -349,6 +362,36 @@
       color: var(--accent);
       font-size: 11px;
       top: 3px;
+    }
+
+    .features-note {
+      font-size: 13px;
+      color: var(--subtext);
+      margin-bottom: 16px;
+    }
+
+    .version-group + .version-group {
+      margin-top: 20px;
+    }
+
+    .version-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--text);
+    }
+
+    .version-latest {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(0,113,227,0.1);
+      border-radius: 4px;
+      padding: 1px 6px;
     }
 
     .no-screenshots {
@@ -540,6 +583,27 @@
 </div>
 
 <script>
+// BEGIN GENERATED VERSIONS
+// build_site.py rewrites this block from each project's MARKETING_VERSION. Do not edit it.
+const appVersions = {
+  audiorec: [{ label: '', version: '1.2.0' }],
+  wavesmith: [{ label: '', version: '2.5.1' }],
+  bookplayer: [{ label: '', version: '3.1.1' }],
+  shelfspoken: [{ label: '', version: '5.7.0' }],
+  enki: [{ label: 'Mac', version: '2.2.1' }, { label: 'iPhone', version: '1.1.0' }],
+  enkibridge: [{ label: '', version: '1.1.0' }],
+  siftit: [{ label: '', version: '1.1.0' }],
+  vaulta: [{ label: '', version: '1.1.0' }],
+  eightsleep: [{ label: '', version: '1.1.0' }],
+  sunkeeper: [{ label: '', version: '1.12.1' }],
+  wattsup: [{ label: '', version: '1.17.0' }],
+  firewatch: [{ label: '', version: '1.1.0' }],
+  glucalyzer: [{ label: '', version: '2.0.0' }],
+  biometric: [{ label: '', version: '1.1.2' }],
+  workouts: [{ label: '', version: '2.2.0' }]
+};
+// END GENERATED VERSIONS
+
 const apps = [
   {
     id: 'audiorec',
@@ -551,23 +615,23 @@ const apps = [
     tagline: 'Audiobook stream recorder with autosplit and Audible metadata, in a dark “Tape Deck” UI',
     summary: 'Reel2Reel records audiobooks straight out of Safari as they play, automatically splitting the recording into separate chapter files during quiet pauses and keeping a log of every segment. It can run completely unattended, pausing and resuming playback on its own between chapters. Once recording finishes, it tags every file with the book\'s title, author, narrator, and cover art — pulled in from Audible with one click, or entered by hand (with its own cover-art picker) when a title can\'t be found. The interface is styled as a hardware tape deck, in a hand-tuned Dark or Light theme (or Auto, which follows the system) with level meters and a playback-source selector in the transport bar.',
     features: [
-      'Captures audio at high quality (48 kHz) from anything playing through the Mac\'s system audio, not just Safari itself',
-      'Three recording quality presets: Audiobook (smallest files, optimized for voice), Radioshow (balanced stereo), and Music (highest quality, full stereo)',
-      'Autosplit mode: splits the recording into separate files at a set length (just under an hour by default), optionally waiting for a quiet moment before cutting',
-      'Three independent silence detectors — one for autosplit, one to catch when the book ends, and one to flag if playback unexpectedly stopped',
-      'Adjustable silence sensitivity, and an optional cap on how many segments to record',
-      'Automatically pauses and resumes Safari playback in the background between segments, so a whole recording session can run unattended',
-      'Live waveform and volume meters while recording, with an adjustable gain boost',
-      'A log of every segment recorded — start time, end time, and filename — saved automatically when the session finishes',
-      'Editable metadata: album title, artist, narrator, year, cover art',
-      'One-click Audible search fills in title, author, narrator, and year automatically; manual entry with its own cover-art picker as a fallback',
-      'Built-in setup guides in Preferences for routing system audio and connecting an Audible account',
-      'Cover art and metadata are added after recording without touching or re-encoding the audio itself',
-      'Keeps the Mac awake during recording, and remembers folder permissions between launches',
-      '“Tape Deck” interface: a dark hardware-panel look with a real Light theme, chosen with a Dark / Light / Auto switch in Preferences',
-      'Playback-source selector in the transport bar, so you can see and choose what is being recorded',
-      'Autosplit now pauses Safari before it stops the recording, so no words are lost at a segment boundary; the space-bar record shortcut works again',
-      'Tap the version at the bottom of Preferences to see what changed in each release'
+      { v: '1.0', text: 'Captures audio at high quality (48 kHz) from anything playing through the Mac\'s system audio, not just Safari itself' },
+      { v: '1.0', text: 'Three recording quality presets: Audiobook (smallest files, optimized for voice), Radioshow (balanced stereo), and Music (highest quality, full stereo)' },
+      { v: '1.0', text: 'Autosplit mode: splits the recording into separate files at a set length (just under an hour by default), optionally waiting for a quiet moment before cutting' },
+      { v: '1.0', text: 'Three independent silence detectors — one for autosplit, one to catch when the book ends, and one to flag if playback unexpectedly stopped' },
+      { v: '1.0', text: 'Adjustable silence sensitivity, and an optional cap on how many segments to record' },
+      { v: '1.0', text: 'Automatically pauses and resumes Safari playback in the background between segments, so a whole recording session can run unattended' },
+      { v: '1.0', text: 'Live waveform and volume meters while recording, with an adjustable gain boost' },
+      { v: '1.0', text: 'A log of every segment recorded — start time, end time, and filename — saved automatically when the session finishes' },
+      { v: '1.1', text: 'Editable metadata: album title, artist, narrator, year, cover art' },
+      { v: '1.1', text: 'One-click Audible search fills in title, author, narrator, and year automatically; manual entry with its own cover-art picker as a fallback' },
+      { v: '1.2.0', text: 'Built-in setup guides in Preferences for routing system audio and connecting an Audible account' },
+      { v: '1.1', text: 'Cover art and metadata are added after recording without touching or re-encoding the audio itself' },
+      { v: '1.0', text: 'Keeps the Mac awake during recording, and remembers folder permissions between launches' },
+      { v: '1.2.0', text: '“Tape Deck” interface: a dark hardware-panel look with a real Light theme, chosen with a Dark / Light / Auto switch in Preferences' },
+      { v: '1.2.0', text: 'Playback-source selector in the transport bar, so you can see and choose what is being recorded' },
+      { v: '1.2.0', text: 'Autosplit now pauses Safari before it stops the recording, so no words are lost at a segment boundary; the space-bar record shortcut works again' },
+      { v: '1.2.0', text: 'Tap the version at the bottom of Preferences to see what changed in each release' }
     ],
     tech: 'AVFoundation · AVAudioEngine · ExtAudioFile · AVAssetExportSession · CGEvent · ApplicationServices · IOKit · AudibleKit',
     screenshots: {
@@ -590,25 +654,29 @@ const apps = [
     tagline: 'Transcode, tag, merge, split and decrypt audiobook files, with real chapter titles from Audible',
     summary: 'WaveSmith is a Mac toolbox for preparing audiobook files, with four tools in one app. Transcode converts audio, including copy-protected Audible files, into Audiobook, Radioshow, Music (all M4B/M4A) or MP3, with an optional volume-normalizing step. Write Tags fills in a book\'s title, author, narrator, chapter number and cover art, correctly even for a whole folder of chapter files. Merge and AutoSplit combine or split files without touching the sound quality. It can also fetch a book\'s real chapter titles from Audible, line them up with the chapters in your file by timestamp, and use them to name and tag every split segment. The whole pipeline is much faster than before: a transcode that took about 19 minutes now takes about 2.',
     features: [
-      'Reads MP3, AAC, M4A, M4B, FLAC, and copy-protected Audible AAX/AAXC files; four output presets to choose from: Audiobook, Radioshow, and Music (all produce M4B/M4A audiobook files) or Audio MP3',
-      'Each preset trades quality against file size — Audiobook is smallest and optimized for spoken word, Music is full-quality stereo',
-      'Write Tags fills in cover art, title, author, narrator, genre, year, track number, and a subtitle — and gets the track number and chapter title right for every file, even when tagging a whole folder of chapter files at once',
-      'Merge and AutoSplit never re-encode the audio, so combining or splitting files never changes the sound quality, no matter what other settings are on; a "Lossless" or "Re-encodes" label on every tool makes this clear at a glance',
-      'Decrypts Audible\'s copy-protected AAX/AAXC files automatically, using your Audible account\'s activation key',
-      'One-click Audible search fills in every tag field automatically — title, author, narrator, and more',
-      'Cover art can be dragged in or pasted from the clipboard; if a file has no tags at all, WaveSmith can guess them from the filename',
-      'A persistent color picker in Settings recolors the whole app\'s accent color: card borders, buttons, and focused fields',
-      'Shows the save-to folder the way Finder would ("iCloud Drive/…") instead of a long technical file path',
-      'Correctly detects "HE-AAC" audio — a compressed voice format used by some audiobook files — even when its stored details don\'t match its actual playback quality',
-      'Exports a CUE sheet and a chapters spreadsheet with running timestamps across a whole multi-file audiobook',
-      'Automatically finds the separate conversion tool it depends on, wherever it\'s installed on the Mac',
-      'Chapter titles from Audible: fetches the book\'s real chapter names and merges them by chapter number, with an edition picker so titles never come from the wrong recording',
-      'Titles line up by timestamp, so extra Audible entries (credits, epigraph, introduction) are skipped instead of shifting every title after them; Line Up Titles lets you pair one title with its chapter by hand and preview the result',
-      'Split segments are named and tagged from their chapters (filename, track title and in-file chapter title) rather than “Part 01 of 16”',
-      'Split / Chapters → At Chapters lists every chapter with its title, start and duration, and exports the table as an RTF file or an editable text list',
-      'A much faster pipeline: peak and loudness measurement run in parallel, quality checks overlap instead of following, and progress no longer redraws the window on every chunk',
-      'Optional “Verify output waveform” switch for quicker transcodes; peak, loudness and clipping are still checked',
-      'Adaptive Dark / Light / Auto theme, shared with Reel2Reel'
+      { v: '1.2.0', text: 'Reads MP3, AAC, M4A, M4B, FLAC, and copy-protected Audible AAX/AAXC files; four output presets to choose from: Audiobook, Radioshow, and Music (all produce M4B/M4A audiobook files) or Audio MP3' },
+      { v: '', text: 'Each preset trades quality against file size — Audiobook is smallest and optimized for spoken word, Music is full-quality stereo' },
+      { v: '1.1', text: 'Write Tags fills in cover art, title, author, narrator, genre, year, track number, and a subtitle — and gets the track number and chapter title right for every file, even when tagging a whole folder of chapter files at once' },
+      { v: '1.2.0', text: 'Merge and AutoSplit never re-encode the audio, so combining or splitting files never changes the sound quality, no matter what other settings are on; a "Lossless" or "Re-encodes" label on every tool makes this clear at a glance' },
+      { v: '1.2.0', text: 'Decrypts Audible\'s copy-protected AAX/AAXC files automatically, using your Audible account\'s activation key' },
+      { v: '1.1', text: 'One-click Audible search fills in every tag field automatically — title, author, narrator, and more' },
+      { v: '', text: 'Cover art can be dragged in or pasted from the clipboard; if a file has no tags at all, WaveSmith can guess them from the filename' },
+      { v: '', text: 'A persistent color picker in Settings recolors the whole app\'s accent color: card borders, buttons, and focused fields' },
+      { v: '', text: 'Shows the save-to folder the way Finder would ("iCloud Drive/…") instead of a long technical file path' },
+      { v: '1.1', text: 'Correctly detects "HE-AAC" audio — a compressed voice format used by some audiobook files — even when its stored details don\'t match its actual playback quality' },
+      { v: '1.2.0', text: 'Exports a CUE sheet and a chapters spreadsheet with running timestamps across a whole multi-file audiobook' },
+      { v: '', text: 'Automatically finds the separate conversion tool it depends on, wherever it\'s installed on the Mac' },
+      { v: '2.4.0', text: 'Chapter titles from Audible: fetches the book\'s real chapter names and merges them by chapter number, with an edition picker so titles never come from the wrong recording' },
+      { v: '2.4.1', text: 'Titles line up by timestamp, so extra Audible entries (credits, epigraph, introduction) are skipped instead of shifting every title after them; Line Up Titles lets you pair one title with its chapter by hand and preview the result' },
+      { v: '2.4.0', text: 'Split segments are named and tagged from their chapters (filename, track title and in-file chapter title) rather than “Part 01 of 16”' },
+      { v: '2.4.1', text: 'Split / Chapters → At Chapters lists every chapter with its title, start and duration, and exports the table as an RTF file or an editable text list' },
+      { v: '2.3.0', text: 'A much faster pipeline: peak and loudness measurement run in parallel, quality checks overlap instead of following, and progress no longer redraws the window on every chunk' },
+      { v: '2.4.1', text: 'Optional “Verify output waveform” switch for quicker transcodes; peak, loudness and clipping are still checked' },
+      { v: '1.2.0', text: 'Adaptive Dark / Light / Auto theme, shared with Reel2Reel' },
+      { v: '1.2.0', text: 'Normalize targets RMS with per-file overrides and true-clip detection, plus waveform zoom and batch concurrency' },
+      { v: '2.4.0', text: 'Split segments carry proper chapters and are tagged as audiobooks, and MP3 and HE-AAC share one transcode path' },
+      { v: '2.5.0', text: 'From IDrive e2: pick audio, including AAX and AAXC, from buckets mounted by E2Drive, or drag files in from the mount. Each is copied to a local folder first, an unchanged file is not fetched twice, and an AAXC brings its voucher' },
+      { v: '2.5.1', text: 'The Transcode card and Help explain how the limiter removes true clips and how MP3 Gain differs from Normalize, and the output folder\'s tooltip says where decrypted IDrive e2 files go' }
     ],
     tech: 'AVFoundation · AVAssetReader/Writer · AVAssetExportSession · ffmpeg · audible-cli · AudibleKit',
     screenshots: {
@@ -629,27 +697,33 @@ const apps = [
     summary: 'VocalTome is a simple, focused audiobook player for iPhone with precise seeking and adjustable playback speed. It plays M4A, M4B and MP3 files organized into book folders, reads chapter markers from the file itself, and remembers exactly where you left off. A second shelf holds podcasts, the library is searchable by title or author, and the scrubber covers one chapter at a time, so even a sixteen-hour book can be positioned to the second. If a book\'s folder also holds a PDF (maps, illustrations, or the whole book), a PDF button opens a reader with a mini player attached, so you can read along while the audio keeps playing. Cover art sets the app\'s background color, and playback works properly from the lock screen, AirPods and CarPlay. It is built for iPhone Duo: on the closed outer display the player\'s controls sit on a vertical bar, and unfolded the chapter list and the PDF reader each get a column beside the player.',
     duo: 'Outer display: the library, speed and chapter buttons are standard toolbar controls, so they move to the vertical bar alongside the screen. Inner display: a chaptered book shows its chapter list in a column beside the player, tinted from the cover art, so choosing a chapter never covers the transport controls. The PDF reader turns the player into a narrow column beside the page, so you can read along without losing the controls.',
     features: [
-      'Plays M4A, M4B, and MP3 audiobook files',
-      'Understands books organized as a folder of tracks, an author/book folder structure, or a single audiobook file; a picker lets you choose which folder is "the book" when it\'s not obvious',
-      'Orders chapters by their embedded track number first, falling back to filename order when there isn\'t one',
-      'Reads chapter markers from both major audiobook chapter formats, including some non-standard variants other players miss',
-      'A custom playback engine, rather than the standard system player, allows frame-accurate seeking to an exact moment',
-      'Adjustable playback speed from 0.4× to 3.0×',
-      'Play/pause, skip ±10 seconds, and jump between files or chapters',
-      'Remembers your place constantly — saved every few seconds, on pause, on a phone call interruption, and when you leave the app',
-      'Bookmarks store both a chapter-relative and whole-book timestamp, plus an optional note, and can be exported as text',
-      'Uses the book\'s cover art to set an adaptive background color',
-      'Shows title, artist, artwork and chapter progress on the lock screen and Control Center',
-      'Full remote control from the lock screen, AirPods, and CarPlay — play/pause, skip, and chapter navigation all stay correctly in sync with what\'s on screen',
-      'Accompanying PDFs: when a book\'s folder holds a PDF (maps, figures, or the book itself), a PDF button opens a reader with a mini player beneath it, remembers your page, and keeps the audio playing; on a PDF still in iCloud it starts the download for you',
-      'Chapter-sized scrubber: the bar spans the current chapter rather than the whole book, about nine times finer in a long book, with a small handle that never hides the spot you are aiming at',
-      'A thin strip above the scrubber maps the whole book by chapter; tap it to open the chapter list, and tap the time left to switch between time and percentage',
-      'A podcasts shelf with its own folder, switched from two icons at the top of the library; a podcast series is named after its folder and episodes keep a stable order',
-      'Search the library by title or author',
-      'Books added on another device appear straight away with their real title and cover; the library fills in as it reads, with a refresh button',
-      'Opening a book shows progress instead of freezing, including while an iCloud file downloads, and the next part of a multi-file book downloads while the current one plays',
-      'Book names come from the album tag, falling back to the “Author - Title” folder or file name for untagged books',
-      'iPhone Duo: the toolbar controls move to the vertical side bar on the outer display, and the unfolded display adds a chapter column beside the player and puts the PDF reader next to a narrow player column'
+      { v: '', text: 'Plays M4A, M4B, and MP3 audiobook files' },
+      { v: '2', text: 'Understands books organized as a folder of tracks, an author/book folder structure, or a single audiobook file; a picker lets you choose which folder is "the book" when it\'s not obvious' },
+      { v: '', text: 'Orders chapters by their embedded track number first, falling back to filename order when there isn\'t one' },
+      { v: '2.1.0', text: 'Reads chapter markers from both major audiobook chapter formats, including some non-standard variants other players miss' },
+      { v: '', text: 'A custom playback engine, rather than the standard system player, allows frame-accurate seeking to an exact moment' },
+      { v: '2', text: 'Adjustable playback speed from 0.4× to 3.0×' },
+      { v: '', text: 'Play/pause, skip ±10 seconds, and jump between files or chapters' },
+      { v: '2', text: 'Remembers your place constantly — saved every few seconds, on pause, on a phone call interruption, and when you leave the app' },
+      { v: '', text: 'Bookmarks store both a chapter-relative and whole-book timestamp, plus an optional note, and can be exported as text' },
+      { v: '', text: 'Uses the book\'s cover art to set an adaptive background color' },
+      { v: '2', text: 'Shows title, artist, artwork and chapter progress on the lock screen and Control Center' },
+      { v: '2.1.0', text: 'Full remote control from the lock screen, AirPods, and CarPlay — play/pause, skip, and chapter navigation all stay correctly in sync with what\'s on screen' },
+      { v: '2.4.0', text: 'Accompanying PDFs: when a book\'s folder holds a PDF (maps, figures, or the book itself), a PDF button opens a reader with a mini player beneath it, remembers your page, and keeps the audio playing; on a PDF still in iCloud it starts the download for you' },
+      { v: '2.4.0', text: 'Chapter-sized scrubber: the bar spans the current chapter rather than the whole book, about nine times finer in a long book, with a small handle that never hides the spot you are aiming at' },
+      { v: '2.4.0', text: 'A thin strip above the scrubber maps the whole book by chapter; tap it to open the chapter list, and tap the time left to switch between time and percentage' },
+      { v: '2.3.0', text: 'A podcasts shelf with its own folder, switched from two icons at the top of the library; a podcast series is named after its folder and episodes keep a stable order' },
+      { v: '2.3.0', text: 'Search the library by title or author' },
+      { v: '2.2.0', text: 'Books added on another device appear straight away with their real title and cover; the library fills in as it reads, with a refresh button' },
+      { v: '2.2.0', text: 'Opening a book shows progress instead of freezing, including while an iCloud file downloads, and the next part of a multi-file book downloads while the current one plays' },
+      { v: '2.2.0', text: 'Book names come from the album tag, falling back to the “Author - Title” folder or file name for untagged books' },
+      { v: '2.2.1', text: 'iPhone Duo: the toolbar controls move to the vertical side bar on the outer display, and the unfolded display adds a chapter column beside the player and puts the PDF reader next to a narrow player column' },
+      { v: '3.0.0', text: 'Read along: when a book\'s folder holds the reflowed EPUB Enki makes, the reader opens it as one continuous page, in six typefaces and any size' },
+      { v: '3.0.0', text: 'The sentence being spoken is highlighted and kept in view; tap any sentence to move the narration there, and a Follow narration button brings you back after scrolling away' },
+      { v: '3.0.0', text: 'A contents list jumps between chapters, a button switches to the original PDF pages and back, and both have dark pages, with pictures keeping their real colours' },
+      { v: '3.1.0', text: 'Who is: tap a name in the reader, or ask Siri, to hear who a character is, told only as far as you have got in the book' },
+      { v: '3.1.0', text: 'Books that are only an EPUB open and show their cover. Search the book from the reader, play from any paragraph, copy a paragraph, and tap footnotes and sidebars to read them' },
+      { v: '3.1.1', text: 'Reads the character lists Enki 2.2.1 writes, as well as older ones' }
     ],
     tech: 'AVFoundation · AVAudioEngine · AVAudioUnitTimePitch · SwiftData · MediaPlayer · CoreImage',
     screenshots: {
@@ -687,40 +761,47 @@ const apps = [
     summary: 'ShelfSpoken is a library manager for your audiobook collection, on both Mac and iPhone, kept in sync automatically through iCloud. It tracks title, author, narrator, series, genre, cover art, rating, and reading status for every book. A single Audible search fills in most of those details automatically, and a “Download Audible book” button double-checks everything is in place before handing the file off to WaveSmith to decrypt. Books are organized by a built-in genre system and can be filtered by genre, series, author, or tag, all at once. It also finds the accompanying PDFs (maps, figures, worksheets) that some audiobooks ship with, asking both Audible and public library catalogues. And it works with Siri and Apple Intelligence: ask Siri which books in a series you have read, say “Add to ShelfSpoken” with a book’s page on screen, or point the camera at a cover to see whether it is already on your shelf. On the Mac it also knows what you hold on your own drives: audio files, EPUBs, read-alongs, character lists and PDFs, each shown on the book and available as a filter, and it can tidy those documents into each book’s folder.',
     duo: 'The library grid fills the inner display with as many columns as fit, rather than two phone-width columns; the outer display shows the standard phone layout with the bars on the side. A book\'s detail screen puts a capped-size cover beside the title block, in the same proportions as the Mac, and an Edit button opens every field (subtitle, series, genre, tags, publisher, ASIN, cover, length and blurb).',
     features: [
-      'Tracks title, subtitle, author, narrator, series and book number, genre, cover art, description, publisher, star rating, and reading status for every book',
-      'Reading-status tabs: All, Finished, Reading, Want to Read, Did Not Finish, and Hidden',
-      'Syncs automatically and privately between Mac and iPhone via iCloud',
-      'One Audible search fills in title, author, narrator, series, genre, cover art, publisher, and runtime for a book',
-      'A "Download Audible book" action checks everything needed is in place, then hands the file to WaveSmith to decrypt',
-      'A badge marks Audible-sourced books, with a filter per Audible account; Audible usernames import from a CSV with a preview of every change, new assignment and unmatched row before anything is written, plus an annotated copy of the CSV showing which rows were found',
-      'Accompanying PDFs: finds the companion files Audible sells with a title and downloads them, and checks public library catalogues (OverDrive) for titles no Audible account owns; a book can also be marked by hand',
-      'A filter for accompanying material by source (Audible, any library, or one named library) and by answer (has, none, title not found, not checked yet), with a breakdown of which source found each PDF',
-      'Each book’s detail view shows PDF, Audible and Download status at a glance; PDF opens the matching library catalogue page',
-      'Audio files: scan your folders and drives to see which books you hold as files. Covers and series stacks show a reel badge, white for MP3 only and teal when an M4B or AAX copy exists; the book page lists every copy with Show in Finder, and a filter finds Audible books with no file yet',
-      'Read-alongs, EPUBs, character lists and PDFs are tracked wherever they sit on a scanned drive. The top of a book’s details shows a green Read-Along or Characters glyph, or EPUB, which opens the book to read; a book with an EPUB no longer shows a PDF. The details list where each file is, and the sidebar filters on each one, including whole-book PDFs still to convert to EPUB in Enki',
-      'Scan Now refreshes IDrive e2 first and waits for it, then rematches every file, so a book you just uploaded, renamed or moved is picked up by the same scan',
-      'Put Documents in Book Folders copies each PDF and EPUB into its book’s audio folders on IDrive e2, named after each folder. You confirm the list, a fresh scan checks every copy, and only then does it offer to delete the originals',
-      'Download a whole selection from Audible on the Mac, one book at a time, with a progress banner while you keep browsing and a summary at the end',
-      'Find Library Availability asks your own public libraries, nearest first, and records the first that owns each book; Book Source filters add Audible Only and Unknown Source',
-      'Audible Check finds books holding another book’s or edition’s Audible details, or filed under the wrong account, and proposes a fix for each; Replace from Audible and Clear Audible Details repair a single book while keeping your status, rating and dates',
-      'Format: say what you listened to (Audible, Library Loan, CD, MP3 / File, Cassette or Other), with a filter row for each kind of copy you own',
-      'Titles can be edited, and Search Audible results show each edition’s ASIN, language and format',
-      'A batch mode searches Audible for every book still missing details in one pass',
-      'Sidebar filters by genre, series, author, and tags — all combinable at once, with a genre tree showing how many books are in each category, and an Active Filters bar that names every filter narrowing the view',
-      'A "Data Quality" view flags books missing cover art or genre, or with duplicate titles, so gaps in the library are easy to find and fix',
-      'Books in the same series stack into a single tile that expands on tap',
-      'A built-in genre system automatically sorts books into categories by keyword matching, and can be edited by hand',
-      'Imports libraries from Audible or Libby CSV exports, or from a JSON backup with cover art included; import can update only missing fields, overwrite everything, or skip existing books',
-      'On iPhone: full library grid with search, filters, and sorting; changes made on Mac appear automatically without needing to reopen the app',
-      'Siri and Apple Intelligence can answer questions about the library, such as which books in a series you have finished, using every book’s details',
-      'Add to ShelfSpoken: ask Siri with a book’s page or a screenshot on screen, use the Shortcuts action, or on the Mac right-click any selected text → Services; the title is checked against your shelf and corrected against Apple’s Books catalogue, and you confirm before anything is added',
-      'On iPhone, Add Book… in the menu, and a search that finds nothing offers to add that book',
-      'Point the camera at a cover, or use Visual Intelligence on a screenshot, to see whether a book is already on your shelf and open it',
-      'Ask Library: type a question about your shelf and get a short answer with the matching books, using Apple’s on-device model',
-      'Search ShelfSpoken from Siri, open a book from Siri or Spotlight, and filter the library in Shortcuts with Find Audiobooks (by status, series, author, rating, finish date and more)',
-      'Update from Audible on the Mac fills in a book’s missing details, for books added on the iPhone',
-      'iPhone book detail matches the Mac layout, with a new Edit button for every field, including series, genre, tags and cover',
-      'iPhone Duo: the library grid adapts to the inner display\'s width, and the detail screen uses the extra room'
+      { v: '', text: 'Tracks title, subtitle, author, narrator, series and book number, genre, cover art, description, publisher, star rating, and reading status for every book' },
+      { v: '', text: 'Reading-status tabs: All, Finished, Reading, Want to Read, Did Not Finish, and Hidden' },
+      { v: '3.1', text: 'Syncs automatically and privately between Mac and iPhone via iCloud' },
+      { v: '', text: 'One Audible search fills in title, author, narrator, series, genre, cover art, publisher, and runtime for a book' },
+      { v: '3.2.0', text: 'A "Download Audible book" action checks everything needed is in place, then hands the file to WaveSmith to decrypt' },
+      { v: '4.1.0', text: 'A badge marks Audible-sourced books, with a filter per Audible account; Audible usernames import from a CSV with a preview of every change, new assignment and unmatched row before anything is written, plus an annotated copy of the CSV showing which rows were found' },
+      { v: '4.1.0', text: 'Accompanying PDFs: finds the companion files Audible sells with a title and downloads them, and checks public library catalogues (OverDrive) for titles no Audible account owns; a book can also be marked by hand' },
+      { v: '4.1.0', text: 'A filter for accompanying material by source (Audible, any library, or one named library) and by answer (has, none, title not found, not checked yet), with a breakdown of which source found each PDF' },
+      { v: '4.1.0', text: 'Each book’s detail view shows PDF, Audible and Download status at a glance; PDF opens the matching library catalogue page' },
+      { v: '5.3.0', text: 'Audio files: scan your folders and drives to see which books you hold as files. Covers and series stacks show a reel badge, white for MP3 only and teal when an M4B or AAX copy exists; the book page lists every copy with Show in Finder, and a filter finds Audible books with no file yet' },
+      { v: '5.6.0', text: 'Read-alongs, EPUBs, character lists and PDFs are tracked wherever they sit on a scanned drive. The top of a book’s details shows a green Read-Along or Characters glyph, or EPUB, which opens the book to read; a book with an EPUB no longer shows a PDF. The details list where each file is, and the sidebar filters on each one, including whole-book PDFs still to convert to EPUB in Enki' },
+      { v: '5.5.0', text: 'Scan Now refreshes IDrive e2 first and waits for it, then rematches every file, so a book you just uploaded, renamed or moved is picked up by the same scan' },
+      { v: '5.5.0', text: 'Put Documents in Book Folders copies each PDF and EPUB into its book’s audio folders on IDrive e2, named after each folder. You confirm the list, a fresh scan checks every copy, and only then does it offer to delete the originals' },
+      { v: '5.1.0', text: 'Download a whole selection from Audible on the Mac, one book at a time, with a progress banner while you keep browsing and a summary at the end' },
+      { v: '5.2.0', text: 'Find Library Availability asks your own public libraries, nearest first, and records the first that owns each book; Book Source filters add Audible Only and Unknown Source' },
+      { v: '5.3.0', text: 'Audible Check finds books holding another book’s or edition’s Audible details, or filed under the wrong account, and proposes a fix for each; Replace from Audible and Clear Audible Details repair a single book while keeping your status, rating and dates' },
+      { v: '5.3.0', text: 'Format: say what you listened to (Audible, Library Loan, CD, MP3 / File, Cassette or Other), with a filter row for each kind of copy you own' },
+      { v: '5.3.0', text: 'Titles can be edited, and Search Audible results show each edition’s ASIN, language and format' },
+      { v: '', text: 'A batch mode searches Audible for every book still missing details in one pass' },
+      { v: '', text: 'Sidebar filters by genre, series, author, and tags — all combinable at once, with a genre tree showing how many books are in each category, and an Active Filters bar that names every filter narrowing the view' },
+      { v: '', text: 'A "Data Quality" view flags books missing cover art or genre, or with duplicate titles, so gaps in the library are easy to find and fix' },
+      { v: '', text: 'Books in the same series stack into a single tile that expands on tap' },
+      { v: '', text: 'A built-in genre system automatically sorts books into categories by keyword matching, and can be edited by hand' },
+      { v: '', text: 'Imports libraries from Audible or Libby CSV exports, or from a JSON backup with cover art included; import can update only missing fields, overwrite everything, or skip existing books' },
+      { v: '', text: 'On iPhone: full library grid with search, filters, and sorting; changes made on Mac appear automatically without needing to reopen the app' },
+      { v: '5.0.0', text: 'Siri and Apple Intelligence can answer questions about the library, such as which books in a series you have finished, using every book’s details' },
+      { v: '5.0.0', text: 'Add to ShelfSpoken: ask Siri with a book’s page or a screenshot on screen, use the Shortcuts action, or on the Mac right-click any selected text → Services; the title is checked against your shelf and corrected against Apple’s Books catalogue, and you confirm before anything is added' },
+      { v: '5.0.0', text: 'On iPhone, Add Book… in the menu, and a search that finds nothing offers to add that book' },
+      { v: '5.0.0', text: 'Point the camera at a cover, or use Visual Intelligence on a screenshot, to see whether a book is already on your shelf and open it' },
+      { v: '5.0.0', text: 'Ask Library: type a question about your shelf and get a short answer with the matching books, using Apple’s on-device model' },
+      { v: '5.0.0', text: 'Search ShelfSpoken from Siri, open a book from Siri or Spotlight, and filter the library in Shortcuts with Find Audiobooks (by status, series, author, rating, finish date and more)' },
+      { v: '5.0.0', text: 'Update from Audible on the Mac fills in a book’s missing details, for books added on the iPhone' },
+      { v: '4.0.0', text: 'iPhone book detail matches the Mac layout, with a new Edit button for every field, including series, genre, tags and cover' },
+      { v: '4.0.0', text: 'iPhone Duo: the library grid adapts to the inner display\'s width, and the detail screen uses the extra room' },
+      { v: '3.2.0', text: 'A toolbar iCloud glyph shows whether sync is working, with the last import and export times and a plain-language reason when it is not' },
+      { v: '4.1.0', text: 'Mark a book as having a PDF by hand, and the Active Filters bar shows a chip for every filter that narrows the grid' },
+      { v: '5.3.0', text: 'Books with an audio file on IDrive e2 get an e2 tick in the detail header and their own sidebar filter' },
+      { v: '5.4.0', text: 'A filter for books on an Audible account with no audio file on any drive, and Download from Audible says when the file is already in Downloads or when Audible does not offer that title' },
+      { v: '5.7.0', text: 'A built-in reader for EPUB and Markdown on the Mac: one continuous page with clickable contents, find, typeface, text size and light or dark pages. It remembers your place in each file' },
+      { v: '5.7.0', text: 'In book details, EPUB opens in the reader, Read-Along opens the EPUB beside it there, Characters opens there when the list is Markdown, and green PDF and Book PDF open the file in your PDF reader' },
+      { v: '5.7.0', text: 'In Finder, press Space on an EPUB or Markdown file to preview it in the reader, or use Open With → ShelfSpoken. Neither needs the book on your shelf' }
     ],
     tech: 'SwiftData · CloudKit · App Intents · Core Spotlight · Foundation Models · Visual Intelligence · Vision · AudibleKit · audible-cli · OverDrive catalogue API · IDrive e2 · iTunes Search API · NavigationSplitView · GenreMapResolver · BackupService',
     screenshots: {
@@ -753,23 +834,33 @@ const apps = [
     summary: 'Enki is a suite of AI reading and audio tools, in two apps. EnkiMac, for the Mac, holds BookRole, Orvox and Chat. BookRole reads an ebook chapter by chapter, using your own local AI server to write a running summary, then sends that summary to Anthropic\'s Claude (with your own account) to build a full character list. It can also write Pop-Sci summaries or a 50% abbreviation that keeps the author\'s reasoning and examples. Orvox turns text into a chaptered, narrated audiobook and transcribes spoken audio back to text, both with a local on-device AI voice. Enki for iPhone is a chat client for the same local AI, hosted on your own network by EnkiBridge, with a Live Activity that shows generation progress on the Lock Screen and Dynamic Island. Everything stays local except the character-list step, which needs a Claude account.',
     duo: 'Unfolded, your saved servers become a permanent pane beside the conversation, so switching server changes the chat next to it instead of covering it with a sheet. Chat text and the compose bar keep a comfortable reading width when the sidebar is collapsed.',
     features: [
-      'BookRole reads an EPUB or text file and writes a chapter-by-chapter summary of the story using your local AI server',
-      'From that summary, a full character list is built using Anthropic\'s Claude — this one step needs your own Claude account and API key, unlike everything else in Enki, which stays on your local network',
-      'Spelling variants of the same character\'s name across chapters are automatically caught and merged into one entry',
-      'The character list is saved and can be exported as a spreadsheet or plain text document',
-      'Orvox turns a PDF, RTF, or text file into a chaptered M4B audiobook using a local, on-device AI voice, with five narration styles and the option to clone a voice from a short reference recording',
-      'Orvox also works in reverse: it transcribes spoken audio into text, entirely on-device, with chapter markers preserved in the transcript',
-      'A book\'s summary can be sent straight from BookRole into Orvox\'s narrator, cleaned up automatically for speech, without leaving the app',
-      'A chat window talks to your own local AI model, hosted on your network by the companion app EnkiBridge — private, and works with any compatible local AI server',
-      'Tests a new server connection before saving it, with plain-language error messages when something\'s misconfigured',
-      'A responsive chat input, live streaming responses, a model picker per server, and one-tap copy of any response',
-      'The iPhone chat app and the Mac suite share the same underlying chat code, so they behave identically wherever they overlap',
-      'Pop-Sci summaries mirror the author\'s style and cadence, with a 50% Abbreviation mode that retells each chapter while keeping the reasoning and examples',
-      'Orvox no longer drops sentences: each is spoken on its own with its original punctuation, headings are read separately, and lecture headings become chapters; progress shows hours and minutes with an ETA',
-      'A two-column PDF to linear text extractor prepares PDFs for BookRole, and BookRole can export a table of contents for WaveSmith\'s chapter-title merging',
-      'Memory used by the speech models is released when Orvox is idle; the Mac chat sends on Return and inserts a newline on Shift+Return',
-      'Live Activity on iPhone: shows a reply being generated on the Lock Screen and in the Dynamic Island',
-      'iPhone Duo: the saved-server list sits beside the conversation on the unfolded display'
+      { v: 'Mac 0.1', text: 'BookRole reads an EPUB or text file and writes a chapter-by-chapter summary of the story using your local AI server' },
+      { v: 'Mac 0.1', text: 'From that summary, a full character list is built using Anthropic\'s Claude — this one step needs your own Claude account and API key, unlike everything else in Enki, which stays on your local network' },
+      { v: 'Mac 0.1', text: 'Spelling variants of the same character\'s name across chapters are automatically caught and merged into one entry' },
+      { v: 'Mac 0.1', text: 'The character list is saved and can be exported as a spreadsheet or plain text document' },
+      { v: 'Mac 0.1', text: 'Orvox turns a PDF, RTF, or text file into a chaptered M4B audiobook using a local, on-device AI voice, with five narration styles and the option to clone a voice from a short reference recording' },
+      { v: 'Mac 0.1', text: 'Orvox also works in reverse: it transcribes spoken audio into text, entirely on-device, with chapter markers preserved in the transcript' },
+      { v: 'Mac 0.1', text: 'A book\'s summary can be sent straight from BookRole into Orvox\'s narrator, cleaned up automatically for speech, without leaving the app' },
+      { v: 'Mac 0.1', text: 'A chat window talks to your own local AI model, hosted on your network by the companion app EnkiBridge — private, and works with any compatible local AI server' },
+      { v: 'Mac 0.1', text: 'Tests a new server connection before saving it, with plain-language error messages when something\'s misconfigured' },
+      { v: 'Mac 0.1', text: 'A responsive chat input, live streaming responses, a model picker per server, and one-tap copy of any response' },
+      { v: 'iPhone 1.1.0', text: 'The iPhone chat app and the Mac suite share the same underlying chat code, so they behave identically wherever they overlap' },
+      { v: 'Mac 1.1.0', text: 'Pop-Sci summaries mirror the author\'s style and cadence, with a 50% Abbreviation mode that retells each chapter while keeping the reasoning and examples' },
+      { v: 'Mac 1.1.1', text: 'Orvox no longer drops sentences: each is spoken on its own with its original punctuation, headings are read separately, and lecture headings become chapters; progress shows hours and minutes with an ETA' },
+      { v: 'Mac 1.1.1', text: 'A two-column PDF to linear text extractor prepares PDFs for BookRole, and BookRole can export a table of contents for WaveSmith\'s chapter-title merging' },
+      { v: 'Mac 0.2.0', text: 'Memory used by the speech models is released when Orvox is idle; the Mac chat sends on Return and inserts a newline on Shift+Return' },
+      { v: 'iPhone 1.1.0', text: 'Live Activity on iPhone: shows a reply being generated on the Lock Screen and in the Dynamic Island' },
+      { v: 'iPhone 1.1.0', text: 'iPhone Duo: the saved-server list sits beside the conversation on the unfolded display' },
+      { v: 'Mac 2.0.0', text: 'Orvox reads any text PDF or EPUB itself, sorting out columns, chapters, running headers, footnotes and captions, and shows a Layout sheet with the chapters and what will be read' },
+      { v: 'Mac 2.0.0', text: 'Every narrated PDF or EPUB also gets a reflowed EPUB of its text and pictures plus a read-along file timing each sentence, which VocalTome reads along with. A Read-Along tab does the same for existing audiobooks by listening to them on the Mac' },
+      { v: 'Mac 2.0.1', text: 'Library and Book Preparation: one clean EPUB per book, shared with VocalTome. BookRole reads the Library, and summaries are their own books beside the full book' },
+      { v: 'Mac 2.0.1', text: 'Transcribe gives a recording a read-along, and narration speaks percentages, currency, degrees and ampersands properly' },
+      { v: 'Mac 2.1.0', text: 'Extract with Claude asks you to confirm the model, from the newest Sonnets and Opuses with an estimated cost for each, and says plainly when Claude declines a book or runs out of room. Transcribe shows a true percentage and believable time estimates' },
+      { v: 'Mac 2.1.1', text: 'Transcribed audiobooks get their chapter names from what the narrator says, with credits and dedication separated and off by default' },
+      { v: 'Mac 2.1.2', text: 'A book\'s files are all named Author - Title, like its folder, and follow when the book is renamed' },
+      { v: 'Mac 2.2.0', text: 'Spoiler-free character lists: each character gets an introduction as the reader first meets them, one line per chapter on what happens to them, and the place their name is first used' },
+      { v: 'Mac 2.2.0', text: 'Extraction no longer needs the whole book: closer summaries and local per-chapter notes keep minor characters and correct misheard names' },
+      { v: 'Mac 2.2.1', text: 'Character exports are named Author - Title - Characters and carry no em or en dashes' }
     ],
     tech: 'Swift 6 Actors · URLSession/SSE · MLX · Qwen3-TTS · Whisper · SwiftUI NavigationSplitView · Local SwiftPM packages · ActivityKit',
     screenshots: {
@@ -794,16 +885,16 @@ const apps = [
     tagline: 'Menu-bar host for a local OpenAI-compatible LLM server',
     summary: 'EnkiBridge is a small Mac menu-bar helper that starts and looks after the local AI server that Enki — and anything else on your network — talks to. It runs quietly in the background with no window, notices if a compatible server is already running instead of starting a duplicate, checks that the server is actually reachable from other devices before reporting it as ready, and only shuts down servers it started itself. Switch between mlx-vlm and Ollama from the menu.',
     features: [
-      'Lives entirely in the menu bar — no icon in the Dock, no window to manage',
-      'The AI server it runs is fully configurable, so switching to a different local AI engine is just a settings change',
-      'Notices if a compatible server is already running on the network and uses it, rather than starting a redundant second copy',
-      'Double-checks the server is actually reachable from other devices on the network before marking it as ready, not just reachable from the Mac itself',
-      'Supports an optional speed-up mode for compatible AI models, transparent to anything talking to the server',
-      'Only ever shuts down servers it started or knowingly took over — never one it simply noticed running',
-      'Keeps a running log file, viewable live inside the app',
-      'Can launch automatically at login, so a local AI server is always available without manual setup',
-      'Backend presets for mlx-vlm and Ollama with a menu switcher, plus a Qwen3.6-35B preset that uses its own draft model for speculative decoding',
-      'An externally started server it adopted is recovered correctly and shut down when EnkiBridge quits'
+      { v: '1.0', text: 'Lives entirely in the menu bar — no icon in the Dock, no window to manage' },
+      { v: '1.0', text: 'The AI server it runs is fully configurable, so switching to a different local AI engine is just a settings change' },
+      { v: '1.0', text: 'Notices if a compatible server is already running on the network and uses it, rather than starting a redundant second copy' },
+      { v: '1.0', text: 'Double-checks the server is actually reachable from other devices on the network before marking it as ready, not just reachable from the Mac itself' },
+      { v: '1.0', text: 'Supports an optional speed-up mode for compatible AI models, transparent to anything talking to the server' },
+      { v: '1.0', text: 'Only ever shuts down servers it started or knowingly took over — never one it simply noticed running' },
+      { v: '1.0', text: 'Keeps a running log file, viewable live inside the app' },
+      { v: '1.0', text: 'Can launch automatically at login, so a local AI server is always available without manual setup' },
+      { v: '1.1.0', text: 'Backend presets for mlx-vlm and Ollama with a menu switcher, plus a Qwen3.6-35B preset that uses its own draft model for speculative decoding' },
+      { v: '1.1.0', text: 'An externally started server it adopted is recovered correctly and shut down when EnkiBridge quits' }
     ],
     tech: 'MenuBarExtra · Process · SMAppService · mlx-vlm · OpenAI-compatible HTTP API',
     screenshots: {
@@ -824,21 +915,21 @@ const apps = [
     summary: 'SiftIt scans your bank statement exports and automatically finds your recurring subscriptions and bills, no need to enter anything by hand. It looks for charges that repeat on a regular schedule — weekly, monthly, yearly, and so on — at a consistent amount, and sorts them into subscriptions versus one-off purchases. You can add notes, links, and renewal dates to anything it finds, and track your credit cards\' expiration dates alongside them. Everything stays on your device — nothing is sent anywhere.',
     duo: 'The transaction table is eleven columns wide, wider than any iPhone, so it now scrolls sideways with every column intact instead of clipping the first and last columns off both edges of the inner display.',
     features: [
-      'Reads CSV exports from over 20 different banks and credit cards automatically, without needing a specific format',
-      'Recognizes five billing schedules: biweekly, monthly, quarterly, twice a year, and yearly',
-      'Finds the longest run of matching charges on a consistent schedule, even with some gaps or irregular dates',
-      'Tolerant of small date shifts, like a bill landing a few days early or late, or a different day count at month-end',
-      'Charges at a nearly fixed price are flagged as subscriptions; those that vary more, like utility bills, are flagged as variable recurring charges',
-      'Filters out one-off Amazon purchases while still catching Amazon Prime and other Amazon subscriptions',
-      'Six views: All, Subscriptions, Other, Ignored, Cancelled, and the raw imported transactions',
-      'A sortable table of every recurring charge — description, type, amount, yearly total, renewal date, account, and notes',
-      'Expand any row to see every individual transaction that made up the detected pattern',
-      'Add a link, a note, or mark something as ignored or cancelled for any recurring charge',
-      'Tracks your credit cards\' names, last four digits, and expiration dates, and flags any charge tied to a card that\'s about to expire',
-      'Credit-card details are shared with Vaulta through an App Group, so each card is entered once',
-      'Export your data to CSV into any folder you choose; a JSON backup can be exported and restored from Settings',
-      'Runs on iPhone as well as Mac, and the wide transaction table scrolls sideways on iPhone Duo',
-      'A built-in help guide walks through the app (Help → SiftIt Help)'
+      { v: '1.0', text: 'Reads CSV exports from over 20 different banks and credit cards automatically, without needing a specific format' },
+      { v: '1.0', text: 'Recognizes five billing schedules: biweekly, monthly, quarterly, twice a year, and yearly' },
+      { v: '1.0', text: 'Finds the longest run of matching charges on a consistent schedule, even with some gaps or irregular dates' },
+      { v: '1.0', text: 'Tolerant of small date shifts, like a bill landing a few days early or late, or a different day count at month-end' },
+      { v: '1.0', text: 'Charges at a nearly fixed price are flagged as subscriptions; those that vary more, like utility bills, are flagged as variable recurring charges' },
+      { v: '1.0', text: 'Filters out one-off Amazon purchases while still catching Amazon Prime and other Amazon subscriptions' },
+      { v: '1.0', text: 'Six views: All, Subscriptions, Other, Ignored, Cancelled, and the raw imported transactions' },
+      { v: '1.0', text: 'A sortable table of every recurring charge — description, type, amount, yearly total, renewal date, account, and notes' },
+      { v: '1.0', text: 'Expand any row to see every individual transaction that made up the detected pattern' },
+      { v: '1.0', text: 'Add a link, a note, or mark something as ignored or cancelled for any recurring charge' },
+      { v: '1.0', text: 'Tracks your credit cards\' names, last four digits, and expiration dates, and flags any charge tied to a card that\'s about to expire' },
+      { v: '1.1.0', text: 'Credit-card details are shared with Vaulta through an App Group, so each card is entered once' },
+      { v: '1.1.0', text: 'Export your data to CSV into any folder you choose; a JSON backup can be exported and restored from Settings' },
+      { v: '1.1.0', text: 'Runs on iPhone as well as Mac, and the wide transaction table scrolls sideways on iPhone Duo' },
+      { v: '1.0', text: 'A built-in help guide walks through the app (Help → SiftIt Help)' }
     ],
     tech: 'SwiftUI · Multiplatform · Dynamic Programming · JSON persistence · App Group · XcodeGen',
     screenshots: {
@@ -862,23 +953,23 @@ const apps = [
     summary: 'Vaulta keeps track of warranties and receipts for everything you own. Scan or photograph a receipt and it reads the details automatically (item, price, tax and total) using a mix of built-in text recognition and AI, checked against each other so mistakes get caught. It works out when each item\'s manufacturer and extended warranty expires, and keeps a separate inventory of belongings with their own photos and notes, synced across your devices. Siri and Shortcuts can add a purchase from a receipt, add and look up inventory items, and check or update a warranty.',
     duo: 'Inventory shows a list and its detail side by side when there is room for two columns (the unfolded inner display), and a push-style list on the closed outer display; tapping an inventory row now opens it everywhere.',
     features: [
-      'Add a receipt by scanning it with the camera, picking a photo, choosing a file, or sharing it in from another app',
-      'Reads receipt text automatically, cross-checking a fast built-in scan against an AI reading (on-device first, with a cloud AI as backup) so mistakes get caught rather than trusted blindly',
-      'When the two readings disagree, the more literal text-based reading always wins for tax and total amounts, to avoid AI guesswork on money figures',
-      'A sanity check rejects AI-guessed totals or tax amounts that look implausible for the item price, falling back to the plain text reading instead',
-      'Stores item name, merchant, date, price, card used, tax, total, notes, and the receipt itself for every purchase',
-      'Manufacturer warranty length is configurable per item, with the expiry date calculated automatically from the purchase date',
-      'Tracks four kinds of extended warranty: credit-card coverage, a store plan, a purchased plan, or a service contract — with contact details for service contracts',
-      'Shows whichever warranty, manufacturer or extended, actually covers the item longer',
-      'A separate inventory list tracks other belongings with their own photo, price, and notes, warranty or not',
-      'Syncs privately and automatically across your devices via iCloud; data can be exported without losing precision on dollar amounts',
-      'A table view with a detail panel on Mac; a standard list-based layout on iPhone',
-      'Siri and Shortcuts through App Intents: add a purchase from a receipt, add and look up inventory items, check warranty status and update warranties',
-      'Inventory has its own add and detail screens, and purchases can be edited after the fact',
-      'Reads service contracts as well as receipts, with a debug view showing exactly what was extracted',
-      'Receipt PDFs and images are compressed on import with a before-and-after preview, skipping files that would not shrink',
-      'Export and import the whole database from Settings; the warranty list has an inspector panel on Mac, and the share extension accepts plain text as well as files',
-      'iPhone Duo: inventory splits into list and detail on the unfolded display'
+      { v: '1.0', text: 'Add a receipt by scanning it with the camera, picking a photo, choosing a file, or sharing it in from another app' },
+      { v: '1.0', text: 'Reads receipt text automatically, cross-checking a fast built-in scan against an AI reading (on-device first, with a cloud AI as backup) so mistakes get caught rather than trusted blindly' },
+      { v: '1.0', text: 'When the two readings disagree, the more literal text-based reading always wins for tax and total amounts, to avoid AI guesswork on money figures' },
+      { v: '1.0', text: 'A sanity check rejects AI-guessed totals or tax amounts that look implausible for the item price, falling back to the plain text reading instead' },
+      { v: '1.0', text: 'Stores item name, merchant, date, price, card used, tax, total, notes, and the receipt itself for every purchase' },
+      { v: '1.0', text: 'Manufacturer warranty length is configurable per item, with the expiry date calculated automatically from the purchase date' },
+      { v: '1.0', text: 'Tracks four kinds of extended warranty: credit-card coverage, a store plan, a purchased plan, or a service contract — with contact details for service contracts' },
+      { v: '1.0', text: 'Shows whichever warranty, manufacturer or extended, actually covers the item longer' },
+      { v: '1.0', text: 'A separate inventory list tracks other belongings with their own photo, price, and notes, warranty or not' },
+      { v: '1.0', text: 'Syncs privately and automatically across your devices via iCloud; data can be exported without losing precision on dollar amounts' },
+      { v: '1.0', text: 'A table view with a detail panel on Mac; a standard list-based layout on iPhone' },
+      { v: '1.1.0', text: 'Siri and Shortcuts through App Intents: add a purchase from a receipt, add and look up inventory items, check warranty status and update warranties' },
+      { v: '1.1.0', text: 'Inventory has its own add and detail screens, and purchases can be edited after the fact' },
+      { v: '1.1.0', text: 'Reads service contracts as well as receipts, with a debug view showing exactly what was extracted' },
+      { v: '1.1.0', text: 'Receipt PDFs and images are compressed on import with a before-and-after preview, skipping files that would not shrink' },
+      { v: '1.1.0', text: 'Export and import the whole database from Settings; the warranty list has an inspector panel on Mac, and the share extension accepts plain text as well as files' },
+      { v: '1.1.0', text: 'iPhone Duo: inventory splits into list and detail on the unfolded display' }
     ],
     tech: 'SwiftData · CloudKit · Vision · FoundationModels · URLSession · Keychain · Mac Catalyst · Share Extension · XcodeGen',
     screenshots: {
@@ -900,18 +991,18 @@ const apps = [
     tagline: 'Eight Sleep data explorer with trend charts and a nightly recovery score',
     summary: 'SleepAlyzer imports data from an Eight Sleep smart mattress and turns it into an easy-to-read picture of sleep quality. It charts resting heart rate and heart rate variability over time, and scores each night out of 100 based on how well heart rate dipped and recovered during sleep, compared against an ideal recovery pattern. Scores and trends can be reviewed night by night or across weeks, months, and years, and everything can be exported to a spreadsheet. (SleepAlyzer was previously called JSONtoCSV, back when exporting to a spreadsheet was its only job.)',
     features: [
-      'Imports Eight Sleep\'s exported data files, handling older and newer export formats automatically',
-      'Saves every imported night locally and avoids importing the same night twice',
-      'Summarizes each night\'s minimum, average, and maximum heart rate, plus heart rate variability and total sleep time',
-      'Smoothed trend charts of heart rate over time, viewable across a single night, a week, a month, six months, a year, or your entire history',
-      'A 0–100 recovery score for each night, based on how deep your heart rate dipped during sleep, when it dipped, and how closely it followed a healthy recovery pattern',
-      'The score compares your night against an idealized recovery curve: heart rate settling to its lowest point around the middle of the night, then gradually recovering by wake time',
-      'Nights are graded Good, Fair, or Poor, shown as color-coded dots on the trend chart',
-      'A detailed view of any single night: the full heart-rate trace, a smoothed version of it, and the ideal curve for comparison, with hover details',
-      'Shows exactly how each night\'s score was calculated — where the dip happened, how deep it was, and how closely it matched the ideal pattern',
-      'Uses your Apple Health resting heart rate as the daytime baseline for scoring, when available',
-      'Exports the full dataset to a spreadsheet, with all times converted to your local time zone',
-      'Import and export both available from the File menu, plus drag-and-drop; separate windows for import, trend charts, and night-by-night detail'
+      { v: '', text: 'Imports Eight Sleep\'s exported data files, handling older and newer export formats automatically' },
+      { v: '', text: 'Saves every imported night locally and avoids importing the same night twice' },
+      { v: '', text: 'Summarizes each night\'s minimum, average, and maximum heart rate, plus heart rate variability and total sleep time' },
+      { v: '', text: 'Smoothed trend charts of heart rate over time, viewable across a single night, a week, a month, six months, a year, or your entire history' },
+      { v: '', text: 'A 0–100 recovery score for each night, based on how deep your heart rate dipped during sleep, when it dipped, and how closely it followed a healthy recovery pattern' },
+      { v: '', text: 'The score compares your night against an idealized recovery curve: heart rate settling to its lowest point around the middle of the night, then gradually recovering by wake time' },
+      { v: '', text: 'Nights are graded Good, Fair, or Poor, shown as color-coded dots on the trend chart' },
+      { v: '', text: 'A detailed view of any single night: the full heart-rate trace, a smoothed version of it, and the ideal curve for comparison, with hover details' },
+      { v: '', text: 'Shows exactly how each night\'s score was calculated — where the dip happened, how deep it was, and how closely it matched the ideal pattern' },
+      { v: '', text: 'Uses your Apple Health resting heart rate as the daytime baseline for scoring, when available' },
+      { v: '', text: 'Exports the full dataset to a spreadsheet, with all times converted to your local time zone' },
+      { v: '', text: 'Import and export both available from the File menu, plus drag-and-drop; separate windows for import, trend charts, and night-by-night detail' }
     ],
     tech: 'Swift Charts · HealthKit · EWMA · Piecewise-quadratic curve fitting · JSON · @FocusedObject · XcodeGen',
     screenshots: {
@@ -933,22 +1024,32 @@ const apps = [
     tagline: 'Tesla Powerwall monitoring daemon with HomeKit sponge load control',
     summary: 'SunKeeper is a background Mac app that keeps constant watch over a home Tesla Powerwall solar and battery system. It checks in every minute for live power, battery level, and grid status, and separately fills in each day\'s full history so nothing is missed if the Mac was ever off. It looks ahead at the next day\'s solar forecast, and if a shortfall is expected, it can automatically switch off configured smart-plug devices to save battery for essentials. All of this live data is shared with the WattsUpHome app on your phone.',
     features: [
-      'Runs quietly in the Mac menu bar, with full access to HomeKit for controlling smart-home devices',
-      'Checks in with the Powerwall every minute for live power flow, battery charge, grid status, and today\'s energy totals',
-      'Keeps a detailed local history of every reading, at both a minute-by-minute and longer-term summary level',
-      'Automatically fills in any missing days of history, resuming exactly where it left off if the Mac was ever off or asleep',
-      'Built-in tools check the saved history for gaps or errors and can automatically repair them',
-      'Writes a running energy history file that the WattsUpHome phone app reads for its charts',
-      'Fetches the next day\'s solar forecast several times a day, adjusted separately for morning and evening shading from nearby obstructions',
-      'Shares all of this live data with the WattsUpHome app in real time',
-      'When the forecast shows the battery is likely to run short, it can automatically switch off configured non-essential smart-plug devices to conserve power',
-      'Simple settings screen for account tokens, site selection, shading adjustments, and which devices to switch off automatically',
-      'Recovers gracefully from the Mac sleeping or losing network connection, without missing readings',
-      'One-click backup and restore of all settings and history — account tokens, site IDs, shading adjustments, and device choices',
-      '“Quit for Upgrade…” stops the daemon safely in one click so a new version can replace it',
-      '“Recover Missing Days” re-fetches just the days that are missing from the history',
-      'Notices when Tesla\'s access token has expired and flags it so WattsUpHome can tell you, rather than failing silently',
-      'Optional second-site solar-export tracking, off by default'
+      { v: '1.0', text: 'Runs quietly in the Mac menu bar, with full access to HomeKit for controlling smart-home devices' },
+      { v: '1.0', text: 'Checks in with the Powerwall every minute for live power flow, battery charge, grid status, and today\'s energy totals' },
+      { v: '1.0', text: 'Keeps a detailed local history of every reading, at both a minute-by-minute and longer-term summary level' },
+      { v: '1.1.0', text: 'Automatically fills in any missing days of history, resuming exactly where it left off if the Mac was ever off or asleep' },
+      { v: '1.1.0', text: 'Built-in tools check the saved history for gaps or errors and can automatically repair them' },
+      { v: '1.0', text: 'Writes a running energy history file that the WattsUpHome phone app reads for its charts' },
+      { v: '1.0', text: 'Fetches the next day\'s solar forecast several times a day, adjusted separately for morning and evening shading from nearby obstructions' },
+      { v: '1.0', text: 'Shares all of this live data with the WattsUpHome app in real time' },
+      { v: '1.11.0', text: 'Safety catch at sunset: once a day, at the start of the last solar half hour, it switches off any configured sponge-load plug that is on, and a banner says which' },
+      { v: '1.0', text: 'Simple settings screen for account tokens, site selection, shading adjustments, and which devices to switch off automatically' },
+      { v: '1.0', text: 'Recovers gracefully from the Mac sleeping or losing network connection, without missing readings' },
+      { v: '1.0', text: 'One-click backup and restore of all settings and history — account tokens, site IDs, shading adjustments, and device choices' },
+      { v: '1.1.0', text: '“Quit for Upgrade…” stops the daemon safely in one click so a new version can replace it' },
+      { v: '1.1.0', text: '“Recover Missing Days” re-fetches just the days that are missing from the history' },
+      { v: '1.1.0', text: 'Notices when Tesla\'s access token has expired and flags it so WattsUpHome can tell you, rather than failing silently' },
+      { v: '1.1.0', text: 'Optional second-site solar-export tracking, off by default' },
+      { v: '1.2.0', text: 'Powerwall settings from the ☀️ menu and from WattsUpHome: Self-Powered or Savings, Backup Reserve, Hold at current charge, Max Backup for 1 to 72 hours, and Storm Watch, each confirmed against the Powerwall or reported with Tesla\'s reason' },
+      { v: '1.3.0', text: 'Service tokens are kept in iCloud Keychain, so a new Mac picks them up, and everything the daemon prints also goes to a log file you can follow over SSH' },
+      { v: '1.3.3', text: 'A daily Backup Reserve plan with a battery target for the afternoon, and the Powerwall mode chosen automatically during the day' },
+      { v: '1.4.0', text: 'Manual pauses every automatic Powerwall command while SunKeeper keeps planning and logs what it would do. The battery aims for a sunset target, carrying over to the next evening when tomorrow\'s sun will fall short' },
+      { v: '1.6.0', text: 'A minute-by-minute Powerwall observation log, which notes when the battery and the grid are working against each other' },
+      { v: '1.6.1', text: 'Run Powerwall test steps through each mode and reserve setting and then puts the old settings back' },
+      { v: '1.8.0', text: 'The day\'s plan: a short day gets a boost, and a day with sun to spare says how many kWh would be curtailed and from when, with loads to use it' },
+      { v: '1.9.0', text: 'Data reaches the phone, iPad and Mac through CloudKit within seconds, changes come back as a push, and SunKeeper sends the battery alerts itself, so they arrive with the apps closed' },
+      { v: '1.10.0', text: 'The phone\'s Energy message says only whether you need to act, with the amount to add or take off, recalculated every minute' },
+      { v: '1.12.0', text: 'Logs both thermostats every minute, so WattsUpHome can see whether the furnace runs less on heater mornings' }
     ],
     tech: 'Mac Catalyst · AppKit · NSStatusItem · HomeKit · SwiftData · NSUbiquitousKeyValueStore · Teslemetry API · Solcast API',
     screenshots: {
@@ -969,24 +1070,39 @@ const apps = [
     summary: 'WattsUpHome is a home control app for iPhone, iPad and Mac that brings home theater control, smart-home devices, security cameras and real-time solar and battery data (fed live from SunKeeper) into one dashboard, with charts of daily, monthly and yearly production. Sunbreak is its morning briefing: it greets you by name, estimates when the marine layer will burn off, reads out today\'s and the coming days\' calendar and reminders (holidays and birthdays by name), and sets alarms for appointments that ring even on silent, with snooze choices on the Lock Screen and in the Dynamic Island. Energy accounting includes PG&E NEM 2.0 true-up tracking with a cash-versus-value break-even. On iPhone Duo every tab gets a second pane when unfolded.',
     duo: 'Unfolded, each tab gets a second pane: the theater controls fill their half beside the device tiles, and both camera feeds stay upright. The theater screen scrolls on a display too short for the whole column, so nothing is out of reach.',
     features: [
-      'iPhone: Theater, Energy, Devices, Cameras, Sunbreak and Settings',
-      'iPad and Mac: a customizable tile dashboard for scenes, devices, the camera feed, and energy stats, with layout backup and restore',
-      'Sunbreak morning brief: opens automatically the first time you check your phone each morning, greeting you by name and estimating when the morning marine layer will clear, alongside today and tomorrow\'s calendar',
-      'Sunbreak alarms ring on silent and through Focus, each with its own tone: a heads-up before appointments, a “time to leave” alert timed to live drive time for in-person events, and a 30-minute warning for video calls',
-      'Sunbreak calendar reads out holidays and birthdays by name, with a look-ahead to next week, and can optionally speak the briefing aloud',
-      'Live energy stats — solar output, battery charge, grid status, today\'s totals, and forecast — read directly from SunKeeper in real time',
-      'Energy tab charts solar and home power use over the day, with the solar forecast overlaid for comparison',
-      'Daily, monthly, and yearly energy history charts, with a built-in check for missing or duplicate data',
-      'Full HomeKit control — every room, device, and switch in the home, with live status and an event log of what triggered what',
-      'Direct control of a home theater projector and AV receiver — power, input, and status — including handling the receiver\'s slow startup automatically',
-      'A drag-to-rearrange tile dashboard whose layout is saved and synced automatically',
-      'Control lighting moods right from the iPhone lock screen',
-      'Snooze from the alarm itself: a ringing alarm offers 10 minutes, 1 hour, 1 day and Done or Stop in the Dynamic Island and on the Lock Screen; snoozing a reminder for a day moves it to the same time tomorrow',
-      'Quiet nights: no calendar or reminder alarm rings between 22:00 and 07:00 by default, and anything held back is listed on a “Quiet nights” card in the brief',
-      'Tap any brief entry to hide or show it, set its three alerts, flag a reminder as urgent, or change an event\'s date and time (on a repeating event, only that occurrence moves); an event with no alert is listed but never rings',
-      'A clearer outlook: “Later This Week” and “Next Week” are separate, and the 10-day forecast always names the temperature and groups runs of days',
-      'Energy accounting for PG&E NEM 2.0: annual true-up split into PG&E delivery and generation, current net balance with its cash value, and lifetime break-even including self-consumption and forfeited generation',
-      'iPhone Duo: every tab gets a second pane on the unfolded display, and the theater controls fill their column'
+      { v: '1.1.0', text: 'iPhone: Theater, Energy, Devices, Cameras, Sunbreak and Settings' },
+      { v: '1.0', text: 'iPad and Mac: a customizable tile dashboard for scenes, devices, the camera feed, and energy stats, with layout backup and restore' },
+      { v: '1.1.0', text: 'Sunbreak morning brief: opens automatically the first time you check your phone each morning, greeting you by name and estimating when the morning marine layer will clear, alongside today and tomorrow\'s calendar' },
+      { v: '1.2.4', text: 'Sunbreak alarms ring on silent and through Focus, each with its own tone: a heads-up before appointments, a “time to leave” alert timed to live drive time for in-person events, and a 30-minute warning for video calls' },
+      { v: '1.1.0', text: 'Sunbreak calendar reads out holidays and birthdays by name, with a look-ahead to next week, and can optionally speak the briefing aloud' },
+      { v: '1.0', text: 'Live energy stats — solar output, battery charge, grid status, today\'s totals, and forecast — read directly from SunKeeper in real time' },
+      { v: '1.0', text: 'Energy tab charts solar and home power use over the day, with the solar forecast overlaid for comparison' },
+      { v: '1.1.0', text: 'Daily, monthly, and yearly energy history charts, with a built-in check for missing or duplicate data' },
+      { v: '1.0', text: 'Full HomeKit control — every room, device, and switch in the home, with live status and an event log of what triggered what' },
+      { v: '1.0', text: 'Direct control of a home theater projector and AV receiver — power, input, and status — including handling the receiver\'s slow startup automatically' },
+      { v: '1.0', text: 'A drag-to-rearrange tile dashboard whose layout is saved and synced automatically' },
+      { v: '1.0', text: 'Control lighting moods right from the iPhone lock screen' },
+      { v: '1.2.4', text: 'Snooze from the alarm itself: a ringing alarm offers 10 minutes, 1 hour, 1 day and Done or Stop in the Dynamic Island and on the Lock Screen; snoozing a reminder for a day moves it to the same time tomorrow' },
+      { v: '1.3.0', text: 'Quiet nights: no calendar or reminder alarm rings between 22:00 and 07:00 by default, and anything held back is listed on a “Quiet nights” card in the brief' },
+      { v: '1.3.0', text: 'Tap any brief entry to hide or show it, set its three alerts, flag a reminder as urgent, or change an event\'s date and time (on a repeating event, only that occurrence moves); an event with no alert is listed but never rings' },
+      { v: '1.2.5', text: 'A clearer outlook: “Later This Week” and “Next Week” are separate, and the 10-day forecast always names the temperature and groups runs of days' },
+      { v: '1.1.0', text: 'Energy accounting for PG&E NEM 2.0: annual true-up split into PG&E delivery and generation, current net balance with its cash value, and lifetime break-even including self-consumption and forfeited generation' },
+      { v: '1.2.2', text: 'iPhone Duo: every tab gets a second pane on the unfolded display, and the theater controls fill their column' },
+      { v: '1.4.0', text: 'Energy: one table for solar, battery, home and grid, and Powerwall controls on the iPhone and Mac, with battery alerts on the iPhone and watch' },
+      { v: '1.4.2', text: 'Powerwall changes are confirmed in about 20 seconds, and a notification offers the reserve that lasts when the battery would run short before midnight' },
+      { v: '1.5.0', text: 'NEM True-Up projects the PG&E balance to the true-up date, billing period by billing period, with daily advice on how much surplus credit to use and how' },
+      { v: '1.6.0', text: 'A daily ledger shows each day\'s share of the credit budget, what the day actually drew compared with last year, and the budget left' },
+      { v: '1.7.0', text: 'SunKeeper automation switch: on, SunKeeper sets the Backup Reserve and mode itself' },
+      { v: '1.8.0', text: 'The Energy tab follows SunKeeper\'s day plan, and the iPhone opens on Energy during the day and Theater in the evening' },
+      { v: '1.9.0', text: 'SunKeeper\'s data arrives through CloudKit within seconds on iPhone, iPad and Mac, and battery alerts reach every device even with the app closed' },
+      { v: '1.10.0', text: 'The Energy tab has one message that says only whether you need to do anything, recalculated every minute' },
+      { v: '1.11.0', text: 'SunKeeper\'s banners have an Ok button that dismisses them without opening the app' },
+      { v: '1.12.0', text: 'Every timed calendar event gets Sunbreak alarms the day before and before you need to leave, using the drive time from Maps. They ring until answered, on the watch too' },
+      { v: '1.13.0', text: 'NEM True-Up projects both true-ups, with a heater plan weighed against gas: the credit and cash used, the gas saved, and the number of two-heater days that pays best' },
+      { v: '1.14.0', text: 'The heater plan counts only the hours the heaters actually heat, from last winter\'s records against the outdoor temperature' },
+      { v: '1.15.0', text: 'NEM True-Up compares this month with the same days last year, and the billing-period table has a “so far” row for the current period' },
+      { v: '1.16.0', text: 'System Power off reads the projector\'s lamp hours first, and the Theater screen shows them until the next power off' },
+      { v: '1.17.0', text: 'WattsUpHome Alarms set per calendar event: day-before, leave and appointment, each with its own lead time' }
     ],
     tech: 'HomeKit · NSUbiquitousKeyValueStore · WeatherKit · EventKit · MapKit · AVSpeechSynthesizer · Swift Charts · NWConnection · ActivityKit · Mac Catalyst',
     screenshots: {
@@ -1009,19 +1125,19 @@ const apps = [
     tagline: 'Privacy and tracker-exposure dashboard for a Firewalla network, with AI-assisted block rules',
     summary: 'Firewacha is a privacy dashboard for a home Firewalla network. It shows every device on the network and what it\'s connecting to, flags known trackers and risky destinations, and lets you review and allow, ignore, or block anything at a glance, with an auto-block option for repeat offenders. It\'s built to handle a busy home network\'s full day of traffic — tens of thousands of connections — without slowing down. An AI rule audit researches the destinations you have flagged, with grounded web search, and recommends what to block.',
     features: [
-      'Signs in securely through Firewalla\'s own login page, without the app ever seeing or storing a password',
-      'Streams live connection data directly from the Firewalla box, summarized by device rather than raw byte-by-byte',
-      'Every connection is automatically checked against tracker lists, ownership records, domain-cloaking tricks, and reputation data to flag what\'s worth attention',
-      'A simple Allow / Ignore / Rare review flow for anything flagged, plus a sample dataset so the dashboard can be explored without owning a Firewalla',
-      'Built to comfortably handle a full day of a busy home network\'s traffic, tens of thousands of connections, without slowing down',
-      'All the heavy data processing happens in the background, so the app stays responsive even while syncing a large network\'s worth of history',
-      'Can automatically block destinations that match your configured risk rules, and logs which device triggered each block',
-      'Shows which devices have been active in the last 24 hours at a glance',
-      'AI rule audit: batches destinations to Claude (with your own key) for grounded research and a structured block recommendation, reviewed in an inline sheet',
-      'Block whole tracker organizations (Meta, Google Ads, Nextdoor and others) in one step, choosing from three explained options instead of raw scope switches',
-      'A Rare pane for destinations seen only occasionally, and a Blocked pane sorted strictly across buckets',
-      'A Data Usage drill-down shows which domains each device talks to, with a per-domain Block button',
-      'Sign-in hardening: QR login keeps its own persistent session and re-login loops are fixed'
+      { v: '1.0.0', text: 'Signs in securely through Firewalla\'s own login page, without the app ever seeing or storing a password' },
+      { v: '1.0.0', text: 'Streams live connection data directly from the Firewalla box, summarized by device rather than raw byte-by-byte' },
+      { v: '1.0.0', text: 'Every connection is automatically checked against tracker lists, ownership records, domain-cloaking tricks, and reputation data to flag what\'s worth attention' },
+      { v: '1.0.0', text: 'A simple Allow / Ignore / Rare review flow for anything flagged, plus a sample dataset so the dashboard can be explored without owning a Firewalla' },
+      { v: '1.0.0', text: 'Built to comfortably handle a full day of a busy home network\'s traffic, tens of thousands of connections, without slowing down' },
+      { v: '1.0.0', text: 'All the heavy data processing happens in the background, so the app stays responsive even while syncing a large network\'s worth of history' },
+      { v: '1.0.0', text: 'Can automatically block destinations that match your configured risk rules, and logs which device triggered each block' },
+      { v: '1.0.0', text: 'Shows which devices have been active in the last 24 hours at a glance' },
+      { v: '1.1.0', text: 'AI rule audit: batches destinations to Claude (with your own key) for grounded research and a structured block recommendation, reviewed in an inline sheet' },
+      { v: '1.1.0', text: 'Block whole tracker organizations (Meta, Google Ads, Nextdoor and others) in one step, choosing from three explained options instead of raw scope switches' },
+      { v: '1.1.0', text: 'A Rare pane for destinations seen only occasionally, and a Blocked pane sorted strictly across buckets' },
+      { v: '1.1.0', text: 'A Data Usage drill-down shows which domains each device talks to, with a per-domain Block button' },
+      { v: '1.1.0', text: 'Sign-in hardening: QR login keeps its own persistent session and re-login loops are fixed' }
     ],
     tech: 'SwiftData · socket.io-client-swift · WKWebView OAuth2 · Swift 6 Actors · RDAP · Keychain',
     screenshots: {
@@ -1048,24 +1164,25 @@ const apps = [
     summary: 'Glucalyzer is a companion app for continuous glucose monitors that turns HealthKit glucose readings into a personalized daily score, once it\'s learned your baseline. It charts glucose alongside meals and workouts, tracks how each meal you log affects your glucose, and reviews history session by session as sensors come and go, so trends stay accurate even across sensor changes. Two scoring modes are available: one aligned with standard diabetes-management targets, and one aimed at general metabolic health. Meals are scored by the area under the glucose curve, and the history can be scrubbed through with an interactive chart. It is laid out for iPhone Duo\'s two displays.',
     duo: 'On the unfolded display the Scores tab shows its list on the left and the selected day\'s breakdown on the right; the history scrubber is tuned so a drag across the wide inner display moves a sensible amount of time.',
     features: [
-      'Pulls in glucose readings, workouts, and sleep from Apple Health automatically; meals are logged by hand and factored into the score',
-      'Ignores the first 12 hours after a new sensor is applied, since readings during warm-up aren\'t reliable',
-      'Learns your personal baseline first, then scores each day, with a full breakdown of exactly what went into the score',
-      'The score weighs how much time you spent in a healthy range, how stable your glucose was, and how high and how quickly it recovered after meals',
-      'Two scoring modes: standard diabetes-management targets, or a broader "longevity" target range for general metabolic health',
-      'Calculates an estimated A1C-equivalent number (GMI) from your average glucose',
-      'Detects each glucose spike and measures how high it went, how long it stayed elevated, and how long it took to come back down',
-      'Tracks how much your glucose swings between consecutive readings, as a measure of overall stability',
-      'A daily view charts glucose alongside meals and workouts, with a smoothed trend line and a daily score gauge; refreshes automatically or on pull-to-refresh',
-      'History groups your data by sensor session, with a scrollable timeline you can scrub through to see stats for any stretch of days, including the sensor currently in use',
-      'Automatically fills in any gaps in your history so long-range charts stay complete even across sensor changes',
-      'Ranks how different meals affect your glucose, grouping repeat meals together, with search and suggestions as you type',
-      'PDF export, the ability to exclude specific days from scoring, and all data kept locally on the device',
-      'Meals are scored by the area under the glucose curve, grouped on-device, with mealtime-aware suggestions as you type and search in the Data tab',
-      'Interactive chart scrubber in History, and a full history rebuild with gap-fill and a current-sensor timeline',
-      'Fasting glucose bands follow ADA thresholds, and a Formulas & Targets help screen shows exactly how each number is calculated',
-      'iPhone Duo: Scores becomes list and detail side by side on the inner display',
-      'Log a meal by photo with Siri: say "Log meal from photo in Glucalyzer" or "Log meal from camera in Glucalyzer" — Siri asks for a photo, then asks "What meal is this?", and Apple Intelligence estimates the macronutrients for that specific dish and logs it with the current time. Works with the app fully closed.'
+      { v: '1.0', text: 'Pulls in glucose readings, workouts, and sleep from Apple Health automatically; meals are logged by hand and factored into the score' },
+      { v: '1.0', text: 'Ignores the first 12 hours after a new sensor is applied, since readings during warm-up aren\'t reliable' },
+      { v: '1.0', text: 'Learns your personal baseline first, then scores each day, with a full breakdown of exactly what went into the score' },
+      { v: '1.0', text: 'The score weighs how much time you spent in a healthy range, how stable your glucose was, and how high and how quickly it recovered after meals' },
+      { v: '1.0', text: 'Two scoring modes: standard diabetes-management targets, or a broader "longevity" target range for general metabolic health' },
+      { v: '1.0', text: 'Calculates an estimated A1C-equivalent number (GMI) from your average glucose' },
+      { v: '1.0', text: 'Detects each glucose spike and measures how high it went, how long it stayed elevated, and how long it took to come back down' },
+      { v: '1.0', text: 'Tracks how much your glucose swings between consecutive readings, as a measure of overall stability' },
+      { v: '1.0', text: 'A daily view charts glucose alongside meals and workouts, with a smoothed trend line and a daily score gauge; refreshes automatically or on pull-to-refresh' },
+      { v: '1.1.0', text: 'History groups your data by sensor session, with a scrollable timeline you can scrub through to see stats for any stretch of days, including the sensor currently in use' },
+      { v: '1.1.0', text: 'Automatically fills in any gaps in your history so long-range charts stay complete even across sensor changes' },
+      { v: '1.1.0', text: 'Ranks how different meals affect your glucose, grouping repeat meals together, with search and suggestions as you type' },
+      { v: '1.0', text: 'PDF export, the ability to exclude specific days from scoring, and all data kept locally on the device' },
+      { v: '1.1.0', text: 'Meals are scored by the area under the glucose curve, grouped on-device, with mealtime-aware suggestions as you type and search in the Data tab' },
+      { v: '1.1.0', text: 'Interactive chart scrubber in History, and a full history rebuild with gap-fill and a current-sensor timeline' },
+      { v: '1.1.0', text: 'Fasting glucose bands follow ADA thresholds, and a Formulas & Targets help screen shows exactly how each number is calculated' },
+      { v: '2.0.0', text: 'iPhone Duo: Scores becomes list and detail side by side on the inner display' },
+      { v: '2.0.0', text: 'Log a meal by photo with Siri: say "Log meal from photo in Glucalyzer" or "Log meal from camera in Glucalyzer" — Siri asks for a photo, then asks "What meal is this?", and Apple Intelligence estimates the macronutrients for that specific dish and logs it with the current time. Works with the app fully closed.' },
+      { v: '2.0.0', text: 'Optional restaurant menu support for meal photos: paste or photograph the menu entry for exact ingredients, with the plate photo giving the portion size' }
     ],
     tech: 'HealthKit · SwiftData · Swift Charts · EWMA · ScoreEngine · @Observable · Swift Testing · App Intents · Foundation Models',
     screenshots: {
@@ -1093,21 +1210,24 @@ const apps = [
     summary: 'BioMetric tracks lab results, body-composition scans (DEXA and InBody), and body weight over time, organized around ranges recommended by medical practitioners focused on prevention. It plots results against both your lab\'s normal range and that recommended range side by side, so you can see at a glance not just whether a result is “normal” but whether it\'s actually where you\'d want it for long-term health. Body-composition scans combine into shared charts tracking muscle mass, fat, and weight trends over time, and everything syncs automatically across your devices.',
     duo: 'Unfolded, the dashboard lists test categories in a sidebar and shows the selected category\'s markers beside it, with the out-of-range filter in the detail\'s toolbar. On the closed phone layout, categories stay as an accordion so several can be open at once.',
     features: [
-      'Organizes results into 9 categories: cholesterol, inflammation, blood vessel health, metabolic health, thyroid, hormones, liver, kidneys, and other markers',
-      'Automatically recognizes over 35 common lab markers by name — cholesterol panels, thyroid hormones, testosterone, vitamin D, kidney and liver markers, and more',
-      'Imports lab results from a spreadsheet, matching standard medical test codes automatically',
-      'Manual entry for standard labs, DEXA body-composition scans, InBody scans, and bone density results',
-      'DEXA and InBody scans combine into one set of charts tracking muscle mass, fat, and weight over time, including a weekly change summary',
-      'Adjustable time windows for body-composition trends, with projected trajectories based on your recent trend',
-      'Body weight syncs from Apple Health, with a toggle between kg and lbs and a weekly rate-of-change chart, colored so gaining fat and gaining muscle are visually distinct',
-      'Trend charts show both your lab\'s normal range and the recommended range side by side, with automatic unit conversion so results from different labs still line up',
-      'Automatically converts free testosterone between its two common units, showing both the lab range and its converted equivalent',
-      'Keeps different unit types, like percentages versus cell counts, from ever being mixed together under the same test',
-      'Matches imported results to the right test even when lab names vary slightly',
-      'Tools for removing duplicate results and clearing out old data',
-      'Syncs privately across your devices, with a full data export available',
-      'A faster launch and dashboard on iPhone, and a streamlined HealthKit lab import',
-      'iPhone Duo: categories in a sidebar with their markers beside them on the inner display'
+      { v: '1.0', text: 'Organizes results into 9 categories: cholesterol, inflammation, blood vessel health, metabolic health, thyroid, hormones, liver, kidneys, and other markers' },
+      { v: '1.0', text: 'Automatically recognizes over 35 common lab markers by name — cholesterol panels, thyroid hormones, testosterone, vitamin D, kidney and liver markers, and more' },
+      { v: '1.0', text: 'Imports lab results from a spreadsheet, matching standard medical test codes automatically' },
+      { v: '1.1.0', text: 'Manual entry for standard labs, DEXA body-composition scans, InBody scans, and bone density results' },
+      { v: '1.1.0', text: 'DEXA and InBody scans combine into one set of charts tracking muscle mass, fat, and weight over time, including a weekly change summary' },
+      { v: '1.1.0', text: 'Adjustable time windows for body-composition trends, with projected trajectories based on your recent trend' },
+      { v: '1.1.0', text: 'Body weight syncs from Apple Health, with a toggle between kg and lbs and a weekly rate-of-change chart, colored so gaining fat and gaining muscle are visually distinct' },
+      { v: '1.0', text: 'Trend charts show both your lab\'s normal range and the recommended range side by side, with automatic unit conversion so results from different labs still line up' },
+      { v: '1.0', text: 'Automatically converts free testosterone between its two common units, showing both the lab range and its converted equivalent' },
+      { v: '1.0', text: 'Keeps different unit types, like percentages versus cell counts, from ever being mixed together under the same test' },
+      { v: '1.0', text: 'Matches imported results to the right test even when lab names vary slightly' },
+      { v: '1.0', text: 'Tools for removing duplicate results and clearing out old data' },
+      { v: '1.0', text: 'Syncs privately across your devices, with a full data export available' },
+      { v: '1.1.0', text: 'A faster launch and dashboard on iPhone, and a streamlined HealthKit lab import' },
+      { v: '1.1.1', text: 'iPhone Duo: categories in a sidebar with their markers beside them on the inner display' },
+      { v: '1.1.0', text: 'DEXA-calibrated InBody values, segmental lean mass, and EWMA trend curves on the charts' },
+      { v: '1.1.1', text: 'Settings shows iCloud sync status and any error; every body-composition chart shares one 3M, 6M or All range' },
+      { v: '1.1.2', text: 'One kg/lbs switch for every mass in DEXA and InBody, and the segmental chart adds Trunk, Total Fat Mass and Total Lean Mass' }
     ],
     tech: 'SwiftData · CloudKit · HealthKit · Swift Charts · LOINC · Universal App',
     screenshots: {
@@ -1139,32 +1259,37 @@ const apps = [
     tagline: 'Stay on track with your cardio and resistance training goals through history visibility, gym logging and suggestions grounded in published guidance.',
     summary: 'See your last sessions, decide what comes next.</p><p>Workouts keeps your cardio and your lifting in one place, built on one idea: the best input for your next session is a clear picture of your last ones. It shows you that picture, makes suggestions grounded in published guidance for what to do next, and stays out of your way while you train. Your goals, your lifts and your schedule are yours to set.</p><p style="margin-top: 1.4em"><strong>THE FOUR TABS</strong></p><p><strong>LOG</strong> &ndash; Record a session as it happens. Pick a lift and the app shows your last session, the weight to load and a suggested next step. Tap a ring segment to log each set; a rest timer follows and tells you the next load per side, so you can set up the bar during the rest. Warm-ups are a short ladder that mostly adds plates, a plate diagram shows exactly what goes on the bar, and supersets hand you over to the other lift after every set.</p><p><strong>HISTORY</strong> &ndash; Your training at a glance. A calendar marks gym days by muscle group and your runs, rides and swims. Lifts are sorted by how long since you last trained them, with the overdue ones colored, so you can see what is due. Per lift you get estimated one-rep-max charts, weekly sets against your goal, and personal-record stars.</p><p><strong>SETTINGS</strong> &ndash; Make it yours. Choose the lifts you track, set strength targets, rest times, plates and bar weight, how soon a lift or cardio type counts as overdue, which Health workouts appear, and the colors and appearance (Light, Dark or Auto).</p><p><strong>GUIDE</strong> &ndash; An evidence-based summary, with study references, of how strength and muscle growth work: progressive overload, training close to failure, weekly volume, exercise selection and recovery, and why the big compound lifts earn their place.</p><p><strong>STRENGTH TRAINING, BUILT AROUND THE BIG FIVE</strong><br>Squat, deadlift (or Romanian deadlift), bench press, overhead press and barbell row train most of your muscles in a few lifts. The app is designed around them, and every lift keeps its own working weight, rep target, rest time and strength standard. Everything is a suggestion you can change: progression, deloads and restarts are offered when they are due and only start when you say so.</p><p><strong>CARDIO FROM APPLE HEALTH</strong><br>Runs, rides, swims and other cardio come in from Apple Health automatically. Each type shows how long ago your last workout was and what it was; runs add your recent mileage against a weekly target. Rows turn orange, then red, as they slip. Choose in Settings which kinds to follow.</p><p><strong>APPLE WATCH</strong><br>Log sets from your wrist with the same ring, rest timer and plate math. The watch records heart rate and the two devices stay in step. Finished sessions are saved to Health as strength training workouts.</p><p><strong>SIRI AND SPOKEN CUES</strong><br>Ask Siri "What\'s next in Workouts" and it names the lift that has gone longest without training, skipping any whose muscles you worked in the last 48 hours. Siri can also tell you when you last lifted or ran, the weight for your next session and where your training block stands, each in a single sentence. During a session, short cues in your AirPods mention only what changes on the bar: the plates to load at each warm-up step, the weight per side for your first set and any heavier one, and when you are done. When the next set is the same, they stay quiet.</p><p><strong>MORE</strong><br>- Warm-up ladders and plate loading for your bar and plates - A session that ramped up repeats as the same ramp next time - Deload and restart suggestions by block, approved by you - Body weight from Health alongside weekly volume - Edit past sessions; import and export your history as CSV - Sets sync through iCloud and survive a reinstall - Designed for iPhone Duo, with the logging screen and bar diagrams side by side when unfolded - No account, no ads, no tracking</p><p>Much more is inside. Open it, log a set, and see what it shows you next time.',
     features: [
-      'Tracks the lifts you choose, picked from a catalog of common barbell lifts or typed in by name',
-      'Imports lifting history from a spreadsheet (CSV) and exports it again as a backup, automatically removing any duplicate entries',
-      'Automatically pulls in runs, other cardio and strength workouts from Apple Health, as soon as each one is saved',
-      'Set a strength target and training block, and the app charts your estimated one-rep max progress against it',
-      'A week-view calendar marks gym days by muscle group, and runs, rides and swims with their own symbols; tap any day for details',
-      'The History tab shows each exercise\'s most recent session in a compact format, with weight changes across sets shown clearly',
-      'Estimates your one-rep max from any set of reps and weight, and rounds barbell suggestions to real, loadable plate increments',
-      'A quick-reference table shows suggested weights for common rep ranges',
-      'Each exercise lists the muscle groups it primarily works',
-      'Single-arm/single-leg exercises are marked so they display correctly',
-      'All workout history is saved securely on the device and backed up automatically as you train',
-      'Log a session as it happens on the phone or the Apple Watch, with the two kept in step: a set logged on the wrist appears on the phone and the other way round',
-      'A ring shows every set of the exercise with its reps and weight, drawn solid once logged and dim while still ahead; tap the middle to log the set or skip the rest',
-      'A plate diagram shows exactly what to put on the bar for the set you are about to lift, and warm-ups are a short ladder that mostly adds plates',
-      'Spoken cues in your AirPods mention only what changes on the bar: the first warm-up, the plates to load at each step, the weight for the first set and any heavier one, and when the last set is done. When the next set is the same, they stay quiet. Siri reads them while the phone is locked; otherwise the app, or the Apple Watch when your AirPods are connected to it, speaks them in the voice you choose',
-      'A session that ramped up repeats as the same ramp the next time you lift it',
-      'A star marks a lift standing at its best estimated one-rep max, with a burst on the finish summary when you set a new record',
-      'Mesocycle pane: shows the block you are in, suggests a deload and restart weights day by day, and starts them only when you approve; graphs shade each deload',
-      'The Log tab lists your lifts longest-since-last first and colors the overdue ones, so you can see what to train next',
-      'Ask Siri "What\'s next in Workouts" and it names the lift that has gone longest without training, skipping any whose muscles you worked in the last 48 hours. Siri can also tell you when you last did a lift or a run, the weight for your next session and where your training block stands, each in a single sentence',
-      'Your lifts, cardio and training block are searchable in Spotlight',
-      'A gentle reminder for cardio: each kind of cardio in Health (a run, a ride, a swim) has its own row showing how long ago your last one was, turning orange, then red, as it slips; runs are also measured against your weekly target',
-      'Choose in Settings which kinds of cardio you want to track; the rest stay out of your History',
-      'Weekly volume chart (sets per week against a goal, with a running average and your body weight alongside)',
-      'Finished sessions are written to Health as strength-training workouts; sets sync between devices through iCloud',
-      'Light, Dark or Auto appearance'
+      { v: '', text: 'Tracks the lifts you choose, picked from a catalog of common barbell lifts or typed in by name' },
+      { v: '', text: 'Imports lifting history from a spreadsheet (CSV) and exports it again as a backup, automatically removing any duplicate entries' },
+      { v: '', text: 'Automatically pulls in runs, other cardio and strength workouts from Apple Health, as soon as each one is saved' },
+      { v: '', text: 'Set a strength target and training block, and the app charts your estimated one-rep max progress against it' },
+      { v: '2.1.0', text: 'A week-view calendar marks gym days by muscle group, and runs, rides and swims with their own symbols; tap any day for details' },
+      { v: '', text: 'The History tab shows each exercise\'s most recent session in a compact format, with weight changes across sets shown clearly' },
+      { v: '', text: 'Estimates your one-rep max from any set of reps and weight, and rounds barbell suggestions to real, loadable plate increments' },
+      { v: '', text: 'A quick-reference table shows suggested weights for common rep ranges' },
+      { v: '', text: 'Each exercise lists the muscle groups it primarily works' },
+      { v: '', text: 'Single-arm/single-leg exercises are marked so they display correctly' },
+      { v: '', text: 'All workout history is saved securely on the device and backed up automatically as you train' },
+      { v: '', text: 'Log a session as it happens on the phone or the Apple Watch, with the two kept in step: a set logged on the wrist appears on the phone and the other way round' },
+      { v: '1.3.4', text: 'A ring shows every set of the exercise with its reps and weight, drawn solid once logged and dim while still ahead; tap the middle to log the set or skip the rest' },
+      { v: '1.3.5', text: 'A plate diagram shows exactly what to put on the bar for the set you are about to lift, and warm-ups are a short ladder that mostly adds plates' },
+      { v: '2.1.0', text: 'Spoken cues in your AirPods mention only what changes on the bar: the first warm-up, the plates to load at each step, the weight for the first set and any heavier one, and when the last set is done. When the next set is the same, they stay quiet. Siri reads them while the phone is locked; otherwise the app, or the Apple Watch when your AirPods are connected to it, speaks them in the voice you choose' },
+      { v: '1.2.0', text: 'A session that ramped up repeats as the same ramp the next time you lift it' },
+      { v: '1.3.3', text: 'A star marks a lift standing at its best estimated one-rep max, with a burst on the finish summary when you set a new record' },
+      { v: '2.0.0', text: 'Mesocycle pane: shows the block you are in, suggests a deload and restart weights day by day, and starts them only when you approve; graphs shade each deload' },
+      { v: '', text: 'The Log tab lists your lifts longest-since-last first and colors the overdue ones, so you can see what to train next' },
+      { v: '2.1.0', text: 'Ask Siri "What\'s next in Workouts" and it names the lift that has gone longest without training, skipping any whose muscles you worked in the last 48 hours. Siri can also tell you when you last did a lift or a run, the weight for your next session and where your training block stands, each in a single sentence' },
+      { v: '2.1.0', text: 'Your lifts, cardio and training block are searchable in Spotlight' },
+      { v: '2.1.0', text: 'A gentle reminder for cardio: each kind of cardio in Health (a run, a ride, a swim) has its own row showing how long ago your last one was, turning orange, then red, as it slips; runs are also measured against your weekly target' },
+      { v: '2.1.0', text: 'Choose in Settings which kinds of cardio you want to track; the rest stay out of your History' },
+      { v: '1.3.0', text: 'Weekly volume chart (sets per week against a goal, with a running average and your body weight alongside)' },
+      { v: '', text: 'Finished sessions are written to Health as strength-training workouts; sets sync between devices through iCloud' },
+      { v: '1.2.0', text: 'Light, Dark or Auto appearance' },
+      { v: '2.1.0', text: 'A Guide tab: an evidence-based strength and muscle growth guide, read in the app' },
+      { v: '2.1.0', text: 'Muscle diagrams for the main lifts, drawing the shoulder as its three heads, with muscle lists checked against published studies' },
+      { v: '2.1.0', text: 'Pull ups are logged as body weight, with no warm-up or plates, and dumbbell lifts skip the barbell warm-up' },
+      { v: '2.1.1', text: 'A workout survives iOS closing the phone app in the background: the phone comes back with the session still running, including sets logged while it was locked' },
+      { v: '2.2.0', text: 'Picking a lift says how the proposal compares to last time, and you can keep the last session instead. Each step of a ladder can be changed before you start, and the Log tab says which week of the block you are in' }
     ],
     tech: 'HealthKit (background delivery, mirrored workout sessions) · WatchConnectivity · CloudKit (CKSyncEngine) · App Intents · Core Spotlight · AVSpeechSynthesizer · SwiftUI · watchOS · Canvas (custom charts) · MarkdownUI · Swift 6',
     screenshots: {
@@ -1199,6 +1324,54 @@ const apps = [
   }
 ];
 
+// ── Versions ──
+// A feature's `v` is the version it arrived in: '5.7.0', 'Mac 2.2.0' where an app has
+// two products, or '' when it predates that app's version history.
+function versionTags(app) {
+  const parts = appVersions[app.id] || [];
+  return parts.map(p => `<span class="version-tag">${p.label ? p.label + ' ' : 'v'}${p.version}</span>`).join(' ');
+}
+
+function splitVersion(v) {
+  const m = /^(?:(\S+) )?([\d.]+)$/.exec(v || '');
+  return m ? { track: m[1] || '', nums: m[2].split('.').map(Number) } : null;
+}
+
+function compareVersions(a, b, tracks) {
+  const pa = splitVersion(a), pb = splitVersion(b);
+  if (!pa || !pb) return pa ? -1 : pb ? 1 : 0;   // the unversioned group goes last
+  if (pa.track !== pb.track) return tracks.indexOf(pa.track) - tracks.indexOf(pb.track);
+  for (let i = 0; i < Math.max(pa.nums.length, pb.nums.length); i++) {
+    const d = (pb.nums[i] || 0) - (pa.nums[i] || 0);
+    if (d) return d;
+  }
+  return 0;
+}
+
+function featuresByVersion(app) {
+  const parts = appVersions[app.id] || [];
+  const tracks = parts.map(p => p.label);
+  const groups = new Map();
+  app.features.forEach(f => {
+    const v = typeof f === 'string' ? '' : f.v;
+    if (!groups.has(v)) groups.set(v, []);
+    groups.get(v).push(typeof f === 'string' ? f : f.text);
+  });
+  const isLatest = v => {
+    const p = splitVersion(v);
+    const cur = p && parts.find(x => x.label === p.track);
+    return !!cur && compareVersions(cur.version, p.nums.join('.'), []) === 0;
+  };
+  return [...groups.keys()].sort((a, b) => compareVersions(a, b, tracks)).map(v => {
+    const p = splitVersion(v);
+    const name = !p ? 'Before version tracking' : (p.track ? v : 'v' + v);
+    return `<div class="version-group">
+        <div class="version-head"><span>${name}</span>${isLatest(v) ? '<span class="version-latest">Latest</span>' : ''}</div>
+        <ul class="feature-list">${groups.get(v).map(t => `<li>${t}</li>`).join('')}</ul>
+      </div>`;
+  }).join('');
+}
+
 // ── Render cards ──
 function renderCards() {
   const categoryMap = {
@@ -1229,6 +1402,7 @@ function renderCards() {
         <div class="card-meta">
           <h2>${app.name}</h2>
           <span class="platform-tag">${app.platform}</span>
+          ${versionTags(app)}
         </div>
       </div>
       <p class="card-desc">${app.tagline}</p>
@@ -1252,7 +1426,7 @@ function openModal(index) {
     ? `<div class="modal-icon"><img src="${app.icon}" alt="${app.name} icon"></div>`
     : `<div class="modal-icon-placeholder" style="background:${app.iconGradient}">${app.iconEmoji}</div>`;
 
-  const featuresHTML = app.features.map(f => `<li>${f}</li>`).join('');
+  const featuresHTML = featuresByVersion(app);
 
   const devLabel = { mac: 'Mac', iphone: 'iPhone', duo: 'iPhone Duo', watch: 'Apple Watch' };
   const shotsOf = d => (app.screenshots && app.screenshots[d]) || [];
@@ -1277,6 +1451,7 @@ function openModal(index) {
       <div class="modal-title">
         <h2>${app.name}</h2>
         <span class="platform-tag">${app.platform}</span>
+        ${versionTags(app)}
       </div>
     </div>
     <p class="modal-tagline">${app.tagline}</p>
@@ -1297,7 +1472,8 @@ function openModal(index) {
 
     <div class="modal-section">
       <h3>Features</h3>
-      <ul class="feature-list">${featuresHTML}</ul>
+      <p class="features-note">Newest first, by the version each one arrived in.</p>
+      ${featuresHTML}
     </div>
 
     <hr class="divider">
