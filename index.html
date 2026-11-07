@@ -583,8 +583,8 @@
 // BEGIN GENERATED VERSIONS
 // build_site.py rewrites this block from each project's MARKETING_VERSION. Do not edit it.
 const appVersions = {
-  audiorec: [{ label: '', version: '1.2.0' }],
-  wavesmith: [{ label: '', version: '2.5.1' }],
+  audiorec: [{ label: '', version: '1.3.0' }],
+  wavesmith: [{ label: '', version: '2.6.0' }],
   bookplayer: [{ label: '', version: '3.1.1' }],
   shelfspoken: [{ label: '', version: '5.7.0' }],
   enki: [{ label: 'Mac', version: '2.2.1' }, { label: 'iPhone', version: '1.1.0' }],
@@ -628,7 +628,10 @@ const apps = [
       { v: '1.2.0', text: '“Tape Deck” interface: a dark hardware-panel look with a real Light theme, chosen with a Dark / Light / Auto switch in Preferences' },
       { v: '1.2.0', text: 'Playback-source selector in the transport bar, so you can see and choose what is being recorded' },
       { v: '1.2.0', text: 'Autosplit now pauses Safari before it stops the recording, so no words are lost at a segment boundary; the space-bar record shortcut works again' },
-      { v: '1.2.0', text: 'Tap the version at the bottom of Preferences to see what changed in each release' }
+      { v: '1.2.0', text: 'Tap the version at the bottom of Preferences to see what changed in each release' },
+      { v: '1.3.0', text: 'Named Reel2Reel throughout the Mac: Finder, the Dock, the menu bar and the setup guides' },
+      { v: '1.3.0', text: 'The About window shows the real version and follows the Dark / Light theme' },
+      { v: '1.3.0', text: 'Preferences fits inside the window, with the version and Close always in view' }
     ],
     tech: 'AVFoundation · AVAudioEngine · ExtAudioFile · AVAssetExportSession · CGEvent · ApplicationServices · IOKit · AudibleKit',
     screenshots: {
@@ -673,7 +676,10 @@ const apps = [
       { v: '1.2.0', text: 'Normalize targets RMS with per-file overrides and true-clip detection, plus waveform zoom and batch concurrency' },
       { v: '2.4.0', text: 'Split segments carry proper chapters and are tagged as audiobooks, and MP3 and HE-AAC share one transcode path' },
       { v: '2.5.0', text: 'From IDrive e2: pick audio, including AAX and AAXC, from buckets mounted by E2Drive, or drag files in from the mount. Each is copied to a local folder first, an unchanged file is not fetched twice, and an AAXC brings its voucher' },
-      { v: '2.5.1', text: 'The Transcode card and Help explain how the limiter removes true clips and how MP3 Gain differs from Normalize, and the output folder\'s tooltip says where decrypted IDrive e2 files go' }
+      { v: '2.5.1', text: 'The Transcode card and Help explain how the limiter removes true clips and how MP3 Gain differs from Normalize, and the output folder\'s tooltip says where decrypted IDrive e2 files go' },
+      { v: '2.6.0', text: 'Decrypting an AAX or AAXC file fills in the title, author, narrator, release date and cover for review and keeps them in the M4B, which is named Author - Title and never overwrites an existing file' },
+      { v: '2.6.0', text: 'Editing the title or applying an Audible result updates the file\'s title tag as well as its album tag, and with several files selected each keeps its own title and track number' },
+      { v: '2.6.0', text: 'Track numbers reach the standard tag players read, for MP3s transcoded with the Music preset and for part-numbered M4Bs' }
     ],
     tech: 'AVFoundation · AVAssetReader/Writer · AVAssetExportSession · ffmpeg · audible-cli · AudibleKit',
     screenshots: {
@@ -1046,7 +1052,8 @@ const apps = [
       { v: '1.8.0', text: 'The day\'s plan: a short day gets a boost, and a day with sun to spare says how many kWh would be curtailed and from when, with loads to use it' },
       { v: '1.9.0', text: 'Data reaches the phone, iPad and Mac through CloudKit within seconds, changes come back as a push, and SunKeeper sends the battery alerts itself, so they arrive with the apps closed' },
       { v: '1.10.0', text: 'The phone\'s Energy message says only whether you need to act, with the amount to add or take off, recalculated every minute' },
-      { v: '1.12.0', text: 'Logs both thermostats every minute, so WattsUpHome can see whether the furnace runs less on heater mornings' }
+      { v: '1.12.0', text: 'Logs both thermostats every minute, so WattsUpHome can see whether the furnace runs less on heater mornings' },
+      { v: '1.12.1', text: 'A failed Powerwall change no longer lingers: once the Powerwall reports the setting that was asked for, every device shows it as confirmed' }
     ],
     tech: 'Mac Catalyst · AppKit · NSStatusItem · HomeKit · SwiftData · NSUbiquitousKeyValueStore · Teslemetry API · Solcast API',
     screenshots: {
