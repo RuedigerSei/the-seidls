@@ -584,7 +584,7 @@
 // build_site.py rewrites this block from each project's MARKETING_VERSION. Do not edit it.
 const appVersions = {
   audiorec: [{ label: '', version: '1.3.0' }],
-  wavesmith: [{ label: '', version: '3.0.1' }],
+  wavesmith: [{ label: '', version: '3.1.0' }],
   bookplayer: [{ label: '', version: '3.1.1' }],
   shelfspoken: [{ label: '', version: '5.7.0' }],
   enki: [{ label: 'Mac', version: '2.2.1' }, { label: 'iPhone', version: '1.1.0' }],
@@ -700,7 +700,11 @@ const apps = [
       { v: '2.12.1', text: 'Batch Decrypt unlocks every Audible book in the files, folders or drive you pick, one after another, skipping books already done, carrying on past one that fails, and offering the originals for the Trash at the end' },
       { v: '2.12.1', text: 'Whole folders can be picked or dropped as input, added folder by folder in name order' },
       { v: '2.12.1', text: 'The Python version gains Batch Decrypt, folder input, the offline activation search, a waveform drawn while it reads, and the tag editor for M4B and M4A files' },
-      { v: '3.0.1', text: 'Bad-block repair decodes the repaired file again and fixes anything still clicking, so a repaired MP3 plays clean in car stereos and other hardware players, in the Mac app and the Python version alike' }
+      { v: '3.0.1', text: 'Bad-block repair decodes the repaired file again and fixes anything still clicking, so a repaired MP3 plays clean in car stereos and other hardware players, in the Mac app and the Python version alike' },
+      { v: '3.1.0', text: 'Auto Process asks for an End product: one audiobook file, 1-hour MP3 parts, or both' },
+      { v: '3.1.0', text: 'Auto Process runs several books, or whole folders of them, one after another, with one summary at the end' },
+      { v: '3.1.0', text: 'MP3s are checked and repaired for bad blocks before Auto Process transcodes or splits them' },
+      { v: '3.1.0', text: 'Decrypted books always go to a folder of their own, chosen before the first decrypt' }
     ],
     tech: 'AVFoundation · AVAssetReader/Writer · AVAssetExportSession · ffmpeg · audible-cli · AudibleKit',
     screenshots: {
