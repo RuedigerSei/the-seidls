@@ -586,16 +586,16 @@ const appVersions = {
   audiorec: [{ label: '', version: '1.3.0' }],
   wavesmith: [{ label: '', version: '3.1.0' }],
   bookplayer: [{ label: '', version: '3.1.1' }],
-  shelfspoken: [{ label: '', version: '5.7.0' }],
+  shelfspoken: [{ label: '', version: '5.8.0' }],
   enki: [{ label: 'Mac', version: '2.2.1' }, { label: 'iPhone', version: '1.1.0' }],
   enkibridge: [{ label: '', version: '1.1.0' }],
   siftit: [{ label: '', version: '1.1.0' }],
   vaulta: [{ label: '', version: '1.1.0' }],
   eightsleep: [{ label: '', version: '1.1.0' }],
-  sunkeeper: [{ label: '', version: '1.12.1' }],
+  sunkeeper: [{ label: '', version: '1.12.3' }],
   wattsup: [{ label: '', version: '1.17.0' }],
   firewatch: [{ label: '', version: '1.1.0' }],
-  e2drive: [{ label: '', version: '1.3.0' }],
+  e2drive: [{ label: '', version: '1.3.1' }],
   glucalyzer: [{ label: '', version: '2.0.0' }],
   biometric: [{ label: '', version: '1.1.2' }],
   workouts: [{ label: '', version: '2.2.1' }]
@@ -830,7 +830,10 @@ const apps = [
       { v: '5.4.0', text: 'A filter for books on an Audible account with no audio file on any drive, and Download from Audible says when the file is already in Downloads or when Audible does not offer that title' },
       { v: '5.7.0', text: 'A built-in reader for EPUB and Markdown on the Mac: one continuous page with clickable contents, find, typeface, text size and light or dark pages. It remembers your place in each file' },
       { v: '5.7.0', text: 'In book details, EPUB opens in the reader, Read-Along opens the EPUB beside it there, Characters opens there when the list is Markdown, and green PDF and Book PDF open the file in your PDF reader' },
-      { v: '5.7.0', text: 'In Finder, press Space on an EPUB or Markdown file to preview it in the reader, or use Open With → ShelfSpoken. Neither needs the book on your shelf' }
+      { v: '5.7.0', text: 'In Finder, press Space on an EPUB or Markdown file to preview it in the reader, or use Open With → ShelfSpoken. Neither needs the book on your shelf' },
+      { v: '5.8.0', text: 'Cloud storage scans can be narrowed to chosen buckets: each bucket of a mounted cloud drive is a checkbox, and unticked ones are left out of the scan and the file list' },
+      { v: '5.8.0', text: 'Shares its library with E2Drive, whose Audiobook Sync uses it to keep the books on two local drives and the cloud in step' },
+      { v: '5.8.0', text: 'Folders on your drives that match no book can be sent over from E2Drive: ShelfSpoken looks each one up on Audible and adds the book only after you pick the right result' }
     ],
     tech: 'SwiftData · CloudKit · App Intents · Core Spotlight · Foundation Models · Visual Intelligence · Vision · AudibleKit · audible-cli · OverDrive catalogue API · IDrive e2 · iTunes Search API · NavigationSplitView · GenreMapResolver · BackupService',
     screenshots: {
@@ -1079,7 +1082,10 @@ const apps = [
       { v: '1.9.0', text: 'Data reaches the phone, iPad and Mac through CloudKit within seconds, changes come back as a push, and SunKeeper sends the battery alerts itself, so they arrive with the apps closed' },
       { v: '1.10.0', text: 'The phone\'s Energy message says only whether you need to act, with the amount to add or take off, recalculated every minute' },
       { v: '1.12.0', text: 'Logs both thermostats every minute, so WattsUpHome can see whether the furnace runs less on heater mornings' },
-      { v: '1.12.1', text: 'A failed Powerwall change no longer lingers: once the Powerwall reports the setting that was asked for, every device shows it as confirmed' }
+      { v: '1.12.1', text: 'A failed Powerwall change no longer lingers: once the Powerwall reports the setting that was asked for, every device shows it as confirmed' },
+      { v: '1.12.2', text: 'The monitoring loop stays running when it wakes from sleep; timers and async continuations now fire reliably on a headless Mac with no display' },
+      { v: '1.12.3', text: 'The monitoring loop stays running when iCloud needs to re-download the history file — the read now happens in the background, so a slow iCloud sync can\'t stall the daemon' },
+      { v: '1.12.3', text: 'Sponge-load plugs switch off once the solar forecast drops below the live home draw after 15:00, so a heater left on won\'t run on the battery through Part-Peak and Peak' }
     ],
     tech: 'Mac Catalyst · AppKit · NSStatusItem · HomeKit · SwiftData · NSUbiquitousKeyValueStore · Teslemetry API · Solcast API',
     screenshots: {
@@ -1201,7 +1207,9 @@ const apps = [
       { v: '1.1.2', text: 'After a refresh, each account says when it finished and how many files are new, changed or removed, whichever app asked for it' },
       { v: '1.2.0', text: 'Lives in the menu bar beside Wi-Fi, with each account\'s Show in Finder, Refresh and last refresh, plus Start at Login; no Dock icon' },
       { v: '1.2.1', text: 'A new app icon: a drive with a small cloud' },
-      { v: '1.3.0', text: 'Delete Bucket: removes a bucket with every file and every older version in it, after an "Are you sure?"' }
+      { v: '1.3.0', text: 'Delete Bucket: removes a bucket with every file and every older version in it, after an "Are you sure?"' },
+      { v: '1.3.1', text: 'Refresh finds buckets made elsewhere and asks whether to show them in Finder' },
+      { v: '1.3.1', text: 'Delete Bucket keeps going when the server is slow to answer, so a large bucket is emptied and removed in one run' }
     ],
     tech: 'File Provider (replicated extension) · S3 API with SigV4 signing · URLSession downloads · MenuBarExtra · SMAppService · Keychain · App Groups · Swift 6',
     screenshots: {
