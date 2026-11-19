@@ -584,15 +584,15 @@
 // build_site.py rewrites this block from each project's MARKETING_VERSION. Do not edit it.
 const appVersions = {
   audiorec: [{ label: '', version: '1.3.0' }],
-  wavesmith: [{ label: '', version: '3.2.0' }],
-  bookplayer: [{ label: '', version: '3.1.1' }],
-  shelfspoken: [{ label: '', version: '5.8.2' }],
+  wavesmith: [{ label: '', version: '3.3.0' }],
+  bookplayer: [{ label: '', version: '3.1.2' }],
+  shelfspoken: [{ label: '', version: '5.9.0' }],
   enki: [{ label: 'Mac', version: '2.2.1' }, { label: 'iPhone', version: '1.1.0' }],
   enkibridge: [{ label: '', version: '1.1.0' }],
   siftit: [{ label: '', version: '1.1.0' }],
   vaulta: [{ label: '', version: '1.1.0' }],
   eightsleep: [{ label: '', version: '1.1.0' }],
-  sunkeeper: [{ label: '', version: '1.12.4' }],
+  sunkeeper: [{ label: '', version: '1.12.5' }],
   wattsup: [{ label: '', version: '1.17.0' }],
   firewatch: [{ label: '', version: '1.1.0' }],
   e2drive: [{ label: '', version: '1.3.1' }],
@@ -709,7 +709,10 @@ const apps = [
       { v: '3.1.1', text: 'Decrypted books are named Author - Title without the subtitle, so they line up with the shelf in ShelfSpoken' },
       { v: '3.1.1', text: 'A quick transcode with output verification off does only the transcode, with no waveform work running alongside it' },
       { v: '3.2.0', text: 'Opening credits and Introduction switches in the chapter list rename the first chapters and move the generic numbered titles down to where they belong' },
-      { v: '3.2.0', text: 'Paste Titles fills a book\'s chapter titles from a copied table of contents, joining titles broken over two lines' }
+      { v: '3.2.0', text: 'Paste Titles fills a book\'s chapter titles from a copied table of contents, joining titles broken over two lines' },
+      { v: '3.3.0', text: 'Tidy Names renames Audible files already on disk to Author - Title and cleans their tags, the same way decrypting does' },
+      { v: '3.3.0', text: 'A decrypted book keeps its Audible ID and has a single chapter list, without leftover encoder or description tags' },
+      { v: '3.3.0', text: 'AutoSplit parts carry the book\'s title, author and part number, which is all a simple MP3 car player shows' }
     ],
     tech: 'AVFoundation · AVAssetReader/Writer · AVAssetExportSession · ffmpeg · audible-cli · AudibleKit',
     screenshots: {
@@ -756,7 +759,8 @@ const apps = [
       { v: '3.0.0', text: 'A contents list jumps between chapters, a button switches to the original PDF pages and back, and both have dark pages, with pictures keeping their real colours' },
       { v: '3.1.0', text: 'Who is: tap a name in the reader, or ask Siri, to hear who a character is, told only as far as you have got in the book' },
       { v: '3.1.0', text: 'Books that are only an EPUB open and show their cover. Search the book from the reader, play from any paragraph, copy a paragraph, and tap footnotes and sidebars to read them' },
-      { v: '3.1.1', text: 'Reads the character lists Enki 2.2.1 writes, as well as older ones' }
+      { v: '3.1.1', text: 'Reads the character lists Enki 2.2.1 writes, as well as older ones' },
+      { v: '3.1.2', text: 'Shows the same chapters as Apple Books and Music, from the book\'s chapter track' }
     ],
     tech: 'AVFoundation · AVAudioEngine · AVAudioUnitTimePitch · SwiftData · MediaPlayer · CoreImage',
     screenshots: {
@@ -840,7 +844,11 @@ const apps = [
       { v: '5.7.0', text: 'In Finder, press Space on an EPUB or Markdown file to preview it in the reader, or use Open With → ShelfSpoken. Neither needs the book on your shelf' },
       { v: '5.8.0', text: 'Cloud storage scans can be narrowed to chosen buckets: each bucket of a mounted cloud drive is a checkbox, and unticked ones are left out of the scan and the file list' },
       { v: '5.8.0', text: 'Shares its library with E2Drive, whose Audiobook Sync uses it to keep the books on two local drives and the cloud in step' },
-      { v: '5.8.0', text: 'Folders on your drives that match no book can be sent over from E2Drive: ShelfSpoken looks each one up on Audible and adds the book only after you pick the right result' }
+      { v: '5.8.0', text: 'Folders on your drives that match no book can be sent over from E2Drive: ShelfSpoken looks each one up on Audible and adds the book only after you pick the right result' },
+      { v: '5.9.0', text: 'The library CSV export includes each book’s ASIN' },
+      { v: '5.9.0', text: 'Sign in to Audible inside ShelfSpoken (beta), so downloads and library checks no longer need audible-cli' },
+      { v: '5.9.0', text: 'A finished Audible download is named “Author - Title” from Audible’s catalogue, with its tags set to match; you can edit the name first or keep the original' },
+      { v: '5.9.0', text: 'Downloading an Audible book also fetches its companion PDF when there is one' }
     ],
     tech: 'SwiftData · CloudKit · App Intents · Core Spotlight · Foundation Models · Visual Intelligence · Vision · AudibleKit · audible-cli · OverDrive catalogue API · IDrive e2 · iTunes Search API · NavigationSplitView · GenreMapResolver · BackupService',
     screenshots: {
