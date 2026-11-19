@@ -584,9 +584,9 @@
 // build_site.py rewrites this block from each project's MARKETING_VERSION. Do not edit it.
 const appVersions = {
   audiorec: [{ label: '', version: '1.3.0' }],
-  wavesmith: [{ label: '', version: '3.3.0' }],
+  wavesmith: [{ label: '', version: '3.4.0' }],
   bookplayer: [{ label: '', version: '3.1.2' }],
-  shelfspoken: [{ label: '', version: '5.9.0' }],
+  shelfspoken: [{ label: '', version: '5.10.0' }],
   enki: [{ label: 'Mac', version: '2.2.1' }, { label: 'iPhone', version: '1.1.0' }],
   enkibridge: [{ label: '', version: '1.1.0' }],
   siftit: [{ label: '', version: '1.1.0' }],
@@ -712,7 +712,9 @@ const apps = [
       { v: '3.2.0', text: 'Paste Titles fills a book\'s chapter titles from a copied table of contents, joining titles broken over two lines' },
       { v: '3.3.0', text: 'Tidy Names renames Audible files already on disk to Author - Title and cleans their tags, the same way decrypting does' },
       { v: '3.3.0', text: 'A decrypted book keeps its Audible ID and has a single chapter list, without leftover encoder or description tags' },
-      { v: '3.3.0', text: 'AutoSplit parts carry the book\'s title, author and part number, which is all a simple MP3 car player shows' }
+      { v: '3.3.0', text: 'AutoSplit parts carry the book\'s title, author and part number, which is all a simple MP3 car player shows' },
+      { v: '3.4.0', text: 'Tidy Names finds a book in your ShelfSpoken library first, so it gets the edition you bought, from whichever Audible account' },
+      { v: '3.4.0', text: 'Otherwise it searches Audible\'s catalogue in every store without signing in, and lists a same-titled book of another length unticked for checking' }
     ],
     tech: 'AVFoundation · AVAssetReader/Writer · AVAssetExportSession · ffmpeg · audible-cli · AudibleKit',
     screenshots: {
@@ -848,7 +850,8 @@ const apps = [
       { v: '5.9.0', text: 'The library CSV export includes each book’s ASIN' },
       { v: '5.9.0', text: 'Sign in to Audible inside ShelfSpoken (beta), so downloads and library checks no longer need audible-cli' },
       { v: '5.9.0', text: 'A finished Audible download is named “Author - Title” from Audible’s catalogue, with its tags set to match; you can edit the name first or keep the original' },
-      { v: '5.9.0', text: 'Downloading an Audible book also fetches its companion PDF when there is one' }
+      { v: '5.9.0', text: 'Downloading an Audible book also fetches its companion PDF when there is one' },
+      { v: '5.10.0', text: 'Audible downloads come at 64 kbps instead of 128 kbps, half the size, so they download and open faster' }
     ],
     tech: 'SwiftData · CloudKit · App Intents · Core Spotlight · Foundation Models · Visual Intelligence · Vision · AudibleKit · audible-cli · OverDrive catalogue API · IDrive e2 · iTunes Search API · NavigationSplitView · GenreMapResolver · BackupService',
     screenshots: {
