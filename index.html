@@ -592,7 +592,7 @@ const appVersions = {
   siftit: [{ label: '', version: '1.1.0' }],
   vaulta: [{ label: '', version: '1.1.0' }],
   eightsleep: [{ label: '', version: '1.1.0' }],
-  sunkeeper: [{ label: '', version: '1.12.5' }],
+  sunkeeper: [{ label: '', version: '1.12.6' }],
   wattsup: [{ label: '', version: '1.17.0' }],
   firewatch: [{ label: '', version: '1.1.0' }],
   e2drive: [{ label: '', version: '1.3.1' }],
@@ -1109,7 +1109,8 @@ const apps = [
       { v: '1.12.1', text: 'A failed Powerwall change no longer lingers: once the Powerwall reports the setting that was asked for, every device shows it as confirmed' },
       { v: '1.12.2', text: 'The monitoring loop stays running when it wakes from sleep; timers and async continuations now fire reliably on a headless Mac with no display' },
       { v: '1.12.3', text: 'The monitoring loop stays running when iCloud needs to re-download the history file — the read now happens in the background, so a slow iCloud sync can\'t stall the daemon' },
-      { v: '1.12.3', text: 'Sponge-load plugs switch off once the solar forecast drops below the live home draw after 15:00, so a heater left on won\'t run on the battery through Part-Peak and Peak' }
+      { v: '1.12.3', text: 'Sponge-load plugs switch off once the solar forecast drops below the live home draw after 15:00, so a heater left on won\'t run on the battery through Part-Peak and Peak' },
+      { v: '1.12.6', text: 'On a cloudy day SunKeeper switches the Powerwall to Savings and raises its Backup Reserve above the afternoon target, so the battery keeps taking solar until it gets there' }
     ],
     tech: 'Mac Catalyst · AppKit · NSStatusItem · HomeKit · SwiftData · NSUbiquitousKeyValueStore · Teslemetry API · Solcast API',
     screenshots: {
