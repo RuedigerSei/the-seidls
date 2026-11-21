@@ -584,7 +584,7 @@
 // build_site.py rewrites this block from each project's MARKETING_VERSION. Do not edit it.
 const appVersions = {
   audiorec: [{ label: '', version: '1.3.0' }],
-  wavesmith: [{ label: '', version: '3.5.0' }],
+  wavesmith: [{ label: '', version: '3.5.1' }],
   bookplayer: [{ label: '', version: '3.1.2' }],
   shelfspoken: [{ label: '', version: '5.11.0' }],
   enki: [{ label: 'Mac', version: '2.2.1' }, { label: 'iPhone', version: '1.1.0' }],
@@ -717,7 +717,10 @@ const apps = [
       { v: '3.4.0', text: 'Otherwise it searches Audible\'s catalogue in every store without signing in, and lists a same-titled book of another length unticked for checking' },
       { v: '3.5.0', text: 'Opening an Audible book decrypts it straight away, and asks only when it needs activation bytes it doesn\'t have: found in the book itself or pasted in' },
       { v: '3.5.0', text: 'The Python version gains a library window: every book in your signed-in Audible accounts, and the books on your own drives, with each account\'s membership shown, downloaded and unlocked in one step' },
-      { v: '3.5.0', text: 'The Python version can carry each Audible download on to 1-hour MP3 parts, filed as Author / Author - Title with its PDF on the drive you choose, while the unlocked book stays as the backup; a report lists what worked and what didn\'t, with Retry and a CSV export' }
+      { v: '3.5.0', text: 'The Python version can carry each Audible download on to 1-hour MP3 parts, filed as Author / Author - Title with its PDF on the drive you choose, while the unlocked book stays as the backup; a report lists what worked and what didn\'t, with Retry and a CSV export' },
+      { v: '3.5.1', text: 'Split MP3 parts are tagged the way car stereos read best: an older, widely supported tag format with a basic copy, titled Part 1 of 9, with no chapters or extra tags' },
+      { v: '3.5.1', text: 'Every MP3 part carries a cover any player can show, converted without loss when the original is a web-style JPEG' },
+      { v: '3.5.1', text: 'Tidy Names takes single files as well as folders' }
     ],
     tech: 'AVFoundation · AVAssetReader/Writer · AVAssetExportSession · ffmpeg · audible-cli · AudibleKit',
     screenshots: {
