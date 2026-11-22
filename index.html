@@ -583,10 +583,10 @@
 // BEGIN GENERATED VERSIONS
 // build_site.py rewrites this block from each project's MARKETING_VERSION. Do not edit it.
 const appVersions = {
-  audiorec: [{ label: '', version: '1.3.0' }],
-  wavesmith: [{ label: '', version: '3.5.1' }],
+  audiorec: [{ label: '', version: '1.3.1' }],
+  wavesmith: [{ label: '', version: '3.5.2' }],
   bookplayer: [{ label: '', version: '3.1.2' }],
-  shelfspoken: [{ label: '', version: '5.11.0' }],
+  shelfspoken: [{ label: '', version: '5.11.1' }],
   enki: [{ label: 'Mac', version: '2.2.1' }, { label: 'iPhone', version: '1.1.0' }],
   enkibridge: [{ label: '', version: '1.1.0' }],
   siftit: [{ label: '', version: '1.1.0' }],
@@ -632,7 +632,8 @@ const apps = [
       { v: '1.2.0', text: 'Tap the version at the bottom of Preferences to see what changed in each release' },
       { v: '1.3.0', text: 'Named Reel2Reel throughout the Mac: Finder, the Dock, the menu bar and the setup guides' },
       { v: '1.3.0', text: 'The About window shows the real version and follows the Dark / Light theme' },
-      { v: '1.3.0', text: 'Preferences fits inside the window, with the version and Close always in view' }
+      { v: '1.3.0', text: 'Preferences fits inside the window, with the version and Close always in view' },
+      { v: '1.3.1', text: 'Search Audible asks Audible’s public catalogue directly, with no account or extra tools needed' }
     ],
     tech: 'AVFoundation · AVAudioEngine · ExtAudioFile · AVAssetExportSession · CGEvent · ApplicationServices · IOKit · AudibleKit',
     screenshots: {
@@ -720,7 +721,10 @@ const apps = [
       { v: '3.5.0', text: 'The Python version can carry each Audible download on to 1-hour MP3 parts, filed as Author / Author - Title with its PDF on the drive you choose, while the unlocked book stays as the backup; a report lists what worked and what didn\'t, with Retry and a CSV export' },
       { v: '3.5.1', text: 'Split MP3 parts are tagged the way car stereos read best: an older, widely supported tag format with a basic copy, titled Part 1 of 9, with no chapters or extra tags' },
       { v: '3.5.1', text: 'Every MP3 part carries a cover any player can show, converted without loss when the original is a web-style JPEG' },
-      { v: '3.5.1', text: 'Tidy Names takes single files as well as folders' }
+      { v: '3.5.1', text: 'Tidy Names takes single files as well as folders' },
+      { v: '3.5.2', text: 'Real chapter titles are read through the Audible accounts signed in to the app, each tried until one owns the book; audible-cli is only a fallback' },
+      { v: '3.5.2', text: 'Naming a decrypted book from Audible needs no sign-in: the public catalogue answers it' },
+      { v: '3.5.2', text: 'Settings are laid out as cards, in the app’s own colours' }
     ],
     tech: 'AVFoundation · AVAssetReader/Writer · AVAssetExportSession · ffmpeg · audible-cli · AudibleKit',
     screenshots: {
@@ -860,7 +864,11 @@ const apps = [
       { v: '5.10.0', text: 'Audible downloads come at 64 kbps instead of 128 kbps, half the size, so they download and open faster' },
       { v: '5.11.0', text: 'Audible downloads are capped at 40 books a day per account, so the accounts aren’t throttled, with the number left shown wherever you download' },
       { v: '5.11.0', text: 'A companion file-sync app can ask for a smaller 22 kHz copy of a book from Audible, which ShelfSpoken downloads and reports back on' },
-      { v: '5.11.0', text: 'Existing audible-cli logins can be used for the built-in Audible sign-in without signing in again' }
+      { v: '5.11.0', text: 'Existing audible-cli logins can be used for the built-in Audible sign-in without signing in again' },
+      { v: '5.11.1', text: 'An Audible Libraries view lists every book your signed-in Audible accounts own, with filters, each account’s membership and books owned twice' },
+      { v: '5.11.1', text: 'Audible downloads can be unlocked, joined when they come in parts, and filed into your library folders automatically' },
+      { v: '5.11.1', text: 'Audible is reached through the built-in sign-in, and catalogue searches need no sign-in at all' },
+      { v: '5.11.1', text: 'Settings are laid out as cards, with Audible accounts first' }
     ],
     tech: 'SwiftData · CloudKit · App Intents · Core Spotlight · Foundation Models · Visual Intelligence · Vision · AudibleKit · audible-cli · OverDrive catalogue API · IDrive e2 · iTunes Search API · NavigationSplitView · GenreMapResolver · BackupService',
     screenshots: {
