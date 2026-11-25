@@ -586,7 +586,7 @@ const appVersions = {
   audiorec: [{ label: '', version: '1.3.1' }],
   wavesmith: [{ label: '', version: '3.5.2' }],
   bookplayer: [{ label: '', version: '3.1.2' }],
-  shelfspoken: [{ label: '', version: '5.11.1' }],
+  shelfspoken: [{ label: '', version: '5.13.0' }],
   enki: [{ label: 'Mac', version: '2.2.1' }, { label: 'iPhone', version: '1.1.0' }],
   enkibridge: [{ label: '', version: '1.1.0' }],
   siftit: [{ label: '', version: '1.1.0' }],
@@ -598,7 +598,7 @@ const appVersions = {
   e2drive: [{ label: '', version: '1.3.1' }],
   glucalyzer: [{ label: '', version: '2.0.0' }],
   biometric: [{ label: '', version: '1.1.2' }],
-  workouts: [{ label: '', version: '2.2.2' }]
+  workouts: [{ label: '', version: '2.3.0' }]
 };
 // END GENERATED VERSIONS
 
@@ -725,7 +725,12 @@ const apps = [
       { v: '3.5.1', text: 'Tidy Names takes single files as well as folders' },
       { v: '3.5.2', text: 'Real chapter titles are read through the Audible accounts signed in to the app, each tried until one owns the book; audible-cli is only a fallback' },
       { v: '3.5.2', text: 'Naming a decrypted book from Audible needs no sign-in: the public catalogue answers it' },
-      { v: '3.5.2', text: 'Settings are laid out as cards, in the app’s own colours' }
+      { v: '3.5.2', text: 'Settings are laid out as cards, in the app’s own colours' },
+      { v: '3.5.2', text: 'The Python version\'s library shows each series as Audible lists it, your books marked and the rest one click from Want to Read; collections of short stories and anthologies of many writers list only your own books' },
+      { v: '3.5.2', text: 'The Python version gains a Quality Audit of the whole library: covers, genres, names, folders, tags, spare copies and damaged MP3 blocks in one report, with step-by-step fixes that can be undone' },
+      { v: '3.5.2', text: 'The Python version\'s library folders are watched, so a book copied in or deleted elsewhere shows up by itself, and the PDFs that come with a book can be found, opened and moved into its folder' },
+      { v: '3.5.2', text: 'The Python version\'s Audible sign-in picks the address up from the clipboard and shows each step, and every longer action shows its progress, with a report of IDrive e2 transfers' },
+      { v: '3.5.2', text: 'The Python version\'s Quality Audit report is short, one line per finding with the files under Fix, and its Audible library can be filtered to the books not on your drives' }
     ],
     tech: 'AVFoundation · AVAssetReader/Writer · AVAssetExportSession · ffmpeg · audible-cli · AudibleKit',
     screenshots: {
@@ -869,7 +874,11 @@ const apps = [
       { v: '5.11.1', text: 'An Audible Libraries view lists every book your signed-in Audible accounts own, with filters, each account’s membership and books owned twice' },
       { v: '5.11.1', text: 'Audible downloads can be unlocked, joined when they come in parts, and filed into your library folders automatically' },
       { v: '5.11.1', text: 'Audible is reached through the built-in sign-in, and catalogue searches need no sign-in at all' },
-      { v: '5.11.1', text: 'Settings are laid out as cards, with Audible accounts first' }
+      { v: '5.11.1', text: 'Settings are laid out as cards, with Audible accounts first' },
+      { v: '5.12.0', text: 'A Multiple Copies filter lists the books you keep more than once on your drives, counting books rather than files' },
+      { v: '5.12.0', text: 'Files on your drives are linked to the right book more often, using the running time when a file name could fit two books' },
+      { v: '5.13.0', text: 'A series shows every book Audible lists in it, found from your own books in the series, so a series of the same name by someone else never stands in' },
+      { v: '5.13.0', text: 'Collections of short stories and anthologies of many writers list only your own books instead of passing for a series' }
     ],
     tech: 'SwiftData · CloudKit · App Intents · Core Spotlight · Foundation Models · Visual Intelligence · Vision · AudibleKit · audible-cli · OverDrive catalogue API · IDrive e2 · iTunes Search API · NavigationSplitView · GenreMapResolver · BackupService',
     screenshots: {
@@ -1392,7 +1401,8 @@ const apps = [
       { v: '2.1.0', text: 'Muscle diagrams for the main lifts, drawing the shoulder as its three heads, with muscle lists checked against published studies' },
       { v: '2.1.0', text: 'Pull ups are logged as body weight, with no warm-up or plates, and dumbbell lifts skip the barbell warm-up' },
       { v: '2.1.1', text: 'A workout survives iOS closing the phone app in the background: the phone comes back with the session still running, including sets logged while it was locked' },
-      { v: '2.2.0', text: 'Picking a lift says how the proposal compares to last time, and you can keep the last session instead. Each step of a ladder can be changed before you start, and the Log tab says which week of the block you are in' }
+      { v: '2.2.0', text: 'Picking a lift says how the proposal compares to last time, and you can keep the last session instead. Each step of a ladder can be changed before you start, and the Log tab says which week of the block you are in' },
+      { v: '2.3.0', text: 'High-intensity running minutes: how long each week you spent at 90 to 100% of your max heart rate in the last mile of each run, charted against a weekly goal you set' }
     ],
     tech: 'HealthKit (background delivery, mirrored workout sessions) · WatchConnectivity · CloudKit (CKSyncEngine) · App Intents · Core Spotlight · AVSpeechSynthesizer · SwiftUI · watchOS · Canvas (custom charts) · MarkdownUI · Swift 6',
     screenshots: {
