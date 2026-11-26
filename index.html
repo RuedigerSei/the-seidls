@@ -586,7 +586,7 @@ const appVersions = {
   audiorec: [{ label: '', version: '1.3.1' }],
   wavesmith: [{ label: '', version: '3.5.2' }],
   bookplayer: [{ label: '', version: '3.1.2' }],
-  shelfspoken: [{ label: '', version: '5.13.0' }],
+  shelfspoken: [{ label: '', version: '5.14.0' }],
   enki: [{ label: 'Mac', version: '2.2.1' }, { label: 'iPhone', version: '1.1.0' }],
   enkibridge: [{ label: '', version: '1.1.0' }],
   siftit: [{ label: '', version: '1.1.0' }],
@@ -595,7 +595,7 @@ const appVersions = {
   sunkeeper: [{ label: '', version: '1.12.6' }],
   wattsup: [{ label: '', version: '1.17.0' }],
   firewatch: [{ label: '', version: '1.1.0' }],
-  e2drive: [{ label: '', version: '1.3.1' }],
+  e2drive: [{ label: '', version: '1.4.0' }],
   glucalyzer: [{ label: '', version: '2.0.0' }],
   biometric: [{ label: '', version: '1.1.2' }],
   workouts: [{ label: '', version: '2.3.0' }]
@@ -878,7 +878,13 @@ const apps = [
       { v: '5.12.0', text: 'A Multiple Copies filter lists the books you keep more than once on your drives, counting books rather than files' },
       { v: '5.12.0', text: 'Files on your drives are linked to the right book more often, using the running time when a file name could fit two books' },
       { v: '5.13.0', text: 'A series shows every book Audible lists in it, found from your own books in the series, so a series of the same name by someone else never stands in' },
-      { v: '5.13.0', text: 'Collections of short stories and anthologies of many writers list only your own books instead of passing for a series' }
+      { v: '5.13.0', text: 'Collections of short stories and anthologies of many writers list only your own books instead of passing for a series' },
+      { v: '5.14.0', text: 'A list of every Audible title beside the original files kept in the cloud, one line per file, showing which titles each household member keeps and what needs attention: missing, duplicated, an unknown format or untidy names and tags' },
+      { v: '5.14.0', text: 'The list can be exported and imported, so two people sharing a library can see each other\'s picks, and chosen cloud copies can be deleted' },
+      { v: '5.14.0', text: 'The local library becomes Personal Titles, with a review list for books that arrive on a drive later' },
+      { v: '5.14.0', text: 'Quick and Full audits, with the checks for each chosen in Settings, plus checks for author names and for PDFs not yet on your drives' },
+      { v: '5.14.0', text: 'Settings with a sidebar and a search field' },
+      { v: '5.14.0', text: 'Downloads ask for the small 22 kHz edition first and move to larger ones only when it isn\'t offered' }
     ],
     tech: 'SwiftData · CloudKit · App Intents · Core Spotlight · Foundation Models · Visual Intelligence · Vision · AudibleKit · audible-cli · OverDrive catalogue API · IDrive e2 · iTunes Search API · NavigationSplitView · GenreMapResolver · BackupService',
     screenshots: {
@@ -1255,7 +1261,9 @@ const apps = [
       { v: '1.2.1', text: 'A new app icon: a drive with a small cloud' },
       { v: '1.3.0', text: 'Delete Bucket: removes a bucket with every file and every older version in it, after an "Are you sure?"' },
       { v: '1.3.1', text: 'Refresh finds buckets made elsewhere and asks whether to show them in Finder' },
-      { v: '1.3.1', text: 'Delete Bucket keeps going when the server is slow to answer, so a large bucket is emptied and removed in one run' }
+      { v: '1.3.1', text: 'Delete Bucket keeps going when the server is slow to answer, so a large bucket is emptied and removed in one run' },
+      { v: '1.4.0', text: 'Audiobook Sync keeps two Macs and the cloud in step with ShelfSpoken, the local copy leading, renames following it to the cloud and a book only in the cloud downloaded and added in one step' },
+      { v: '1.4.0', text: 'Reads the format and tags of audiobooks in the cloud without downloading them, rewrites their tags on the server, and deletes chosen ones for ShelfSpoken while file changes from other apps are allowed' }
     ],
     tech: 'File Provider (replicated extension) · S3 API with SigV4 signing · URLSession downloads · MenuBarExtra · SMAppService · Keychain · App Groups · Swift 6',
     screenshots: {
